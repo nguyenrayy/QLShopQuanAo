@@ -8,3 +8,16 @@ D:\QLShopQuanAo\QLShopQuanAo\bin\Debug\QLShopQuanAo.exe
 D:\QLShopQuanAo\QLShopQuanAo\bin\Debug\QLShopQuanAo.pdb
 D:\QLShopQuanAo\QLShopQuanAo\obj\Debug\QLShopQuanAo.exe
 D:\QLShopQuanAo\QLShopQuanAo\obj\Debug\QLShopQuanAo.pdb
+C:\Users\iCare Center\Desktop\QLShopQuanAo\QLShopQuanAo\QLShopQuanAo\bin\Debug\QLShopQuanAo.exe.config
+C:\Users\iCare Center\Desktop\QLShopQuanAo\QLShopQuanAo\QLShopQuanAo\bin\Debug\QLShopQuanAo.exe
+C:\Users\iCare Center\Desktop\QLShopQuanAo\QLShopQuanAo\QLShopQuanAo\bin\Debug\QLShopQuanAo.pdb
+C:\Users\iCare Center\Desktop\QLShopQuanAo\QLShopQuanAo\QLShopQuanAo\obj\Debug\QLShopQuanAo.csproj.AssemblyReference.cache
+C:\Users\iCare Center\Desktop\QLShopQuanAo\QLShopQuanAo\QLShopQuanAo\obj\Debug\QLShopQuanAo.csproj.SuggestedBindingRedirects.cache
+C:\Users\iCare Center\Desktop\QLShopQuanAo\QLShopQuanAo\QLShopQuanAo\obj\Debug\QLShopQuanAo.FromQLHang.resources
+C:\Users\iCare Center\Desktop\QLShopQuanAo\QLShopQuanAo\QLShopQuanAo\obj\Debug\QLShopQuanAo.Properties.Resources.resources
+C:\Users\iCare Center\Desktop\QLShopQuanAo\QLShopQuanAo\QLShopQuanAo\obj\Debug\QLShopQuanAo.csproj.GenerateResource.cache
+C:\Users\iCare Center\Desktop\QLShopQuanAo\QLShopQuanAo\QLShopQuanAo\obj\Debug\QLShopQuanAo.csproj.CoreCompileInputs.cache
+C:\Users\iCare Center\Desktop\QLShopQuanAo\QLShopQuanAo\QLShopQuanAo\obj\Debug\QLShopQuanAo.exe
+C:\Users\iCare Center\Desktop\QLShopQuanAo\QLShopQuanAo\QLShopQuanAo\obj\Debug\QLShopQuanAo.pdb
+C:\Users\iCare Center\Desktop\QLShopQuanAo\QLShopQuanAo\QLShopQuanAo\obj\Debug\QLShopQuanAo.DangNhap.resources
+C:\Users\iCare Center\Desktop\QLShopQuanAo\QLShopQuanAo\QLShopQuanAo\obj\Debug\QLShopQuanAo.fNhanVien.resources

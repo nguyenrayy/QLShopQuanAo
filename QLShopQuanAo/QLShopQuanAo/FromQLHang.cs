@@ -130,6 +130,11 @@ namespace QLShopQuanAo
             }
         }
 
-        
+        private void btDangXuat_Click(object sender, EventArgs e)
+        {
+            DangNhap f = new DangNhap();
+            f.Show();
+            this.Hide();
+        }
     }
 }

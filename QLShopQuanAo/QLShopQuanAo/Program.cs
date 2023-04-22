@@ -16,7 +16,7 @@ namespace QLShopQuanAo
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FromQLHang());
+            Application.Run(new DangNhap());
         }
     }
 }
