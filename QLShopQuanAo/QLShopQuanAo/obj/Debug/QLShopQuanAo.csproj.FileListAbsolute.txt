@@ -21,3 +21,8 @@ C:\Users\iCare Center\Desktop\QLShopQuanAo\QLShopQuanAo\QLShopQuanAo\obj\Debug\Q
 C:\Users\iCare Center\Desktop\QLShopQuanAo\QLShopQuanAo\QLShopQuanAo\obj\Debug\QLShopQuanAo.pdb
 C:\Users\iCare Center\Desktop\QLShopQuanAo\QLShopQuanAo\QLShopQuanAo\obj\Debug\QLShopQuanAo.DangNhap.resources
 C:\Users\iCare Center\Desktop\QLShopQuanAo\QLShopQuanAo\QLShopQuanAo\obj\Debug\QLShopQuanAo.fNhanVien.resources
+C:\Users\iCare Center\Desktop\QLShopQuanAo\QLShopQuanAo\QLShopQuanAo\bin\Debug\DAL.dll
+C:\Users\iCare Center\Desktop\QLShopQuanAo\QLShopQuanAo\QLShopQuanAo\bin\Debug\DAL.pdb
+C:\Users\iCare Center\Desktop\QLShopQuanAo\QLShopQuanAo\QLShopQuanAo\obj\Debug\QLShopQuanAo.csproj.CopyComplete
+C:\Users\iCare Center\Desktop\QLShopQuanAo\QLShopQuanAo\QLShopQuanAo\bin\Debug\DTO.dll
+C:\Users\iCare Center\Desktop\QLShopQuanAo\QLShopQuanAo\QLShopQuanAo\bin\Debug\DTO.pdb

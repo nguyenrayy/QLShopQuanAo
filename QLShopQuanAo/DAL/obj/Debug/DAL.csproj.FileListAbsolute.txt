@@ -1,0 +1,9 @@
+C:\Users\iCare Center\Desktop\QLShopQuanAo\QLShopQuanAo\DAL\bin\Debug\DAL.dll
+C:\Users\iCare Center\Desktop\QLShopQuanAo\QLShopQuanAo\DAL\bin\Debug\DAL.pdb
+C:\Users\iCare Center\Desktop\QLShopQuanAo\QLShopQuanAo\DAL\obj\Debug\DAL.csproj.AssemblyReference.cache
+C:\Users\iCare Center\Desktop\QLShopQuanAo\QLShopQuanAo\DAL\obj\Debug\DAL.csproj.CoreCompileInputs.cache
+C:\Users\iCare Center\Desktop\QLShopQuanAo\QLShopQuanAo\DAL\obj\Debug\DAL.dll
+C:\Users\iCare Center\Desktop\QLShopQuanAo\QLShopQuanAo\DAL\obj\Debug\DAL.pdb
+C:\Users\iCare Center\Desktop\QLShopQuanAo\QLShopQuanAo\DAL\bin\Debug\DTO.dll
+C:\Users\iCare Center\Desktop\QLShopQuanAo\QLShopQuanAo\DAL\bin\Debug\DTO.pdb
+C:\Users\iCare Center\Desktop\QLShopQuanAo\QLShopQuanAo\DAL\obj\Debug\DAL.csproj.CopyComplete

@@ -59,6 +59,7 @@
     <Compile Include="FromQLHang.Designer.cs">
       <DependentUpon>FromQLHang.cs</DependentUpon>
     </Compile>
+    <Compile Include="KhachHangService.cs" />
     <Compile Include="LoginService.cs" />
     <Compile Include="fNhanVien.cs">
       <SubType>Form</SubType>
@@ -104,6 +105,16 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DAL\DAL.csproj">
+      <Project>{71eb3d4f-ddf1-4ca8-b293-34f0d853db48}</Project>
+      <Name>DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DTO\DTO.csproj">
+      <Project>{599d239d-ea09-45f5-9d93-97c16dacc653}</Project>
+      <Name>DTO</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
