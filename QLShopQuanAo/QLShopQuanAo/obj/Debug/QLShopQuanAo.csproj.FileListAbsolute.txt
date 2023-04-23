@@ -26,3 +26,20 @@ C:\Users\iCare Center\Desktop\QLShopQuanAo\QLShopQuanAo\QLShopQuanAo\bin\Debug\D
 C:\Users\iCare Center\Desktop\QLShopQuanAo\QLShopQuanAo\QLShopQuanAo\obj\Debug\QLShopQuanAo.csproj.CopyComplete
 C:\Users\iCare Center\Desktop\QLShopQuanAo\QLShopQuanAo\QLShopQuanAo\bin\Debug\DTO.dll
 C:\Users\iCare Center\Desktop\QLShopQuanAo\QLShopQuanAo\QLShopQuanAo\bin\Debug\DTO.pdb
+C:\Users\tring\OneDrive\Desktop\QLShopQuanAo\QLShopQuanAo\QLShopQuanAo\bin\Debug\QLShopQuanAo.exe.config
+C:\Users\tring\OneDrive\Desktop\QLShopQuanAo\QLShopQuanAo\QLShopQuanAo\bin\Debug\QLShopQuanAo.exe
+C:\Users\tring\OneDrive\Desktop\QLShopQuanAo\QLShopQuanAo\QLShopQuanAo\bin\Debug\QLShopQuanAo.pdb
+C:\Users\tring\OneDrive\Desktop\QLShopQuanAo\QLShopQuanAo\QLShopQuanAo\bin\Debug\DAL.dll
+C:\Users\tring\OneDrive\Desktop\QLShopQuanAo\QLShopQuanAo\QLShopQuanAo\bin\Debug\DTO.dll
+C:\Users\tring\OneDrive\Desktop\QLShopQuanAo\QLShopQuanAo\QLShopQuanAo\bin\Debug\DAL.pdb
+C:\Users\tring\OneDrive\Desktop\QLShopQuanAo\QLShopQuanAo\QLShopQuanAo\bin\Debug\DTO.pdb
+C:\Users\tring\OneDrive\Desktop\QLShopQuanAo\QLShopQuanAo\QLShopQuanAo\obj\Debug\QLShopQuanAo.csproj.AssemblyReference.cache
+C:\Users\tring\OneDrive\Desktop\QLShopQuanAo\QLShopQuanAo\QLShopQuanAo\obj\Debug\QLShopQuanAo.DangNhap.resources
+C:\Users\tring\OneDrive\Desktop\QLShopQuanAo\QLShopQuanAo\QLShopQuanAo\obj\Debug\QLShopQuanAo.FromQLHang.resources
+C:\Users\tring\OneDrive\Desktop\QLShopQuanAo\QLShopQuanAo\QLShopQuanAo\obj\Debug\QLShopQuanAo.fNhanVien.resources
+C:\Users\tring\OneDrive\Desktop\QLShopQuanAo\QLShopQuanAo\QLShopQuanAo\obj\Debug\QLShopQuanAo.Properties.Resources.resources
+C:\Users\tring\OneDrive\Desktop\QLShopQuanAo\QLShopQuanAo\QLShopQuanAo\obj\Debug\QLShopQuanAo.csproj.GenerateResource.cache
+C:\Users\tring\OneDrive\Desktop\QLShopQuanAo\QLShopQuanAo\QLShopQuanAo\obj\Debug\QLShopQuanAo.csproj.CoreCompileInputs.cache
+C:\Users\tring\OneDrive\Desktop\QLShopQuanAo\QLShopQuanAo\QLShopQuanAo\obj\Debug\QLShopQuanAo.csproj.CopyComplete
+C:\Users\tring\OneDrive\Desktop\QLShopQuanAo\QLShopQuanAo\QLShopQuanAo\obj\Debug\QLShopQuanAo.exe
+C:\Users\tring\OneDrive\Desktop\QLShopQuanAo\QLShopQuanAo\QLShopQuanAo\obj\Debug\QLShopQuanAo.pdb
