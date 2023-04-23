@@ -23,6 +23,7 @@ namespace QLShopQuanAo
             dgKHNV.DataSource = khsv.getKhachHang();
             spsv.loadSanPhamNhanVien(dgSanPhamNV);
             loadComboKhachHang();
+            LoadDsDoiTra();
         }
         public void loadComboKhachHang()
         {
@@ -132,6 +133,33 @@ namespace QLShopQuanAo
         private void txtSDTKH_TextChanged(object sender, EventArgs e)
         {
             this.txtSDTKH.Text = txtSDTKH.Text;
+        }
+
+        private void LoadDsDoiTra()
+        {
+
+            var sql = "SELECT maPhieuDoiTra, maNhanVien, maKhachHang, ngayDoiTra = CONVERT(NVARCHAR(10),ngayDoiTra,103), congViec, tongTien FROM PhieuDoiTra";
+
+            var cmd = new SqlCommand(sql, DBConnect.Connect());
+            var dr = cmd.ExecuteReader();
+            //Xóa dữ liệu cũ trong datagridview
+            dgvDoiTra.Rows.Clear();
+
+            // lập qua từng dòng trong bảng SanPham, thêm vào datagridview
+            while (dr.Read())
+            {
+                var i = dgvDoiTra.Rows.Add();
+                var row = dgvDoiTra.Rows[i];
+                row.Cells["maPhieuDoiTra"].Value = dr["maPhieuDoiTra"];
+                row.Cells["maNhanVien"].Value = dr["maNhanVien"];
+                row.Cells["maKhachHang"].Value = dr["maKhachHang"];
+                row.Cells["ngayDoiTra"].Value = dr["ngayDoiTra"];
+                row.Cells["congViec"].Value = dr["congViec"];
+                row.Cells["tongTien"].Value = dr["tongTien"];
+            }
+
+            dr.Close();
+
         }
     }
 }
