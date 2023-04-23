@@ -85,6 +85,7 @@
             this.txtTaiKhoan.Name = "txtTaiKhoan";
             this.txtTaiKhoan.Size = new System.Drawing.Size(151, 20);
             this.txtTaiKhoan.TabIndex = 19;
+            this.txtTaiKhoan.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtTaiKhoan_KeyPress);
             // 
             // txtMatKhau
             // 

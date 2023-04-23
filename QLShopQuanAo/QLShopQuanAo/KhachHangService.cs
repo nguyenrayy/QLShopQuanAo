@@ -70,9 +70,13 @@ namespace QLShopQuanAo
             string sql = "select count(*) from khachhang where soDienThoai = @soDienThoai ";
             SqlCommand cmd = new SqlCommand(sql, DBConnect.Conn);
             cmd.Parameters.AddWithValue("@soDienThoai", sdt);
-            int r = (int)cmd.ExecuteNonQuery();
-            return (r > 0) ? true : false;
+            int r = (int)cmd.ExecuteScalar();
+            if (r > 0)
+                return true;
+            else
+                return false;
         }
+        
     }
     
 }

@@ -51,5 +51,16 @@ namespace QLShopQuanAo
                 Application.Exit();
             }
         }
+        
+
+        private void txtTaiKhoan_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) &&
+                e.KeyChar != '.')
+                e.Handled = true;
+
+            if (e.KeyChar == '.' && ((System.Windows.Forms.TextBox)sender).Text.IndexOf('.') > -1) e.Handled = true;
+
+        }
     }
 }

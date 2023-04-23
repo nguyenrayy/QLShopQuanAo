@@ -45,7 +45,7 @@ namespace DTO
             var rd = new Random();
             for (int i = 0; i <= 7; i++)
             {
-                result +=   rd.Next(10).ToString();
+                result += rd.Next(10).ToString();
             }
 
             return result;
@@ -57,12 +57,16 @@ namespace DTO
             this.sdt = sdt;
             this.diachi = diachi;
         }
-        public KhachHang(string makhachhang ,string tenkhachhang, string sdt, string diachi)
+        public KhachHang(string makhachhang, string tenkhachhang, string sdt, string diachi)
         {
-            this.makhachhang =makhachhang;
+            this.makhachhang = makhachhang;
             this.tenkhachhang = tenkhachhang;
             this.sdt = sdt;
             this.diachi = diachi;
         }
+        //override
+        //public String ()
+        //{ return this.tenkhachhang; }
     }
+   
 }

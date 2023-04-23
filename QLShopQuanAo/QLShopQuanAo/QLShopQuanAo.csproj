@@ -75,6 +75,7 @@
     <Compile Include="QLNhapHang.Designer.cs">
       <DependentUpon>QLNhapHang.cs</DependentUpon>
     </Compile>
+    <Compile Include="SanPhamService.cs" />
     <EmbeddedResource Include="DangNhap.resx">
       <DependentUpon>DangNhap.cs</DependentUpon>
     </EmbeddedResource>

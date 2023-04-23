@@ -16,11 +16,18 @@ namespace QLShopQuanAo
     public partial class fNhanVien : Form
     {
         KhachHangService khsv = new KhachHangService();
+        SanPhamService spsv = new SanPhamService();
         public fNhanVien()
         {
             InitializeComponent();
             dgKHNV.DataSource = khsv.getKhachHang();
-            //dgKHNV.CellValueChanged += dgKHNV_CellValueChanged;
+            spsv.loadSanPhamNhanVien(dgSanPhamNV);
+            loadComboKhachHang();
+        }
+        public void loadComboKhachHang()
+        {
+            cbMaKHTT.DataSource = khsv.getKhachHang();
+            cbMaKHTT.DisplayMember = "tenKhachHang".ToString();
         }
 
         private void btDangXuat_Click(object sender, EventArgs e)
@@ -113,5 +120,18 @@ namespace QLShopQuanAo
 
         }
 
+        private void txtSDTKH_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) &&
+                e.KeyChar != '.')
+                e.Handled = true;
+
+            if (e.KeyChar == '.' && ((System.Windows.Forms.TextBox)sender).Text.IndexOf('.') > -1) e.Handled = true;
+        }
+
+        private void txtSDTKH_TextChanged(object sender, EventArgs e)
+        {
+            this.txtSDTKH.Text = txtSDTKH.Text;
+        }
     }
 }
