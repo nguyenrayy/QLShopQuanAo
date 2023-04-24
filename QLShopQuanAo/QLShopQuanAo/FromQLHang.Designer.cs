@@ -29,13 +29,7 @@ namespace QLShopQuanAo
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.tabControl1ádadsddđ = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.btnTimKiemSP = new System.Windows.Forms.Button();
             this.label14 = new System.Windows.Forms.Label();
@@ -121,26 +115,54 @@ namespace QLShopQuanAo
             this.chucVu = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.pass = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label3 = new System.Windows.Forms.Label();
-            this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.tabControl1.SuspendLayout();
+            this.tabPage333 = new System.Windows.Forms.TabPage();
+            this.panel1asd = new System.Windows.Forms.Panel();
+            this.ffaaa = new System.Windows.Forms.FlowLayoutPanel();
+            this.label25asdasd = new System.Windows.Forms.Label();
+            this.label25ádfasdf = new System.Windows.Forms.Label();
+            this.dpNgayBatDauTK = new System.Windows.Forms.DateTimePicker();
+            this.label252134 = new System.Windows.Forms.Label();
+            this.dpNgayKetThucTK = new System.Windows.Forms.DateTimePicker();
+            this.btThongKeDT = new System.Windows.Forms.Button();
+            this.tabPage3ádádas = new System.Windows.Forms.TabPage();
+            this.label2511 = new System.Windows.Forms.Label();
+            this.dgDSHDCTHD = new System.Windows.Forms.DataGridView();
+            this.dgDSHDAD = new System.Windows.Forms.DataGridView();
+            this.label25qưe = new System.Windows.Forms.Label();
+            this.xtxtxt = new System.Windows.Forms.Label();
+            this.label251212 = new System.Windows.Forms.Label();
+            this.label25ádasddddđ = new System.Windows.Forms.Label();
+            this.label25444444444444 = new System.Windows.Forms.Label();
+            this.txtMaHDHDAD = new System.Windows.Forms.TextBox();
+            this.txtTenKHHDAD = new System.Windows.Forms.TextBox();
+            this.txtTongTienHDAD = new System.Windows.Forms.TextBox();
+            this.dpHDHDAD = new System.Windows.Forms.DateTimePicker();
+            this.btXoaHDHDAD = new System.Windows.Forms.Button();
+            this.tabControl1ádadsddđ.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pic)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSanPham)).BeginInit();
             this.tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvNhanVien)).BeginInit();
+            this.tabPage333.SuspendLayout();
+            this.ffaaa.SuspendLayout();
+            this.tabPage3ádádas.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgDSHDCTHD)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgDSHDAD)).BeginInit();
             this.SuspendLayout();
             // 
-            // tabControl1
+            // tabControl1ádadsddđ
             // 
-            this.tabControl1.Controls.Add(this.tabPage1);
-            this.tabControl1.Controls.Add(this.tabPage2);
-            this.tabControl1.Controls.Add(this.tabPage3);
-            this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabControl1.Location = new System.Drawing.Point(0, 0);
-            this.tabControl1.Name = "tabControl1";
-            this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1659, 1016);
-            this.tabControl1.TabIndex = 0;
+            this.tabControl1ádadsddđ.Controls.Add(this.tabPage1);
+            this.tabControl1ádadsddđ.Controls.Add(this.tabPage2);
+            this.tabControl1ádadsddđ.Controls.Add(this.tabPage333);
+            this.tabControl1ádadsddđ.Controls.Add(this.tabPage3ádádas);
+            this.tabControl1ádadsddđ.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabControl1ádadsddđ.Location = new System.Drawing.Point(0, 0);
+            this.tabControl1ádadsddđ.Name = "tabControl1ádadsddđ";
+            this.tabControl1ádadsddđ.SelectedIndex = 0;
+            this.tabControl1ádadsddđ.Size = new System.Drawing.Size(1604, 881);
+            this.tabControl1ádadsddđ.TabIndex = 0;
             // 
             // tabPage1
             // 
@@ -181,10 +203,10 @@ namespace QLShopQuanAo
             this.tabPage1.Controls.Add(this.txtMa);
             this.tabPage1.Controls.Add(this.dgvSanPham);
             this.tabPage1.Controls.Add(this.label1);
-            this.tabPage1.Location = new System.Drawing.Point(4, 25);
+            this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(1651, 987);
+            this.tabPage1.Size = new System.Drawing.Size(1596, 855);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Sản Phẩm";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -208,7 +230,7 @@ namespace QLShopQuanAo
             this.label14.Location = new System.Drawing.Point(877, 375);
             this.label14.Margin = new System.Windows.Forms.Padding(0);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(92, 24);
+            this.label14.Size = new System.Drawing.Size(73, 18);
             this.label14.TabIndex = 146;
             this.label14.Text = "Tìm kiếm:";
             // 
@@ -218,7 +240,7 @@ namespace QLShopQuanAo
             this.txtTimKiemSP.Location = new System.Drawing.Point(1017, 370);
             this.txtTimKiemSP.Margin = new System.Windows.Forms.Padding(0);
             this.txtTimKiemSP.Name = "txtTimKiemSP";
-            this.txtTimKiemSP.Size = new System.Drawing.Size(260, 29);
+            this.txtTimKiemSP.Size = new System.Drawing.Size(260, 24);
             this.txtTimKiemSP.TabIndex = 145;
             this.txtTimKiemSP.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtTimKiemSP_KeyPress);
             // 
@@ -241,7 +263,7 @@ namespace QLShopQuanAo
             this.lable1111.Location = new System.Drawing.Point(568, 833);
             this.lable1111.Margin = new System.Windows.Forms.Padding(0);
             this.lable1111.Name = "lable1111";
-            this.lable1111.Size = new System.Drawing.Size(138, 24);
+            this.lable1111.Size = new System.Drawing.Size(106, 18);
             this.lable1111.TabIndex = 143;
             this.lable1111.Text = "Ảnh sản phẩm:";
             // 
@@ -251,7 +273,7 @@ namespace QLShopQuanAo
             this.txtAnhSanPham.Location = new System.Drawing.Point(752, 833);
             this.txtAnhSanPham.Margin = new System.Windows.Forms.Padding(0);
             this.txtAnhSanPham.Name = "txtAnhSanPham";
-            this.txtAnhSanPham.Size = new System.Drawing.Size(260, 29);
+            this.txtAnhSanPham.Size = new System.Drawing.Size(260, 24);
             this.txtAnhSanPham.TabIndex = 142;
             // 
             // label2
@@ -262,7 +284,7 @@ namespace QLShopQuanAo
             this.label2.Location = new System.Drawing.Point(8, 649);
             this.label2.Margin = new System.Windows.Forms.Padding(0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(149, 24);
+            this.label2.Size = new System.Drawing.Size(119, 18);
             this.label2.TabIndex = 141;
             this.label2.Text = "Mô tả sản phẩm:";
             // 
@@ -272,7 +294,7 @@ namespace QLShopQuanAo
             this.txtMoTa.Location = new System.Drawing.Point(200, 649);
             this.txtMoTa.Margin = new System.Windows.Forms.Padding(0);
             this.txtMoTa.Name = "txtMoTa";
-            this.txtMoTa.Size = new System.Drawing.Size(260, 29);
+            this.txtMoTa.Size = new System.Drawing.Size(260, 24);
             this.txtMoTa.TabIndex = 140;
             // 
             // btnChon
@@ -336,7 +358,7 @@ namespace QLShopQuanAo
             this.dateNgayNhap.Location = new System.Drawing.Point(760, 590);
             this.dateNgayNhap.Margin = new System.Windows.Forms.Padding(0);
             this.dateNgayNhap.Name = "dateNgayNhap";
-            this.dateNgayNhap.Size = new System.Drawing.Size(260, 29);
+            this.dateNgayNhap.Size = new System.Drawing.Size(260, 24);
             this.dateNgayNhap.TabIndex = 134;
             // 
             // pic
@@ -360,7 +382,7 @@ namespace QLShopQuanAo
             this.label12.Location = new System.Drawing.Point(576, 777);
             this.label12.Margin = new System.Windows.Forms.Padding(0);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(125, 24);
+            this.label12.Size = new System.Drawing.Size(98, 18);
             this.label12.TabIndex = 132;
             this.label12.Text = "Nhà sản xuất:";
             // 
@@ -372,7 +394,7 @@ namespace QLShopQuanAo
             this.label11.Location = new System.Drawing.Point(611, 722);
             this.label11.Margin = new System.Windows.Forms.Padding(0);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(88, 24);
+            this.label11.Size = new System.Drawing.Size(69, 18);
             this.label11.TabIndex = 131;
             this.label11.Text = "Chất liệu:";
             // 
@@ -384,7 +406,7 @@ namespace QLShopQuanAo
             this.label10.Location = new System.Drawing.Point(77, 787);
             this.label10.Margin = new System.Windows.Forms.Padding(0);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(83, 24);
+            this.label10.Size = new System.Drawing.Size(66, 18);
             this.label10.TabIndex = 130;
             this.label10.Text = "Giá xuất:";
             // 
@@ -396,7 +418,7 @@ namespace QLShopQuanAo
             this.label9.Location = new System.Drawing.Point(77, 718);
             this.label9.Margin = new System.Windows.Forms.Padding(0);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(91, 24);
+            this.label9.Size = new System.Drawing.Size(71, 18);
             this.label9.TabIndex = 129;
             this.label9.Text = "Giá nhập:";
             // 
@@ -408,7 +430,7 @@ namespace QLShopQuanAo
             this.label7.Location = new System.Drawing.Point(557, 659);
             this.label7.Margin = new System.Windows.Forms.Padding(0);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(139, 24);
+            this.label7.Size = new System.Drawing.Size(107, 18);
             this.label7.TabIndex = 128;
             this.label7.Text = "Số lượng nhập:";
             // 
@@ -420,7 +442,7 @@ namespace QLShopQuanAo
             this.label6.Location = new System.Drawing.Point(611, 531);
             this.label6.Margin = new System.Windows.Forms.Padding(0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(100, 24);
+            this.label6.Size = new System.Drawing.Size(77, 18);
             this.label6.TabIndex = 127;
             this.label6.Text = "Tình trạng:";
             // 
@@ -432,7 +454,7 @@ namespace QLShopQuanAo
             this.label5.Location = new System.Drawing.Point(568, 590);
             this.label5.Margin = new System.Windows.Forms.Padding(0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(134, 24);
+            this.label5.Size = new System.Drawing.Size(105, 18);
             this.label5.TabIndex = 126;
             this.label5.Text = "Ngày sản xuất:";
             // 
@@ -444,7 +466,7 @@ namespace QLShopQuanAo
             this.label13.Location = new System.Drawing.Point(1155, 531);
             this.label13.Margin = new System.Windows.Forms.Padding(0);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(138, 24);
+            this.label13.Size = new System.Drawing.Size(106, 18);
             this.label13.TabIndex = 125;
             this.label13.Text = "Ảnh sản phẩm:";
             // 
@@ -456,7 +478,7 @@ namespace QLShopQuanAo
             this.label15.Location = new System.Drawing.Point(115, 833);
             this.label15.Margin = new System.Windows.Forms.Padding(0);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(51, 24);
+            this.label15.Size = new System.Drawing.Size(41, 18);
             this.label15.TabIndex = 124;
             this.label15.Text = "Size:";
             // 
@@ -468,7 +490,7 @@ namespace QLShopQuanAo
             this.label16.Location = new System.Drawing.Point(13, 590);
             this.label16.Margin = new System.Windows.Forms.Padding(0);
             this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(137, 24);
+            this.label16.Size = new System.Drawing.Size(106, 18);
             this.label16.TabIndex = 123;
             this.label16.Text = "Tên sản phẩm:";
             // 
@@ -480,7 +502,7 @@ namespace QLShopQuanAo
             this.label17.Location = new System.Drawing.Point(24, 531);
             this.label17.Margin = new System.Windows.Forms.Padding(0);
             this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(129, 24);
+            this.label17.Size = new System.Drawing.Size(102, 18);
             this.label17.TabIndex = 122;
             this.label17.Text = "Mã sản phẩm:";
             // 
@@ -495,7 +517,7 @@ namespace QLShopQuanAo
             this.cbTinhTrang.Location = new System.Drawing.Point(760, 521);
             this.cbTinhTrang.Margin = new System.Windows.Forms.Padding(0);
             this.cbTinhTrang.Name = "cbTinhTrang";
-            this.cbTinhTrang.Size = new System.Drawing.Size(260, 32);
+            this.cbTinhTrang.Size = new System.Drawing.Size(260, 26);
             this.cbTinhTrang.TabIndex = 118;
             // 
             // txtSoLuong
@@ -504,7 +526,7 @@ namespace QLShopQuanAo
             this.txtSoLuong.Location = new System.Drawing.Point(760, 649);
             this.txtSoLuong.Margin = new System.Windows.Forms.Padding(0);
             this.txtSoLuong.Name = "txtSoLuong";
-            this.txtSoLuong.Size = new System.Drawing.Size(260, 29);
+            this.txtSoLuong.Size = new System.Drawing.Size(260, 24);
             this.txtSoLuong.TabIndex = 119;
             this.txtSoLuong.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.NhapSo);
             // 
@@ -514,7 +536,7 @@ namespace QLShopQuanAo
             this.txtGiaNhap.Location = new System.Drawing.Point(205, 718);
             this.txtGiaNhap.Margin = new System.Windows.Forms.Padding(0);
             this.txtGiaNhap.Name = "txtGiaNhap";
-            this.txtGiaNhap.Size = new System.Drawing.Size(260, 29);
+            this.txtGiaNhap.Size = new System.Drawing.Size(260, 24);
             this.txtGiaNhap.TabIndex = 116;
             this.txtGiaNhap.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.NhapSo);
             // 
@@ -524,7 +546,7 @@ namespace QLShopQuanAo
             this.txtGiaXuat.Location = new System.Drawing.Point(205, 777);
             this.txtGiaXuat.Margin = new System.Windows.Forms.Padding(0);
             this.txtGiaXuat.Name = "txtGiaXuat";
-            this.txtGiaXuat.Size = new System.Drawing.Size(260, 29);
+            this.txtGiaXuat.Size = new System.Drawing.Size(260, 24);
             this.txtGiaXuat.TabIndex = 117;
             this.txtGiaXuat.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.NhapSo);
             // 
@@ -534,7 +556,7 @@ namespace QLShopQuanAo
             this.txtNhaSanXuat.Location = new System.Drawing.Point(760, 777);
             this.txtNhaSanXuat.Margin = new System.Windows.Forms.Padding(0);
             this.txtNhaSanXuat.Name = "txtNhaSanXuat";
-            this.txtNhaSanXuat.Size = new System.Drawing.Size(260, 29);
+            this.txtNhaSanXuat.Size = new System.Drawing.Size(260, 24);
             this.txtNhaSanXuat.TabIndex = 121;
             // 
             // txtChatLieu
@@ -543,7 +565,7 @@ namespace QLShopQuanAo
             this.txtChatLieu.Location = new System.Drawing.Point(760, 718);
             this.txtChatLieu.Margin = new System.Windows.Forms.Padding(0);
             this.txtChatLieu.Name = "txtChatLieu";
-            this.txtChatLieu.Size = new System.Drawing.Size(260, 29);
+            this.txtChatLieu.Size = new System.Drawing.Size(260, 24);
             this.txtChatLieu.TabIndex = 120;
             // 
             // txtSize
@@ -552,7 +574,7 @@ namespace QLShopQuanAo
             this.txtSize.Location = new System.Drawing.Point(200, 833);
             this.txtSize.Margin = new System.Windows.Forms.Padding(0);
             this.txtSize.Name = "txtSize";
-            this.txtSize.Size = new System.Drawing.Size(260, 29);
+            this.txtSize.Size = new System.Drawing.Size(260, 24);
             this.txtSize.TabIndex = 115;
             // 
             // txtTen
@@ -561,7 +583,7 @@ namespace QLShopQuanAo
             this.txtTen.Location = new System.Drawing.Point(205, 590);
             this.txtTen.Margin = new System.Windows.Forms.Padding(0);
             this.txtTen.Name = "txtTen";
-            this.txtTen.Size = new System.Drawing.Size(260, 29);
+            this.txtTen.Size = new System.Drawing.Size(260, 24);
             this.txtTen.TabIndex = 114;
             // 
             // txtMa
@@ -570,7 +592,7 @@ namespace QLShopQuanAo
             this.txtMa.Location = new System.Drawing.Point(205, 521);
             this.txtMa.Margin = new System.Windows.Forms.Padding(0);
             this.txtMa.Name = "txtMa";
-            this.txtMa.Size = new System.Drawing.Size(260, 29);
+            this.txtMa.Size = new System.Drawing.Size(260, 24);
             this.txtMa.TabIndex = 113;
             // 
             // dgvSanPham
@@ -578,14 +600,6 @@ namespace QLShopQuanAo
             this.dgvSanPham.AllowUserToAddRows = false;
             this.dgvSanPham.AllowUserToDeleteRows = false;
             this.dgvSanPham.BackgroundColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvSanPham.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvSanPham.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvSanPham.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.maSanPham,
@@ -600,28 +614,12 @@ namespace QLShopQuanAo
             this.chatLieu,
             this.nhaSanXuat,
             this.anhSanPham});
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvSanPham.DefaultCellStyle = dataGridViewCellStyle2;
             this.dgvSanPham.EnableHeadersVisualStyles = false;
             this.dgvSanPham.Location = new System.Drawing.Point(95, 144);
             this.dgvSanPham.Margin = new System.Windows.Forms.Padding(0);
             this.dgvSanPham.MultiSelect = false;
             this.dgvSanPham.Name = "dgvSanPham";
             this.dgvSanPham.ReadOnly = true;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvSanPham.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dgvSanPham.RowHeadersWidth = 51;
             this.dgvSanPham.RowTemplate.Height = 24;
             this.dgvSanPham.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
@@ -744,7 +742,7 @@ namespace QLShopQuanAo
             this.label1.Location = new System.Drawing.Point(3, 3);
             this.label1.Margin = new System.Windows.Forms.Padding(0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(1645, 49);
+            this.label1.Size = new System.Drawing.Size(1590, 49);
             this.label1.TabIndex = 111;
             this.label1.Text = "Quản lý sản phẩm";
             this.label1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -777,10 +775,10 @@ namespace QLShopQuanAo
             this.tabPage2.Controls.Add(this.label23);
             this.tabPage2.Controls.Add(this.dgvNhanVien);
             this.tabPage2.Controls.Add(this.label3);
-            this.tabPage2.Location = new System.Drawing.Point(4, 25);
+            this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(1651, 987);
+            this.tabPage2.Size = new System.Drawing.Size(1596, 855);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Nhân viên";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -801,7 +799,7 @@ namespace QLShopQuanAo
             this.txtTimKiemNV.Location = new System.Drawing.Point(776, 359);
             this.txtTimKiemNV.Margin = new System.Windows.Forms.Padding(4);
             this.txtTimKiemNV.Name = "txtTimKiemNV";
-            this.txtTimKiemNV.Size = new System.Drawing.Size(275, 29);
+            this.txtTimKiemNV.Size = new System.Drawing.Size(275, 24);
             this.txtTimKiemNV.TabIndex = 138;
             this.txtTimKiemNV.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtTimKiemNV_KeyPress);
             // 
@@ -812,7 +810,7 @@ namespace QLShopQuanAo
             this.label24.Location = new System.Drawing.Point(679, 363);
             this.label24.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(92, 24);
+            this.label24.Size = new System.Drawing.Size(73, 18);
             this.label24.TabIndex = 137;
             this.label24.Text = "Tìm kiếm:";
             // 
@@ -863,7 +861,7 @@ namespace QLShopQuanAo
             this.rdNu.Location = new System.Drawing.Point(524, 681);
             this.rdNu.Margin = new System.Windows.Forms.Padding(4);
             this.rdNu.Name = "rdNu";
-            this.rdNu.Size = new System.Drawing.Size(56, 28);
+            this.rdNu.Size = new System.Drawing.Size(45, 22);
             this.rdNu.TabIndex = 132;
             this.rdNu.Text = "Nữ";
             this.rdNu.UseVisualStyleBackColor = true;
@@ -876,7 +874,7 @@ namespace QLShopQuanAo
             this.rdNam.Location = new System.Drawing.Point(422, 679);
             this.rdNam.Margin = new System.Windows.Forms.Padding(4);
             this.rdNam.Name = "rdNam";
-            this.rdNam.Size = new System.Drawing.Size(71, 28);
+            this.rdNam.Size = new System.Drawing.Size(58, 22);
             this.rdNam.TabIndex = 131;
             this.rdNam.TabStop = true;
             this.rdNam.Text = "Nam";
@@ -889,7 +887,7 @@ namespace QLShopQuanAo
             this.label4.Location = new System.Drawing.Point(303, 731);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(99, 24);
+            this.label4.Size = new System.Drawing.Size(77, 18);
             this.label4.TabIndex = 130;
             this.label4.Text = "Ngày sinh:";
             // 
@@ -899,7 +897,7 @@ namespace QLShopQuanAo
             this.dateNhanVien.Location = new System.Drawing.Point(422, 728);
             this.dateNhanVien.Margin = new System.Windows.Forms.Padding(4);
             this.dateNhanVien.Name = "dateNhanVien";
-            this.dateNhanVien.Size = new System.Drawing.Size(260, 26);
+            this.dateNhanVien.Size = new System.Drawing.Size(260, 22);
             this.dateNhanVien.TabIndex = 129;
             // 
             // label8
@@ -909,7 +907,7 @@ namespace QLShopQuanAo
             this.label8.Location = new System.Drawing.Point(268, 633);
             this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(137, 24);
+            this.label8.Size = new System.Drawing.Size(103, 18);
             this.label8.TabIndex = 128;
             this.label8.Text = "Tên nhân viên:";
             // 
@@ -919,7 +917,7 @@ namespace QLShopQuanAo
             this.txtPass.Location = new System.Drawing.Point(905, 677);
             this.txtPass.Margin = new System.Windows.Forms.Padding(4);
             this.txtPass.Name = "txtPass";
-            this.txtPass.Size = new System.Drawing.Size(275, 29);
+            this.txtPass.Size = new System.Drawing.Size(275, 24);
             this.txtPass.TabIndex = 125;
             // 
             // label18
@@ -929,7 +927,7 @@ namespace QLShopQuanAo
             this.label18.Location = new System.Drawing.Point(786, 683);
             this.label18.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(91, 24);
+            this.label18.Size = new System.Drawing.Size(73, 18);
             this.label18.TabIndex = 124;
             this.label18.Text = "Mật khẩu:";
             // 
@@ -940,7 +938,7 @@ namespace QLShopQuanAo
             this.txtSDT.Margin = new System.Windows.Forms.Padding(4);
             this.txtSDT.MaxLength = 10;
             this.txtSDT.Name = "txtSDT";
-            this.txtSDT.Size = new System.Drawing.Size(260, 29);
+            this.txtSDT.Size = new System.Drawing.Size(260, 24);
             this.txtSDT.TabIndex = 123;
             this.txtSDT.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.NhapSo);
             // 
@@ -951,7 +949,7 @@ namespace QLShopQuanAo
             this.label19.Location = new System.Drawing.Point(276, 778);
             this.label19.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(126, 24);
+            this.label19.Size = new System.Drawing.Size(98, 18);
             this.label19.TabIndex = 122;
             this.label19.Text = "Số điện thoại:";
             // 
@@ -962,7 +960,7 @@ namespace QLShopQuanAo
             this.label20.Location = new System.Drawing.Point(319, 679);
             this.label20.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(83, 24);
+            this.label20.Size = new System.Drawing.Size(66, 18);
             this.label20.TabIndex = 121;
             this.label20.Text = "Giới tính:";
             // 
@@ -972,7 +970,7 @@ namespace QLShopQuanAo
             this.txtDiaChi.Location = new System.Drawing.Point(905, 583);
             this.txtDiaChi.Margin = new System.Windows.Forms.Padding(4);
             this.txtDiaChi.Name = "txtDiaChi";
-            this.txtDiaChi.Size = new System.Drawing.Size(275, 29);
+            this.txtDiaChi.Size = new System.Drawing.Size(275, 24);
             this.txtDiaChi.TabIndex = 120;
             // 
             // label21
@@ -982,7 +980,7 @@ namespace QLShopQuanAo
             this.label21.Location = new System.Drawing.Point(808, 587);
             this.label21.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(72, 24);
+            this.label21.Size = new System.Drawing.Size(57, 18);
             this.label21.TabIndex = 119;
             this.label21.Text = "Địa chỉ:";
             // 
@@ -992,7 +990,7 @@ namespace QLShopQuanAo
             this.txtChucVu.Location = new System.Drawing.Point(905, 630);
             this.txtChucVu.Margin = new System.Windows.Forms.Padding(4);
             this.txtChucVu.Name = "txtChucVu";
-            this.txtChucVu.Size = new System.Drawing.Size(275, 29);
+            this.txtChucVu.Size = new System.Drawing.Size(275, 24);
             this.txtChucVu.TabIndex = 118;
             // 
             // label22
@@ -1002,7 +1000,7 @@ namespace QLShopQuanAo
             this.label22.Location = new System.Drawing.Point(795, 630);
             this.label22.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(85, 24);
+            this.label22.Size = new System.Drawing.Size(66, 18);
             this.label22.TabIndex = 117;
             this.label22.Text = "Chức vụ:";
             // 
@@ -1012,7 +1010,7 @@ namespace QLShopQuanAo
             this.txtTenNhanVien.Location = new System.Drawing.Point(422, 632);
             this.txtTenNhanVien.Margin = new System.Windows.Forms.Padding(4);
             this.txtTenNhanVien.Name = "txtTenNhanVien";
-            this.txtTenNhanVien.Size = new System.Drawing.Size(260, 29);
+            this.txtTenNhanVien.Size = new System.Drawing.Size(260, 24);
             this.txtTenNhanVien.TabIndex = 116;
             // 
             // txtMaNhanVien
@@ -1021,7 +1019,7 @@ namespace QLShopQuanAo
             this.txtMaNhanVien.Location = new System.Drawing.Point(422, 583);
             this.txtMaNhanVien.Margin = new System.Windows.Forms.Padding(4);
             this.txtMaNhanVien.Name = "txtMaNhanVien";
-            this.txtMaNhanVien.Size = new System.Drawing.Size(260, 29);
+            this.txtMaNhanVien.Size = new System.Drawing.Size(260, 24);
             this.txtMaNhanVien.TabIndex = 115;
             // 
             // label23
@@ -1031,21 +1029,13 @@ namespace QLShopQuanAo
             this.label23.Location = new System.Drawing.Point(276, 587);
             this.label23.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(129, 24);
+            this.label23.Size = new System.Drawing.Size(99, 18);
             this.label23.TabIndex = 114;
             this.label23.Text = "Mã nhân viên:";
             // 
             // dgvNhanVien
             // 
             this.dgvNhanVien.BackgroundColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvNhanVien.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.dgvNhanVien.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvNhanVien.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.maNhanVien,
@@ -1056,24 +1046,8 @@ namespace QLShopQuanAo
             this.ngaySinh,
             this.chucVu,
             this.pass});
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvNhanVien.DefaultCellStyle = dataGridViewCellStyle5;
             this.dgvNhanVien.Location = new System.Drawing.Point(74, 55);
             this.dgvNhanVien.Name = "dgvNhanVien";
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvNhanVien.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
             this.dgvNhanVien.RowHeadersWidth = 51;
             this.dgvNhanVien.RowTemplate.Height = 24;
             this.dgvNhanVien.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
@@ -1152,33 +1126,275 @@ namespace QLShopQuanAo
             this.label3.Location = new System.Drawing.Point(3, 3);
             this.label3.Margin = new System.Windows.Forms.Padding(0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(1645, 49);
+            this.label3.Size = new System.Drawing.Size(1590, 49);
             this.label3.TabIndex = 112;
             this.label3.Text = "Quản lý nhân viên";
             this.label3.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
-            // tabPage3
+            // tabPage333
             // 
-            this.tabPage3.Location = new System.Drawing.Point(4, 25);
-            this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(1651, 987);
-            this.tabPage3.TabIndex = 2;
-            this.tabPage3.Text = "tabPage3";
-            this.tabPage3.UseVisualStyleBackColor = true;
+            this.tabPage333.Controls.Add(this.panel1asd);
+            this.tabPage333.Controls.Add(this.ffaaa);
+            this.tabPage333.Location = new System.Drawing.Point(4, 22);
+            this.tabPage333.Name = "tabPage333";
+            this.tabPage333.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage333.Size = new System.Drawing.Size(1596, 855);
+            this.tabPage333.TabIndex = 2;
+            this.tabPage333.Text = "Thống Kê";
+            this.tabPage333.UseVisualStyleBackColor = true;
+            // 
+            // panel1asd
+            // 
+            this.panel1asd.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel1asd.Location = new System.Drawing.Point(3, 100);
+            this.panel1asd.Name = "panel1asd";
+            this.panel1asd.Size = new System.Drawing.Size(1590, 241);
+            this.panel1asd.TabIndex = 2;
+            // 
+            // ffaaa
+            // 
+            this.ffaaa.Controls.Add(this.label25asdasd);
+            this.ffaaa.Controls.Add(this.label25ádfasdf);
+            this.ffaaa.Controls.Add(this.dpNgayBatDauTK);
+            this.ffaaa.Controls.Add(this.label252134);
+            this.ffaaa.Controls.Add(this.dpNgayKetThucTK);
+            this.ffaaa.Controls.Add(this.btThongKeDT);
+            this.ffaaa.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ffaaa.Location = new System.Drawing.Point(3, 3);
+            this.ffaaa.Name = "ffaaa";
+            this.ffaaa.Size = new System.Drawing.Size(1590, 97);
+            this.ffaaa.TabIndex = 1;
+            // 
+            // label25asdasd
+            // 
+            this.label25asdasd.Dock = System.Windows.Forms.DockStyle.Top;
+            this.label25asdasd.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.label25asdasd.Location = new System.Drawing.Point(0, 0);
+            this.label25asdasd.Margin = new System.Windows.Forms.Padding(0);
+            this.label25asdasd.Name = "label25asdasd";
+            this.label25asdasd.Size = new System.Drawing.Size(1590, 49);
+            this.label25asdasd.TabIndex = 112;
+            this.label25asdasd.Text = "Thống Kê Doanh Thu";
+            this.label25asdasd.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // label25ádfasdf
+            // 
+            this.label25ádfasdf.AutoSize = true;
+            this.label25ádfasdf.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.label25ádfasdf.Location = new System.Drawing.Point(3, 49);
+            this.label25ádfasdf.Name = "label25ádfasdf";
+            this.label25ádfasdf.Size = new System.Drawing.Size(107, 20);
+            this.label25ádfasdf.TabIndex = 113;
+            this.label25ádfasdf.Tag = "";
+            this.label25ádfasdf.Text = "Ngày bắt đầu:";
+            // 
+            // dpNgayBatDauTK
+            // 
+            this.dpNgayBatDauTK.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dpNgayBatDauTK.Location = new System.Drawing.Point(116, 52);
+            this.dpNgayBatDauTK.Name = "dpNgayBatDauTK";
+            this.dpNgayBatDauTK.Size = new System.Drawing.Size(200, 19);
+            this.dpNgayBatDauTK.TabIndex = 114;
+            this.dpNgayBatDauTK.ValueChanged += new System.EventHandler(this.dateTimePicker1_ValueChanged);
+            // 
+            // label252134
+            // 
+            this.label252134.AutoSize = true;
+            this.label252134.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.label252134.Location = new System.Drawing.Point(322, 49);
+            this.label252134.Name = "label252134";
+            this.label252134.Size = new System.Drawing.Size(110, 20);
+            this.label252134.TabIndex = 115;
+            this.label252134.Tag = "";
+            this.label252134.Text = "Ngày kết thúc:";
+            // 
+            // dpNgayKetThucTK
+            // 
+            this.dpNgayKetThucTK.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dpNgayKetThucTK.Location = new System.Drawing.Point(438, 52);
+            this.dpNgayKetThucTK.Name = "dpNgayKetThucTK";
+            this.dpNgayKetThucTK.Size = new System.Drawing.Size(200, 19);
+            this.dpNgayKetThucTK.TabIndex = 116;
+            // 
+            // btThongKeDT
+            // 
+            this.btThongKeDT.Location = new System.Drawing.Point(644, 52);
+            this.btThongKeDT.Name = "btThongKeDT";
+            this.btThongKeDT.Size = new System.Drawing.Size(128, 23);
+            this.btThongKeDT.TabIndex = 117;
+            this.btThongKeDT.Text = "Thống kê:";
+            this.btThongKeDT.UseVisualStyleBackColor = true;
+            // 
+            // tabPage3ádádas
+            // 
+            this.tabPage3ádádas.Controls.Add(this.btXoaHDHDAD);
+            this.tabPage3ádádas.Controls.Add(this.dpHDHDAD);
+            this.tabPage3ádádas.Controls.Add(this.txtTongTienHDAD);
+            this.tabPage3ádádas.Controls.Add(this.txtTenKHHDAD);
+            this.tabPage3ádádas.Controls.Add(this.txtMaHDHDAD);
+            this.tabPage3ádádas.Controls.Add(this.label25444444444444);
+            this.tabPage3ádádas.Controls.Add(this.label25ádasddddđ);
+            this.tabPage3ádádas.Controls.Add(this.label251212);
+            this.tabPage3ádádas.Controls.Add(this.xtxtxt);
+            this.tabPage3ádádas.Controls.Add(this.label2511);
+            this.tabPage3ádádas.Controls.Add(this.dgDSHDCTHD);
+            this.tabPage3ádádas.Controls.Add(this.dgDSHDAD);
+            this.tabPage3ádádas.Controls.Add(this.label25qưe);
+            this.tabPage3ádádas.Location = new System.Drawing.Point(4, 22);
+            this.tabPage3ádádas.Name = "tabPage3ádádas";
+            this.tabPage3ádádas.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage3ádádas.Size = new System.Drawing.Size(1596, 855);
+            this.tabPage3ádádas.TabIndex = 3;
+            this.tabPage3ádádas.Text = "Hóa Đơn";
+            this.tabPage3ádádas.UseVisualStyleBackColor = true;
+            // 
+            // label2511
+            // 
+            this.label2511.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.label2511.Location = new System.Drawing.Point(-6, 233);
+            this.label2511.Margin = new System.Windows.Forms.Padding(0);
+            this.label2511.Name = "label2511";
+            this.label2511.Size = new System.Drawing.Size(1590, 49);
+            this.label2511.TabIndex = 116;
+            this.label2511.Text = "Danh Sách Hóa Đơn Chi Tiết";
+            this.label2511.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // dgDSHDCTHD
+            // 
+            this.dgDSHDCTHD.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgDSHDCTHD.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgDSHDCTHD.Location = new System.Drawing.Point(343, 285);
+            this.dgDSHDCTHD.Name = "dgDSHDCTHD";
+            this.dgDSHDCTHD.ReadOnly = true;
+            this.dgDSHDCTHD.Size = new System.Drawing.Size(841, 185);
+            this.dgDSHDCTHD.TabIndex = 115;
+            // 
+            // dgDSHDAD
+            // 
+            this.dgDSHDAD.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgDSHDAD.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgDSHDAD.Location = new System.Drawing.Point(343, 45);
+            this.dgDSHDAD.Name = "dgDSHDAD";
+            this.dgDSHDAD.ReadOnly = true;
+            this.dgDSHDAD.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgDSHDAD.Size = new System.Drawing.Size(841, 185);
+            this.dgDSHDAD.TabIndex = 114;
+            this.dgDSHDAD.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgDSHDAD_CellContentClick);
+            // 
+            // label25qưe
+            // 
+            this.label25qưe.Dock = System.Windows.Forms.DockStyle.Top;
+            this.label25qưe.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.label25qưe.Location = new System.Drawing.Point(3, 3);
+            this.label25qưe.Margin = new System.Windows.Forms.Padding(0);
+            this.label25qưe.Name = "label25qưe";
+            this.label25qưe.Size = new System.Drawing.Size(1590, 49);
+            this.label25qưe.TabIndex = 113;
+            this.label25qưe.Text = "Danh Sách Hóa Đơn";
+            this.label25qưe.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // xtxtxt
+            // 
+            this.xtxtxt.AutoSize = true;
+            this.xtxtxt.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
+            this.xtxtxt.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.xtxtxt.Location = new System.Drawing.Point(350, 502);
+            this.xtxtxt.Margin = new System.Windows.Forms.Padding(0);
+            this.xtxtxt.Name = "xtxtxt";
+            this.xtxtxt.Size = new System.Drawing.Size(91, 18);
+            this.xtxtxt.TabIndex = 147;
+            this.xtxtxt.Text = "Mã hóa đơn:";
+            // 
+            // label251212
+            // 
+            this.label251212.AutoSize = true;
+            this.label251212.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
+            this.label251212.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.label251212.Location = new System.Drawing.Point(350, 553);
+            this.label251212.Margin = new System.Windows.Forms.Padding(0);
+            this.label251212.Name = "label251212";
+            this.label251212.Size = new System.Drawing.Size(122, 18);
+            this.label251212.TabIndex = 148;
+            this.label251212.Text = "Tên Khách Hàng:";
+            // 
+            // label25ádasddddđ
+            // 
+            this.label25ádasddddđ.AutoSize = true;
+            this.label25ádasddddđ.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
+            this.label25ádasddddđ.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.label25ádasddddđ.Location = new System.Drawing.Point(726, 502);
+            this.label25ádasddddđ.Margin = new System.Windows.Forms.Padding(0);
+            this.label25ádasddddđ.Name = "label25ádasddddđ";
+            this.label25ádasddddđ.Size = new System.Drawing.Size(78, 18);
+            this.label25ádasddddđ.TabIndex = 149;
+            this.label25ádasddddđ.Text = "Tổng Tiền:";
+            // 
+            // label25444444444444
+            // 
+            this.label25444444444444.AutoSize = true;
+            this.label25444444444444.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
+            this.label25444444444444.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.label25444444444444.Location = new System.Drawing.Point(726, 553);
+            this.label25444444444444.Margin = new System.Windows.Forms.Padding(0);
+            this.label25444444444444.Name = "label25444444444444";
+            this.label25444444444444.Size = new System.Drawing.Size(138, 18);
+            this.label25444444444444.TabIndex = 150;
+            this.label25444444444444.Text = "Ngày Lập Hóa Đơn:";
+            // 
+            // txtMaHDHDAD
+            // 
+            this.txtMaHDHDAD.Location = new System.Drawing.Point(487, 501);
+            this.txtMaHDHDAD.Name = "txtMaHDHDAD";
+            this.txtMaHDHDAD.ReadOnly = true;
+            this.txtMaHDHDAD.Size = new System.Drawing.Size(140, 19);
+            this.txtMaHDHDAD.TabIndex = 151;
+            // 
+            // txtTenKHHDAD
+            // 
+            this.txtTenKHHDAD.Location = new System.Drawing.Point(487, 552);
+            this.txtTenKHHDAD.Name = "txtTenKHHDAD";
+            this.txtTenKHHDAD.ReadOnly = true;
+            this.txtTenKHHDAD.Size = new System.Drawing.Size(140, 19);
+            this.txtTenKHHDAD.TabIndex = 152;
+            // 
+            // txtTongTienHDAD
+            // 
+            this.txtTongTienHDAD.Location = new System.Drawing.Point(881, 503);
+            this.txtTongTienHDAD.Name = "txtTongTienHDAD";
+            this.txtTongTienHDAD.ReadOnly = true;
+            this.txtTongTienHDAD.Size = new System.Drawing.Size(140, 19);
+            this.txtTongTienHDAD.TabIndex = 153;
+            // 
+            // dpHDHDAD
+            // 
+            this.dpHDHDAD.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dpHDHDAD.Location = new System.Drawing.Point(881, 552);
+            this.dpHDHDAD.Name = "dpHDHDAD";
+            this.dpHDHDAD.Size = new System.Drawing.Size(200, 19);
+            this.dpHDHDAD.TabIndex = 154;
+            // 
+            // btXoaHDHDAD
+            // 
+            this.btXoaHDHDAD.Location = new System.Drawing.Point(1085, 620);
+            this.btXoaHDHDAD.Name = "btXoaHDHDAD";
+            this.btXoaHDHDAD.Size = new System.Drawing.Size(99, 34);
+            this.btXoaHDHDAD.TabIndex = 155;
+            this.btXoaHDHDAD.Text = "Xóa hóa đơn";
+            this.btXoaHDHDAD.UseVisualStyleBackColor = true;
+            this.btXoaHDHDAD.Click += new System.EventHandler(this.btXoaHDHDAD_Click);
             // 
             // FromQLHang
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1659, 1016);
-            this.Controls.Add(this.tabControl1);
+            this.ClientSize = new System.Drawing.Size(1604, 881);
+            this.Controls.Add(this.tabControl1ádadsddđ);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.Margin = new System.Windows.Forms.Padding(0);
             this.Name = "FromQLHang";
             this.Text = "Admin";
             this.Load += new System.EventHandler(this.FromQLHang_Load);
-            this.tabControl1.ResumeLayout(false);
+            this.tabControl1ádadsddđ.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pic)).EndInit();
@@ -1186,13 +1402,20 @@ namespace QLShopQuanAo
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvNhanVien)).EndInit();
+            this.tabPage333.ResumeLayout(false);
+            this.ffaaa.ResumeLayout(false);
+            this.ffaaa.PerformLayout();
+            this.tabPage3ádádas.ResumeLayout(false);
+            this.tabPage3ádádas.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgDSHDCTHD)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgDSHDAD)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.TabControl tabControl1;
+        private System.Windows.Forms.TabControl tabControl1ádadsddđ;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.Button btDangXuat;
         private System.Windows.Forms.Label lable1111;
@@ -1230,7 +1453,7 @@ namespace QLShopQuanAo
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TabPage tabPage3;
+        private System.Windows.Forms.TabPage tabPage333;
         private System.Windows.Forms.DataGridView dgvNhanVien;
         private System.Windows.Forms.DataGridViewTextBoxColumn maNhanVien;
         private System.Windows.Forms.DataGridViewTextBoxColumn tenNhanVien;
@@ -1279,6 +1502,28 @@ namespace QLShopQuanAo
         private System.Windows.Forms.Button btnTimKiemNV;
         private System.Windows.Forms.TextBox txtTimKiemNV;
         private System.Windows.Forms.Label label24;
+        private System.Windows.Forms.FlowLayoutPanel ffaaa;
+        private System.Windows.Forms.Panel panel1asd;
+        private System.Windows.Forms.Label label25asdasd;
+        private System.Windows.Forms.Label label25ádfasdf;
+        private System.Windows.Forms.DateTimePicker dpNgayBatDauTK;
+        private System.Windows.Forms.Label label252134;
+        private System.Windows.Forms.DateTimePicker dpNgayKetThucTK;
+        private System.Windows.Forms.Button btThongKeDT;
+        private System.Windows.Forms.TabPage tabPage3ádádas;
+        private System.Windows.Forms.Label label25qưe;
+        private System.Windows.Forms.DataGridView dgDSHDAD;
+        private System.Windows.Forms.Label label2511;
+        private System.Windows.Forms.DataGridView dgDSHDCTHD;
+        private System.Windows.Forms.Label label25ádasddddđ;
+        private System.Windows.Forms.Label label251212;
+        private System.Windows.Forms.Label xtxtxt;
+        private System.Windows.Forms.Label label25444444444444;
+        private System.Windows.Forms.DateTimePicker dpHDHDAD;
+        private System.Windows.Forms.TextBox txtTongTienHDAD;
+        private System.Windows.Forms.TextBox txtTenKHHDAD;
+        private System.Windows.Forms.TextBox txtMaHDHDAD;
+        private System.Windows.Forms.Button btXoaHDHDAD;
     }
 }
 

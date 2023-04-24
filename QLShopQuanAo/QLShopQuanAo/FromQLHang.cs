@@ -18,6 +18,7 @@ namespace QLShopQuanAo
 
     public partial class FromQLHang : Form
     {
+        ThongKeDoanhThuService tkdtsv = new ThongKeDoanhThuService();
         public FromQLHang()
         {
             InitializeComponent();
@@ -30,6 +31,8 @@ namespace QLShopQuanAo
             dateNgayNhap.Format = DateTimePickerFormat.Custom;
             dateNhanVien.Format = DateTimePickerFormat.Custom;
             dateNgayNhap.CustomFormat = "dd/MM/yyyy";
+
+            dgDSHDAD.DataSource = tkdtsv.getHoaDon();
         }
 
         private void FromQLHang_Load(object sender, EventArgs e)
@@ -569,6 +572,49 @@ namespace QLShopQuanAo
 
         }
 
-        
+        private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+        SellService ssv = new SellService();
+        KhachHangService khsv = new KhachHangService();
+
+
+
+        private void dgDSHDAD_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            string id = dgDSHDAD.SelectedRows[0].Cells[0].Value.ToString();
+            dgDSHDCTHD.DataSource = ssv.getCTHD(id);
+            txtMaHDHDAD.Text = id;
+            txtTenKHHDAD.Text = khsv.getTenKhachHang(dgDSHDAD.SelectedRows[0].Cells[2].Value.ToString());
+            txtTongTienHDAD.Text = ssv.getTongTien(id);
+            dpHDHDAD.Text = dgDSHDAD.SelectedRows[0].Cells[4].Value.ToString();
+        }
+        private void reset()
+        {
+            txtMaHDHDAD.Text = "";
+            dgDSHDCTHD.DataSource = null;
+            txtTenKHHDAD.Text = "";
+            txtTongTienHDAD.Text = "";
+            dpHDHDAD.Value= DateTime.MinValue ;
+        }
+
+        private void btXoaHDHDAD_Click(object sender, EventArgs e)
+        {
+            if (txtMaHDHDAD.Text != "")
+            {
+                string id = dgDSHDAD.SelectedRows[0].Cells[0].Value.ToString();
+                if (tkdtsv.xoaHoaDon(id))
+                {
+                    dgDSHDAD.DataSource = tkdtsv.getHoaDon();
+                    reset();
+                    MessageBox.Show("Xóa Hóa Đơn thành công");
+                }
+                else
+                    MessageBox.Show("Xóa hóa đơn thất bại");
+            }
+            else
+                MessageBox.Show("Hãy chọn hóa đơn cần xóa");
+        }
     }
 }

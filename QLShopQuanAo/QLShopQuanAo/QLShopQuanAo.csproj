@@ -78,6 +78,7 @@
     </Compile>
     <Compile Include="SanPhamService.cs" />
     <Compile Include="SellService.cs" />
+    <Compile Include="ThongKeDoanhThuService.cs" />
     <EmbeddedResource Include="DangNhap.resx">
       <DependentUpon>DangNhap.cs</DependentUpon>
     </EmbeddedResource>
