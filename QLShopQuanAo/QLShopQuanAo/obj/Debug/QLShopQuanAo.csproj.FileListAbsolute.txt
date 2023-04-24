@@ -26,3 +26,8 @@ C:\Users\iCare Center\Desktop\QLShopQuanAo\QLShopQuanAo\QLShopQuanAo\bin\Debug\D
 C:\Users\iCare Center\Desktop\QLShopQuanAo\QLShopQuanAo\QLShopQuanAo\obj\Debug\QLShopQuanAo.csproj.CopyComplete
 C:\Users\iCare Center\Desktop\QLShopQuanAo\QLShopQuanAo\QLShopQuanAo\bin\Debug\DTO.dll
 C:\Users\iCare Center\Desktop\QLShopQuanAo\QLShopQuanAo\QLShopQuanAo\bin\Debug\DTO.pdb
+C:\Users\iCare Center\Desktop\QLShopQuanAo\QLShopQuanAo\QLShopQuanAo\bin\Debug\SqlServerTypes\x64\msvcr120.dll
+C:\Users\iCare Center\Desktop\QLShopQuanAo\QLShopQuanAo\QLShopQuanAo\bin\Debug\SqlServerTypes\x64\SqlServerSpatial140.dll
+C:\Users\iCare Center\Desktop\QLShopQuanAo\QLShopQuanAo\QLShopQuanAo\bin\Debug\SqlServerTypes\x86\msvcr120.dll
+C:\Users\iCare Center\Desktop\QLShopQuanAo\QLShopQuanAo\QLShopQuanAo\bin\Debug\SqlServerTypes\x86\SqlServerSpatial140.dll
+C:\Users\iCare Center\Desktop\QLShopQuanAo\QLShopQuanAo\QLShopQuanAo\bin\Debug\Microsoft.SqlServer.Types.dll

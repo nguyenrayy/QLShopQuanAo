@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using DTO;
 namespace QLShopQuanAo
 {
@@ -76,7 +77,20 @@ namespace QLShopQuanAo
             else
                 return false;
         }
-        
+        public string getTenKhachHang(string MKH)
+        {
+            string name = "";
+            string sql = "select * from khachhang where maKhach =@maKhach";
+            SqlCommand cmd = new SqlCommand(sql, DBConnect.Conn);
+            cmd.Parameters.AddWithValue("@maKhach", MKH);
+            SqlDataReader rd = cmd.ExecuteReader();
+            if (rd.Read())
+            {
+                name = rd["tenKhach"].ToString();
+            }
+            rd.Close();
+            return name;
+        }
     }
     
 }

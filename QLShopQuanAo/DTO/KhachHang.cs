@@ -64,9 +64,6 @@ namespace DTO
             this.sdt = sdt;
             this.diachi = diachi;
         }
-        //override
-        //public String ()
-        //{ return this.tenkhachhang; }
     }
    
 }
