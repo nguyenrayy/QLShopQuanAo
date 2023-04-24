@@ -43,7 +43,7 @@ namespace QLShopQuanAo
                 y += dgCTHDTT.Rows[i].Height;
                 x = 10;
             }
-            g.DrawString("Tổng tiền: " + ssv.getTongTien(dgCTHDTT.Rows[0].Cells[0].FormattedValue.ToString()), font, brush, x, y);
+            g.DrawString("Tổng tiền: " + ssv.getTongTien(dgCTHDTT.Rows[0].Cells[0].FormattedValue.ToString()) + " VND", font, brush, x, y);
             g.DrawString("Ngày in: " + DateTime.Now.ToString(), font, brush, x + 20, y + 20);
         }
     }

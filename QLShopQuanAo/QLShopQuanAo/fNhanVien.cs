@@ -7,6 +7,7 @@ using System.Data.SqlClient;
 using System.Drawing;
 using System.Drawing.Printing;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -182,6 +183,7 @@ namespace QLShopQuanAo
             txtTenKHTT.Text = "";
             txtGiaSPTT.Text = "";
             txtSoLuongTT.Text = "";
+            txtMaSPTT.Text = "";
             cbMaKHTT.SelectedItem = null;
         }
         int stock = 0;
@@ -191,6 +193,7 @@ namespace QLShopQuanAo
             txtTenSPTT.Text = dgSanPhamNV.SelectedRows[0].Cells[1].Value.ToString();
             txtGiaSPTT.Text = dgSanPhamNV.SelectedRows[0].Cells[2].Value.ToString();
             stock = Convert.ToInt32(dgSanPhamNV.SelectedRows[0].Cells[5].Value.ToString());
+            txtMaSPTT.Text = dgSanPhamNV.SelectedRows[0].Cells[0].Value.ToString();
         }
 
         private void btThemSPTT_Click(object sender, EventArgs e)
@@ -198,9 +201,7 @@ namespace QLShopQuanAo
             if (txtMaHoaDonTT.Text != "")
             {
 
-                int soluongban = Convert.ToInt32(txtSoLuongTT.Text);
-                string MSP = dgSanPhamNV.SelectedRows[0].Cells[0].Value.ToString();
-                string MK = txtMaKH.Text;
+                
                 if (txtSoLuongTT.Text == "")
                 {
                     MessageBox.Show("Hãy nhập số lượng");
@@ -208,6 +209,8 @@ namespace QLShopQuanAo
                 }
                 else
                 {
+                    int soluongban = Convert.ToInt32(txtSoLuongTT.Text);
+                    string MSP = dgSanPhamNV.SelectedRows[0].Cells[0].Value.ToString();
                     if (soluongban > stock)
                         MessageBox.Show("Số lượng không đủ");
                     else
@@ -219,18 +222,17 @@ namespace QLShopQuanAo
                             Convert.ToInt32(txtGiaSPTT.Text),
                             Convert.ToInt32(txtSoLuongTT.Text) * Convert.ToInt32(txtGiaSPTT.Text)
                             );
-                        if (ssv.ktraSanPhamTT(txtMaHoaDonTT.Text, dgSanPhamNV.SelectedRows[0].Cells[0].Value.ToString()) == false)
+                        if (ssv.ktraSanPhamTT(txtMaHoaDonTT.Text,txtMaSPTT.Text) == false)
                         {
                             if (ssv.themCThoadon(cthd))
                             {
                                 dgCTHDTT.DataSource = ssv.getCTHD(MHD);
                                 ssv.CanNhatSoLuong(stock, soluongban, MSP);
                                 spsv.loadSanPhamNhanVien(dgSanPhamNV);
-
-                                TongTien += Convert.ToInt32(txtSoLuongTT.Text) * Convert.ToInt32(txtGiaSPTT.Text);
+                                TongTien += cthd.ThanhTien;
                                 txtTongTien.Text = TongTien.ToString();
 
-                                ssv.CapNhatTongTien(Convert.ToInt32(txtTongTien.Text.ToString()), MHD);
+                                ssv.CapNhatTongTien(Convert.ToInt32(txtTongTien.Text), MHD);
                                 MessageBox.Show("Thêm thành công");
                             }
                             else
@@ -250,16 +252,21 @@ namespace QLShopQuanAo
             string MK = cbMaKHTT.Text;
             if (MK != "")
             {
-                HoaDon hd = new HoaDon("1", MK, TongTien);
-                if (ssv.themHoaDon(hd))
+                if (txtMaHoaDonTT.Text == "")
                 {
-                    txtMaHoaDonTT.Text = hd.MaHoaDon;
-                    txtTongTien.Text = TongTien.ToString();
+                    HoaDon hd = new HoaDon("1", MK, TongTien);
+                    if (ssv.themHoaDon(hd))
+                    {
+                        txtMaHoaDonTT.Text = hd.MaHoaDon;
+                        txtTongTien.Text = TongTien.ToString();
 
-                    MessageBox.Show("Tạo hóa đơn mới thành công .");
+                        MessageBox.Show("Tạo hóa đơn mới thành công .");
+                    }
+                    else
+                        MessageBox.Show("Tạo hóa đơn thất bại");
                 }
                 else
-                    MessageBox.Show("Tạo hóa đơn thất bại");
+                    MessageBox.Show("Có hóa đơn đang sử dụng hãy reset hóa đơn");
             }
             else
                 MessageBox.Show("Hãy chọn Khách Hàng", "Khách hàng");
@@ -267,7 +274,7 @@ namespace QLShopQuanAo
 
         private void dgCTHDTT_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            txtTenSPTT.Text = dgCTHDTT.SelectedRows[0].Cells[1].Value.ToString();
+            txtMaSPTT.Text = dgCTHDTT.SelectedRows[0].Cells[1].Value.ToString();
             txtGiaSPTT.Text = dgCTHDTT.SelectedRows[0].Cells[3].Value.ToString();
             txtSoLuongTT.Text = dgCTHDTT.SelectedRows[0].Cells[2].Value.ToString();
         }
@@ -275,7 +282,16 @@ namespace QLShopQuanAo
         private void btSearchHD_Click(object sender, EventArgs e)
         {
             dgCTHDTT.DataSource = ssv.getCTHD(txtMaHoaDonTT.Text);
-            txtTongTien.Text = ssv.getTongTien(txtMaHoaDonTT.Text);
+            
+            if (dgCTHDTT.Rows.Count == 0)
+            {
+                txtTongTien.Text = 0.ToString();
+                TongTien = 0;
+                ssv.CapNhatTongTien(TongTien, txtMaHoaDonTT.Text);
+            }
+            else
+                txtTongTien.Text = ssv.getTongTien(txtMaHoaDonTT.Text);
+
         }
 
         private void rsHoaDon_Click(object sender, EventArgs e)
@@ -342,10 +358,7 @@ namespace QLShopQuanAo
         private void btSuaSP_Click(object sender, EventArgs e)
         {
             if (txtMaHoaDonTT.Text != "")
-            {
-                int soluongbannew = Convert.ToInt32(txtSoLuongTT.Text);
-                string MSP = dgCTHDTT.SelectedRows[0].Cells[0].Value.ToString();
-                string MK = txtMaKH.Text;
+            {     
                 if (txtSoLuongTT.Text == "")
                 {
                     MessageBox.Show("Hãy nhập số lượng");
@@ -353,6 +366,11 @@ namespace QLShopQuanAo
                 }
                 else
                 {
+                    int soluongbannew = Convert.ToInt32(txtSoLuongTT.Text);
+                    int soluongold = Convert.ToInt32(dgCTHDTT.SelectedRows[0].Cells[2].Value.ToString());
+                    string MSP = txtMaSPTT.Text;
+                    int TongTien = Convert.ToInt32(ssv.getTongTien(txtMaHoaDonTT.Text).ToString());
+                    int stock = ssv.getStock(txtMaSPTT.Text);
                     if (soluongbannew > stock)
                         MessageBox.Show("Số lượng không đủ");
                     else
@@ -367,22 +385,23 @@ namespace QLShopQuanAo
 
                         if (ssv.capNhatSP(cthd))
                         {
+                          
                             dgCTHDTT.DataSource = ssv.getCTHD(MHD);
-                            ssv.CanNhatSoLuong(stock, soluongbannew, MSP);
+                           
+                            int i = soluongbannew - soluongold;
+
+                            ssv.CanNhatSoLuong(stock, i, MSP);
 
                             spsv.loadSanPhamNhanVien(dgSanPhamNV);
 
-                            TongTien += Convert.ToInt32(txtSoLuongTT.Text) * Convert.ToInt32(txtGiaSPTT.Text);
+                                TongTien += i * Convert.ToInt32(txtGiaSPTT.Text.ToString());
                             txtTongTien.Text = TongTien.ToString();
-
                             ssv.CapNhatTongTien(Convert.ToInt32(txtTongTien.Text.ToString()), MHD);
                             MessageBox.Show("Sửa thành công");
                         }
                         else
                             MessageBox.Show("Sửa sản phẩm thất bại ");
                     }
-
-
                 }
             }
             else

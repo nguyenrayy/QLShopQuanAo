@@ -91,7 +91,6 @@
             this.btDangXuat = new System.Windows.Forms.Button();
             this.tabControl11 = new System.Windows.Forms.TabControl();
             this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.panel3 = new System.Windows.Forms.Panel();
             this.tabPage41 = new System.Windows.Forms.TabPage();
             this.comboBox31 = new System.Windows.Forms.ComboBox();
             this.cbMaKHDT = new System.Windows.Forms.ComboBox();
@@ -114,6 +113,7 @@
             this.congViec = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tongTien = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.rsHoaDon = new System.Windows.Forms.Button();
+            this.txtMaSPTT = new System.Windows.Forms.TextBox();
             this.tabPage2.SuspendLayout();
             this.panel8.SuspendLayout();
             this.panel9.SuspendLayout();
@@ -128,7 +128,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgKHNV)).BeginInit();
             this.panel1.SuspendLayout();
             this.tabControl11.SuspendLayout();
-            this.tabPage3.SuspendLayout();
             this.tabPage41.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDoiTra)).BeginInit();
             this.SuspendLayout();
@@ -239,6 +238,7 @@
             // 
             // panel6
             // 
+            this.panel6.Controls.Add(this.txtMaSPTT);
             this.panel6.Controls.Add(this.btresetSPTT);
             this.panel6.Controls.Add(this.btXoaSP);
             this.panel6.Controls.Add(this.btSuaSP);
@@ -770,7 +770,6 @@
             // 
             // tabPage3
             // 
-            this.tabPage3.Controls.Add(this.panel3);
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
@@ -778,13 +777,6 @@
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Hóa đơn";
             this.tabPage3.UseVisualStyleBackColor = true;
-            // 
-            // panel3
-            // 
-            this.panel3.Location = new System.Drawing.Point(172, 25);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(702, 421);
-            this.panel3.TabIndex = 113;
             // 
             // tabPage41
             // 
@@ -1015,6 +1007,14 @@
             this.rsHoaDon.UseVisualStyleBackColor = true;
             this.rsHoaDon.Click += new System.EventHandler(this.rsHoaDon_Click);
             // 
+            // txtMaSPTT
+            // 
+            this.txtMaSPTT.Location = new System.Drawing.Point(161, 8);
+            this.txtMaSPTT.Name = "txtMaSPTT";
+            this.txtMaSPTT.ReadOnly = true;
+            this.txtMaSPTT.Size = new System.Drawing.Size(119, 20);
+            this.txtMaSPTT.TabIndex = 15;
+            // 
             // fNhanVien
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1045,7 +1045,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgKHNV)).EndInit();
             this.panel1.ResumeLayout(false);
             this.tabControl11.ResumeLayout(false);
-            this.tabPage3.ResumeLayout(false);
             this.tabPage41.ResumeLayout(false);
             this.tabPage41.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDoiTra)).EndInit();
@@ -1107,7 +1106,6 @@
         private System.Windows.Forms.Button btDangXuat;
         private System.Windows.Forms.TabControl tabControl11;
         private System.Windows.Forms.TabPage tabPage3;
-        private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.TabPage tabPage41;
         private System.Windows.Forms.ComboBox comboBox31;
         private System.Windows.Forms.ComboBox cbMaKHDT;
@@ -1141,5 +1139,6 @@
         private System.Windows.Forms.Button btThemSPTT;
         private System.Windows.Forms.Button btSearchHD;
         private System.Windows.Forms.Button rsHoaDon;
+        private System.Windows.Forms.TextBox txtMaSPTT;
     }
 }

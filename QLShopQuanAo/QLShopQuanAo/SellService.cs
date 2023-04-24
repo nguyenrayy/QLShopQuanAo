@@ -61,7 +61,7 @@ namespace QLShopQuanAo
         {
             try
             {
-                string SQL = string.Format("UPDATE ChiTietHoaDon SET soLuong = '{0}' and thanhTien ={1} WHERE maHoaDon = {2} and maSanPham ={3}",
+                string SQL = string.Format("UPDATE ChiTietHoaDon SET soLuong = '{0}', thanhTien ={1} WHERE maHoaDon = {2} and maSanPham ={3}",
                 cthd.SoLuong, cthd.ThanhTien, cthd.MaHoaDon, cthd.MaSanPham);
                 SqlCommand cmd = new SqlCommand(SQL, DBConnect.Conn);
                 if (cmd.ExecuteNonQuery() > 0)
