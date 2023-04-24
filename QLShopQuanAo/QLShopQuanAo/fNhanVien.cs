@@ -26,7 +26,11 @@ namespace QLShopQuanAo
             dgKHNV.DataSource = khsv.getKhachHang();
             spsv.loadSanPhamNhanVien(dgSanPhamNV);
             loadComboKhachHang();
+<<<<<<< HEAD
 
+=======
+            LoadDsDoiTra();
+>>>>>>> 27f8a3e10398937aeba71074b2bc4487120d44fb
         }
         public void loadComboKhachHang()
         {
@@ -139,6 +143,7 @@ namespace QLShopQuanAo
             this.txtSDTKH.Text = txtSDTKH.Text;
         }
 
+<<<<<<< HEAD
         private void cbMaKHTT_SelectionChangeCommitted(object sender, EventArgs e)
         {
             this.txtTenKHTT.Text = khsv.getTenKhachHang(cbMaKHTT.Text);
@@ -364,6 +369,33 @@ namespace QLShopQuanAo
             {
                 MessageBox.Show("Xóa sản phầm thất bại");
             }    
+=======
+        private void LoadDsDoiTra()
+        {
+
+            var sql = "SELECT maPhieuDoiTra, maNhanVien, maKhachHang, ngayDoiTra = CONVERT(NVARCHAR(10),ngayDoiTra,103), congViec, tongTien FROM PhieuDoiTra";
+
+            var cmd = new SqlCommand(sql, DBConnect.Connect());
+            var dr = cmd.ExecuteReader();
+            //Xóa dữ liệu cũ trong datagridview
+            dgvDoiTra.Rows.Clear();
+
+            // lập qua từng dòng trong bảng SanPham, thêm vào datagridview
+            while (dr.Read())
+            {
+                var i = dgvDoiTra.Rows.Add();
+                var row = dgvDoiTra.Rows[i];
+                row.Cells["maPhieuDoiTra"].Value = dr["maPhieuDoiTra"];
+                row.Cells["maNhanVien"].Value = dr["maNhanVien"];
+                row.Cells["maKhachHang"].Value = dr["maKhachHang"];
+                row.Cells["ngayDoiTra"].Value = dr["ngayDoiTra"];
+                row.Cells["congViec"].Value = dr["congViec"];
+                row.Cells["tongTien"].Value = dr["tongTien"];
+            }
+
+            dr.Close();
+
+>>>>>>> 27f8a3e10398937aeba71074b2bc4487120d44fb
         }
     }
 }
