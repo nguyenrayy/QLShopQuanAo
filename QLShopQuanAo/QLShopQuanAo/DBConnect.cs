@@ -12,7 +12,7 @@ namespace QLShopQuanAo
     
     public static class DBConnect
     {
-        private static string _StrConn = @"Data Source=DESKTOP-UCC8E6F;Initial Catalog=shopQuanAo;Integrated Security=True";
+        private static string _StrConn = @"Data Source=DELL\MSSQLSERVER02;Initial Catalog=shopQuanAo;Integrated Security=True";
         private static bool _ConnStatus;
         private static SqlConnection _Conn;
         public static string StrConn { get => _StrConn; set => _StrConn = value; }

@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
+using System.Drawing.Printing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,6 +18,7 @@ namespace QLShopQuanAo
     {
         KhachHangService khsv = new KhachHangService();
         SanPhamService spsv = new SanPhamService();
+        SellService ssv = new SellService();
         public fNhanVien()
         {
             InitializeComponent();
@@ -27,8 +29,8 @@ namespace QLShopQuanAo
         }
         public void loadComboKhachHang()
         {
+            cbMaKHTT.ValueMember = "maKhach";
             cbMaKHTT.DataSource = khsv.getKhachHang();
-            cbMaKHTT.DisplayMember = "tenKhachHang".ToString();
         }
 
         private void btDangXuat_Click(object sender, EventArgs e)
@@ -162,14 +164,229 @@ namespace QLShopQuanAo
 
         }
 
-        private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
+        private void cbMaKHTT_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            this.txtTenKHTT.Text = khsv.getTenKhachHang(cbMaKHTT.Text);
         }
 
-        private void tabPage41_Click(object sender, EventArgs e)
+        private void tabControl11_SelectedIndexChanged(object sender, EventArgs e)
         {
+            loadComboKhachHang();
+            cbMaKHTT.SelectedItem = null;
+            txtTenKHTT.Text = null;
+        }
 
+        private void btresetSPTT_Click(object sender, EventArgs e)
+        {
+            txtTenSPTT.Text = "";
+            txtTenKHTT.Text = "";
+            txtGiaSPTT.Text = "";
+            txtSoLuongTT.Text = "";
+            cbMaKHTT.SelectedItem = null;
+        }
+        int stock = 0;
+        int TongTien = 0;
+        private void dgSanPhamNV_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            txtTenSPTT.Text = dgSanPhamNV.SelectedRows[0].Cells[1].Value.ToString();
+            txtGiaSPTT.Text = dgSanPhamNV.SelectedRows[0].Cells[2].Value.ToString();
+            stock = Convert.ToInt32(dgSanPhamNV.SelectedRows[0].Cells[5].Value.ToString());
+        }
+
+        private void btThemSPTT_Click(object sender, EventArgs e)
+        {
+            if (txtMaHoaDonTT.Text != "")
+            {
+
+                int soluongban = Convert.ToInt32(txtSoLuongTT.Text);
+                string MSP = dgSanPhamNV.SelectedRows[0].Cells[0].Value.ToString();
+                string MK = txtMaKH.Text;
+                if (txtSoLuongTT.Text == "")
+                {
+                    MessageBox.Show("Hãy nhập số lượng");
+
+                }
+                else
+                {
+                    if (soluongban > stock)
+                        MessageBox.Show("Số lượng không đủ");
+                    else
+                    {
+                        string MHD = txtMaHoaDonTT.Text;
+                        CTHoaDon cthd = new CTHoaDon(MHD,
+                            MSP,
+                            Convert.ToInt32(txtSoLuongTT.Text),
+                            Convert.ToInt32(txtGiaSPTT.Text),
+                            Convert.ToInt32(txtSoLuongTT.Text) * Convert.ToInt32(txtGiaSPTT.Text)
+                            );
+                        if (ssv.ktraSanPhamTT(txtMaHoaDonTT.Text, dgSanPhamNV.SelectedRows[0].Cells[0].Value.ToString()) == false)
+                        {
+                            if (ssv.themCThoadon(cthd))
+                            {
+                                dgCTHDTT.DataSource = ssv.getCTHD(MHD);
+                                ssv.CanNhatSoLuong(stock, soluongban, MSP);
+                                spsv.loadSanPhamNhanVien(dgSanPhamNV);
+
+                                TongTien += Convert.ToInt32(txtSoLuongTT.Text) * Convert.ToInt32(txtGiaSPTT.Text);
+                                txtTongTien.Text = TongTien.ToString();
+
+                                ssv.CapNhatTongTien(Convert.ToInt32(txtTongTien.Text.ToString()), MHD);
+                                MessageBox.Show("Thêm thành công");
+                            }
+                            else
+                                MessageBox.Show("Thêm sản phẩm thất bại ");
+                        }
+                        else
+                            MessageBox.Show("San pham da ton tai trong hoa don. Hay chon them hoac xoa SP");
+                    }
+                }
+            }
+            else
+                MessageBox.Show("Hãy lập hóa đơn");
+        }
+
+        private void btLapHDTT_Click(object sender, EventArgs e)
+        {
+            string MK = cbMaKHTT.Text;
+            if (MK != "")
+            {
+                HoaDon hd = new HoaDon("1", MK, TongTien);
+                if (ssv.themHoaDon(hd))
+                {
+                    txtMaHoaDonTT.Text = hd.MaHoaDon;
+                    txtTongTien.Text = TongTien.ToString();
+
+                    MessageBox.Show("Tạo hóa đơn mới thành công .");
+                }
+                else
+                    MessageBox.Show("Tạo hóa đơn thất bại");
+            }
+            else
+                MessageBox.Show("Hãy chọn Khách Hàng", "Khách hàng");
+        }
+
+        private void dgCTHDTT_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            txtTenSPTT.Text = dgCTHDTT.SelectedRows[0].Cells[1].Value.ToString();
+            txtGiaSPTT.Text = dgCTHDTT.SelectedRows[0].Cells[3].Value.ToString();
+            txtSoLuongTT.Text = dgCTHDTT.SelectedRows[0].Cells[2].Value.ToString();
+        }
+
+        private void btSearchHD_Click(object sender, EventArgs e)
+        {
+            dgCTHDTT.DataSource = ssv.getCTHD(txtMaHoaDonTT.Text);
+            txtTongTien.Text = ssv.getTongTien(txtMaHoaDonTT.Text);
+        }
+
+        private void rsHoaDon_Click(object sender, EventArgs e)
+        {
+            txtMaHoaDonTT.Text = "";
+            txtTongTien.Text = "";
+            this.dgCTHDTT.DataSource = null;
+            this.dgCTHDTT.Rows.Clear();
+        }
+
+        private void btInHD_Click(object sender, EventArgs e)
+        {
+            PrintDocument doc = new PrintDocument();
+            doc.DocumentName = "test";
+            doc.PrintPage += new PrintPageEventHandler(Doc_PrintPage);
+            PrintDialog dlg = new PrintDialog();
+            dlg.Document = doc;
+            dlg.UseEXDialog = true;
+
+            if (dlg.ShowDialog() == DialogResult.OK)
+            {
+                doc.Print();
+            }
+        }
+        private void Doc_PrintPage(object sender, PrintPageEventArgs e)
+        {
+            Graphics g = e.Graphics;
+            Print p = new Print();
+            p.DrawDataGridView(g, dgCTHDTT);
+        }
+
+        private void btXoaSP_Click(object sender, EventArgs e)
+        {
+            int TongTien = Convert.ToInt32(ssv.getTongTien(txtMaHoaDonTT.Text).ToString());
+            string id = txtMaHoaDonTT.Text;
+            string MSP = dgCTHDTT.SelectedRows[0].Cells[1].Value.ToString();
+            int soluonghuy = Convert.ToInt32(dgCTHDTT.SelectedRows[0].Cells[2].Value.ToString());
+
+            if (ssv.xoaCTHD(id, MSP))
+            {
+                int st = ssv.getStock(MSP);
+                ssv.CanNhatSoLuong(st, soluonghuy * (-1), MSP);
+
+                TongTien -= soluonghuy * Convert.ToInt32(dgCTHDTT.SelectedRows[0].Cells[3].Value.ToString());
+                txtTongTien.Text = TongTien.ToString();
+                if (dgCTHDTT.Rows.Count == 0)
+                {
+                    txtTongTien.Text = 0.ToString();
+                    TongTien = 0;
+                }
+                ssv.CapNhatTongTien(TongTien, id);
+
+                dgCTHDTT.DataSource = ssv.getCTHD(id);
+                spsv.loadSanPhamNhanVien(dgSanPhamNV);
+
+                MessageBox.Show("Xóa sản phầm thành công");
+            }
+            else
+            {
+                MessageBox.Show("Xóa sản phầm thất bại");
+            }
+        }
+
+        private void btSuaSP_Click(object sender, EventArgs e)
+        {
+            if (txtMaHoaDonTT.Text != "")
+            {
+                int soluongbannew = Convert.ToInt32(txtSoLuongTT.Text);
+                string MSP = dgCTHDTT.SelectedRows[0].Cells[0].Value.ToString();
+                string MK = txtMaKH.Text;
+                if (txtSoLuongTT.Text == "")
+                {
+                    MessageBox.Show("Hãy nhập số lượng");
+
+                }
+                else
+                {
+                    if (soluongbannew > stock)
+                        MessageBox.Show("Số lượng không đủ");
+                    else
+                    {
+                        string MHD = txtMaHoaDonTT.Text;
+                        CTHoaDon cthd = new CTHoaDon(MHD,
+                            MSP,
+                           soluongbannew,
+                            Convert.ToInt32(txtGiaSPTT.Text),
+                            Convert.ToInt32(txtSoLuongTT.Text) * Convert.ToInt32(txtGiaSPTT.Text)
+                            );
+
+                        if (ssv.capNhatSP(cthd))
+                        {
+                            dgCTHDTT.DataSource = ssv.getCTHD(MHD);
+                            ssv.CanNhatSoLuong(stock, soluongbannew, MSP);
+
+                            spsv.loadSanPhamNhanVien(dgSanPhamNV);
+
+                            TongTien += Convert.ToInt32(txtSoLuongTT.Text) * Convert.ToInt32(txtGiaSPTT.Text);
+                            txtTongTien.Text = TongTien.ToString();
+
+                            ssv.CapNhatTongTien(Convert.ToInt32(txtTongTien.Text.ToString()), MHD);
+                            MessageBox.Show("Sửa thành công");
+                        }
+                        else
+                            MessageBox.Show("Sửa sản phẩm thất bại ");
+                    }
+
+
+                }
+            }
+            else
+                MessageBox.Show("Hãy lập hóa đơn hoặc thêm hóa đơn cần sửa");
         }
     }
 }

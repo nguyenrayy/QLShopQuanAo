@@ -38,13 +38,15 @@ namespace QLShopQuanAo
         public bool suaKhachHang(KhachHang kh)
         {
             try
-            { string SQL = string.Format("UPDATE khachhang SET tenKhach = '{0}',diaChi = '{1}', soDienThoai = '{2}' WHERE maKhach = {3}",
+            {
+                string SQL = string.Format("UPDATE khachhang SET tenKhach = '{0}',diaChi = '{1}', soDienThoai = '{2}' WHERE maKhach = {3}",
                 kh.TenKhachHang, kh.DiaChi, kh.SDT, kh.MaKhachHang);
                 SqlCommand cmd = new SqlCommand(SQL, DBConnect.Conn);
                 if (cmd.ExecuteNonQuery() > 0)
                     return true;
             }
-            catch (Exception e) {
+            catch (Exception e)
+            {
                 Console.WriteLine(e.ToString());
             }
             return false;
@@ -59,7 +61,8 @@ namespace QLShopQuanAo
                 if (cmd.ExecuteNonQuery() > 0)
                     return true;
             }
-            catch (Exception e) {
+            catch (Exception e)
+            {
                 Console.WriteLine(e.ToString());
             }
 
@@ -76,7 +79,22 @@ namespace QLShopQuanAo
             else
                 return false;
         }
-        
+        public string getTenKhachHang(string MKH)
+        {
+            string name = "";
+            string sql = "select * from khachhang where maKhach =@maKhach";
+            SqlCommand cmd = new SqlCommand(sql, DBConnect.Conn);
+            cmd.Parameters.AddWithValue("@maKhach", MKH);
+            SqlDataReader rd = cmd.ExecuteReader();
+            if (rd.Read())
+            {
+                name = rd["tenKhach"].ToString();
+            }
+            rd.Close();
+            return name;
+        }
     }
-    
+
 }
+    
+
