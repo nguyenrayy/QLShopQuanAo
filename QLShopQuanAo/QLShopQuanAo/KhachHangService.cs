@@ -28,19 +28,14 @@ namespace QLShopQuanAo
         }
         public bool themKH(KhachHang kh)
         {
-            try
-            {
+           
                 string SQL = string.Format("INSERT INTO khachhang VALUES ('{0}', '{1}', '{2}' , '{3}')", kh.MaKhachHang, kh.TenKhachHang, kh.DiaChi, kh.SDT);
                 SqlCommand cmd = new SqlCommand(SQL, DBConnect.Conn);
-                if (cmd.ExecuteNonQuery() > 0)
-                    return true;
-                else
-                    return false;
-            }
-            catch (SqlException sql)
-            {
+            if (cmd.ExecuteNonQuery() > 0)
+                return true;
+            else
                 return false;
-            }
+          
         }
 
         public bool suaKhachHang(KhachHang kh)

@@ -269,6 +269,7 @@ namespace QLShopQuanAo
                     HoaDon hd = new HoaDon("1", MK, TongTien);
                     if (ssv.themHoaDon(hd))
                     {
+                        int TongTien = 0;
                         txtMaHoaDonTT.Text = hd.MaHoaDon;
                         txtTongTien.Text = TongTien.ToString();
 
@@ -308,10 +309,15 @@ namespace QLShopQuanAo
 
         private void rsHoaDon_Click(object sender, EventArgs e)
         {
+            reset();
+        }
+        public void reset()
+        {
             txtMaHoaDonTT.Text = "";
             txtTongTien.Text = "";
             this.dgCTHDTT.DataSource = null;
             this.dgCTHDTT.Rows.Clear();
+            TongTien = 0;
         }
 
         private void btInHD_Click(object sender, EventArgs e)

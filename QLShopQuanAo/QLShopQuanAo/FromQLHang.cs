@@ -7,37 +7,39 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Data;
 using System.Data.SqlClient;
 using System.Globalization;
 using QLShopQuanAo.Properties;
 
 namespace QLShopQuanAo
 {
-   
+
 
     public partial class FromQLHang : Form
     {
         ThongKeDoanhThuService tkdtsv = new ThongKeDoanhThuService();
+
         public FromQLHang()
         {
             InitializeComponent();
             DBConnect.Connect();
             LoadDsSanPham();
             LoadDsNhanVien();
-            
-            
+
+
             // đặt kiểu hiển thị ngày/tháng/năm cho datetimepicker
             dateNgayNhap.Format = DateTimePickerFormat.Custom;
             dateNhanVien.Format = DateTimePickerFormat.Custom;
             dateNgayNhap.CustomFormat = "dd/MM/yyyy";
-
+            dpNgayBatDauTK.Format = DateTimePickerFormat.Custom;
+            dpNgayBatDauTK.CustomFormat = "dd/MM/yyyy";
             dgDSHDAD.DataSource = tkdtsv.getHoaDon();
+            
         }
 
         private void FromQLHang_Load(object sender, EventArgs e)
         {
-            
+
         }
 
 
@@ -133,8 +135,8 @@ namespace QLShopQuanAo
                             MessageBoxIcon.Error);
                     }
                 }
-                
-                
+
+
             }
             catch (Exception exception)
             {
@@ -169,7 +171,7 @@ namespace QLShopQuanAo
             this.Hide();
         }
 
-        
+
         private void btnXoa_Click(object sender, EventArgs e)
         {
             try
@@ -312,6 +314,7 @@ namespace QLShopQuanAo
             }
             catch (Exception ex)
             {
+                MessageBox.Show(ex.Message);
             }
         }
         private void btnTimKiemSP_Click(object sender, EventArgs e)
@@ -362,7 +365,7 @@ namespace QLShopQuanAo
         {
             try
             {
-                if (txtMaNhanVien.Text == "" || txtTenNhanVien.Text == "" || txtDiaChi.Text == "" || txtSDT.Text == "" ||  dateNhanVien.Value.Equals("") || txtChucVu.Text == "" || txtPass.Text == "")
+                if (txtMaNhanVien.Text == "" || txtTenNhanVien.Text == "" || txtDiaChi.Text == "" || txtSDT.Text == "" || dateNhanVien.Value.Equals("") || txtChucVu.Text == "" || txtPass.Text == "")
                 {
                     MessageBox.Show("Hãy nhập đầy đủ thông tin!", "Thông báo lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
@@ -461,7 +464,7 @@ namespace QLShopQuanAo
                 txtTenNhanVien.Text = dgvNhanVien.SelectedRows[0].Cells["tenNhanVien"].Value.ToString();
                 rdNam.Checked = dgvNhanVien.SelectedRows[0].Cells["gioiTinh"].Value.ToString() == "Nam";
                 rdNu.Checked = dgvNhanVien.SelectedRows[0].Cells["gioiTinh"].Value.ToString() == "Nữ";
-                txtDiaChi.Text = dgvNhanVien.SelectedRows[0].Cells["diaChi"].Value.ToString(); 
+                txtDiaChi.Text = dgvNhanVien.SelectedRows[0].Cells["diaChi"].Value.ToString();
                 txtSDT.Text = dgvNhanVien.SelectedRows[0].Cells["dienThoai"].Value.ToString();
                 txtChucVu.Text = dgvNhanVien.SelectedRows[0].Cells["chucVu"].Value.ToString();
                 txtPass.Text = dgvNhanVien.SelectedRows[0].Cells["pass"].Value.ToString();
@@ -492,24 +495,30 @@ namespace QLShopQuanAo
                 //hiện thông báo
                 if (MessageBox.Show("Bạn có thật sự muốn xóa nhân viên này?", "Cảnh báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
-                    var maNhanVien = dgvNhanVien.SelectedRows[0].Cells["maNhanVien"].Value.ToString();
-                    var sql = "DELETE NhanVien WHERE maNhanVien = @maNhanVien";
-                    var cmd = new SqlCommand(sql, DBConnect.Connect());
-                    cmd.Parameters.AddWithValue("maNhanVien", maNhanVien);
-                    var kq = cmd.ExecuteNonQuery();
-                    if (kq > 0)
+                    if (txtChucVu.Text != "Admin")
                     {
-                        MessageBox.Show("Xóa dữ liệu thành công!", "Thông báo", MessageBoxButtons.OK,
-                            MessageBoxIcon.Information);
-                        LoadDsNhanVien();
-                        
+                        var maNhanVien = dgvNhanVien.SelectedRows[0].Cells["maNhanVien"].Value.ToString();
+                        var sql = "DELETE NhanVien WHERE maNhanVien = @maNhanVien";
+                        var cmd = new SqlCommand(sql, DBConnect.Connect());
+                        cmd.Parameters.AddWithValue("maNhanVien", maNhanVien);
+                        var kq = cmd.ExecuteNonQuery();
+                        if (kq > 0)
+                        {
+                            MessageBox.Show("Xóa dữ liệu thành công!", "Thông báo", MessageBoxButtons.OK,
+                                MessageBoxIcon.Information);
+                            LoadDsNhanVien();
+
+                        }
+                        else
+                        {
+                            MessageBox.Show("Xóa dữ liệu thất bại!", "Thông báo lỗi", MessageBoxButtons.OK,
+                                MessageBoxIcon.Error);
+                        }
                     }
                     else
-                    {
-                        MessageBox.Show("Xóa dữ liệu thất bại!", "Thông báo lỗi", MessageBoxButtons.OK,
-                            MessageBoxIcon.Error);
-                    }
+                        MessageBox.Show("Không thể xóa Admin");
                 }
+               
             }
             catch (Exception exception)
             {
@@ -567,10 +576,6 @@ namespace QLShopQuanAo
             }
         }
 
-        private void tabPage1_Click(object sender, EventArgs e)
-        {
-
-        }
 
         private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
         {
@@ -596,7 +601,7 @@ namespace QLShopQuanAo
             dgDSHDCTHD.DataSource = null;
             txtTenKHHDAD.Text = "";
             txtTongTienHDAD.Text = "";
-            dpHDHDAD.Value= DateTime.MinValue ;
+            dpHDHDAD.Value = DateTime.MinValue;
         }
 
         private void btXoaHDHDAD_Click(object sender, EventArgs e)
@@ -616,5 +621,42 @@ namespace QLShopQuanAo
             else
                 MessageBox.Show("Hãy chọn hóa đơn cần xóa");
         }
+
+        private void btThongKeDT_Click(object sender, EventArgs e)
+        {
+            if (dpNgayBatDauTK.Value > dpNgayKetThucTK.Value)
+            {
+                MessageBox.Show("Ngày bắt đầu không thể lớn hơn ngày kết thúc", "Lỗi chọn ngày", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                txtSoLuongHDAD.Text = tkdtsv.countTongHoaDon(dpNgayBatDauTK.Value, dpNgayKetThucTK.Value);
+                txtTongTienTKDT.Text = tkdtsv.TinhTongTien(dpNgayBatDauTK.Value, dpNgayKetThucTK.Value).ToString();
+                txtLoiNhuanTKDT.Text = tkdtsv.TinhLoiNhuan(dpNgayBatDauTK.Value, dpNgayKetThucTK.Value).ToString();
+            }
+        }
+
+        private void tabControl1ádadsddđ_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            dgSPTKDT.DataSource = tkdtsv.getSanPhamTKDT();
+        }
+
+        private void dgSPTKDT_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            txtMaSPTKDT.Text = dgSPTKDT.SelectedRows[0].Cells[0].Value.ToString();
+            txtTenSPTKDT.Text = dgSPTKDT.SelectedRows[0].Cells[1].Value.ToString();
+            txtSoLuongBanRa.Text = tkdtsv.getSoLuong(txtMaSPTKDT.Text, dpNgayBatDauTK.Value, dpNgayKetThucTK.Value);
+            txtSoLuongConLaiTKDT.Text = dgSPTKDT.SelectedRows[0].Cells[8].Value.ToString();
+            txtLoiNhuanHDCTTK.Text = tinhLoiNhuanCTHD().ToString();
+        }
+        
+        private int tinhLoiNhuanCTHD()
+        { 
+            int giaNhap = Convert.ToInt32(dgSPTKDT.SelectedRows[0].Cells[3].Value.ToString());
+            int giaXuat = Convert.ToInt32(dgSPTKDT.SelectedRows[0].Cells[4].Value.ToString());
+            int loiNhuan = (giaXuat - giaNhap) * Convert.ToInt32(txtSoLuongBanRa.Text.ToString());
+            return loiNhuan;
+        }
+
     }
 }
