@@ -462,13 +462,14 @@ namespace QLShopQuanAo
         {
 
         }
-
+        ThongKeDoanhThuService tkdtsv = new ThongKeDoanhThuService();
         private void tabDT_SelectedIndexChanged(object sender, EventArgs e)
         {
             loadComboKhachHang();
             cbMaKHTT.SelectedItem = null;
             txtTenKHTT.Text = null;
             dgvSPDT.DataSource = null;
+            dgDSHDNV.DataSource = tkdtsv.getHoaDon();
         }
 
         private void cbSPDT_SelectedIndexChanged(object sender, EventArgs e)
