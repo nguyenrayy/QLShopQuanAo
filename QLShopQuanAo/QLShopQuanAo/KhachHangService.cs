@@ -18,6 +18,14 @@ namespace QLShopQuanAo
             da.Fill(dtSinhvien);
             return dtSinhvien;
         }
+
+        public DataTable getNhanVien()
+        {
+            SqlDataAdapter nv = new SqlDataAdapter("SELECT * FROM NhanVien", DBConnect.Conn);
+            DataTable data1 = new DataTable();
+            nv.Fill(data1);
+            return data1;
+        }
         public bool themKH(KhachHang kh)
         {
             try
@@ -93,7 +101,23 @@ namespace QLShopQuanAo
             rd.Close();
             return name;
         }
+        public string getTenNhanVien(string MNV)
+        {
+            string name = "";
+            string sql = "select * from NhanVien where maNhanVien =@maNhanVien";
+            SqlCommand cmd = new SqlCommand(sql, DBConnect.Conn);
+            cmd.Parameters.AddWithValue("@maNhanVien", MNV);
+            SqlDataReader rd = cmd.ExecuteReader();
+            if (rd.Read())
+            {
+                name = rd["tenNhanVien"].ToString();
+            }
+            rd.Close();
+            return name;
+        }
     }
+    
+
 
 }
     

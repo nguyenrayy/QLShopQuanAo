@@ -22,6 +22,41 @@ namespace QLShopQuanAo
             adpter.Fill(dt);
             return dt;
         }
+
+        public DataTable getHoaDonKH(string maKhach)
+        {
+            string sql = "SELECT cthd.maHoaDon,cthd.maSanPham,cthd.soLuong,cthd.DonGia,cthd.thanhTien from ChiTietHoaDon cthd join HoaDonBan hdb on hdb.MaHoaDon = cthd.maHoaDon where hdb.maKhach = @maKhach";
+            SqlCommand cmd = new SqlCommand(sql, DBConnect.Conn);
+            cmd.Parameters.AddWithValue("@maKhach", maKhach);
+
+            DataTable dt = new DataTable();
+            SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+            adapter.Fill(dt);
+
+            return dt;
+        }
+
+        public DataTable getSPDT()
+        {
+            string sql = "SELECT CTPhieuDoiTra.* , SanPham.giaXuat from CTPhieuDoiTra LEFT JOIN SanPham on CTPhieuDoiTra.maSanPham = SanPham.maSanPham";
+            SqlCommand cmd = new SqlCommand(sql, DBConnect.Conn);
+            DataTable dt = new DataTable();
+            SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+            adapter.Fill(dt);
+
+            return dt;
+        }
+        public DataTable getSPDT(String MPDT)
+        {
+            string sql = "SELECT * from CTPhieuDoiTra";
+            SqlCommand cmd = new SqlCommand(sql, DBConnect.Conn);
+            cmd.Parameters.AddWithValue("@maPhieuDoiTra",MPDT);
+            DataTable dt = new DataTable();
+            SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+            adapter.Fill(dt);
+
+            return dt;
+        }
         public bool CanNhatSoLuong(int soluong, int soluongban, string MSP)
         {
             int soluongnew = soluong - soluongban;
@@ -123,6 +158,12 @@ namespace QLShopQuanAo
             }
             rd.Close();
             return stock;
+        }
+        public bool themCTPhieuDoiTra(string MPDT,string MSP,int soLuong)
+        {
+            string SQL = string.Format("INSERT INTO CTPhieuDoiTra VALUES ('{0}', '{1}', '{2}')",MPDT,MSP,soLuong);
+            SqlCommand cmd = new SqlCommand(SQL, DBConnect.Conn);
+            return cmd.ExecuteNonQuery() > 0;
         }
     }
 }

@@ -26,12 +26,24 @@ namespace QLShopQuanAo
             dgKHNV.DataSource = khsv.getKhachHang();
             spsv.loadSanPhamNhanVien(dgSanPhamNV);
             loadComboKhachHang();
+            loadCbNV();
+            loadComboSanPham();
             LoadDsDoiTra();
+            dateDoiTra.Format = DateTimePickerFormat.Custom;
+            dateDoiTra.CustomFormat = "dd/MM/yyyy";
         }
         public void loadComboKhachHang()
         {
             cbMaKHTT.ValueMember = "maKhach";
             cbMaKHTT.DataSource = khsv.getKhachHang();
+            cbMaKHDT.ValueMember = "maKhach";
+            cbMaKHDT.DataSource = khsv.getKhachHang();
+        }
+
+        public void loadComboSanPham()
+        {
+            cbSPDT.ValueMember = "maSanPham";
+            cbSPDT.DataSource = spsv.getSanPham();
         }
 
         private void btDangXuat_Click(object sender, EventArgs e)
@@ -41,6 +53,11 @@ namespace QLShopQuanAo
             this.Hide();
         }
 
+        public void loadCbNV()
+        {
+            cbMaNVDT.ValueMember = "maNhanVien";
+            cbMaNVDT.DataSource = khsv.getNhanVien();
+        }
         private void btThemKH_Click(object sender, EventArgs e)
         {
             if (txtTenKH.Text == "" || txtSDTKH.Text == "" || txtDCKH.Text == "")
@@ -170,12 +187,7 @@ namespace QLShopQuanAo
             this.txtTenKHTT.Text = khsv.getTenKhachHang(cbMaKHTT.Text);
         }
 
-        private void tabControl11_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            loadComboKhachHang();
-            cbMaKHTT.SelectedItem = null;
-            txtTenKHTT.Text = null;
-        }
+        
 
         private void btresetSPTT_Click(object sender, EventArgs e)
         {
@@ -406,6 +418,113 @@ namespace QLShopQuanAo
             }
             else
                 MessageBox.Show("Hãy lập hóa đơn hoặc thêm hóa đơn cần sửa");
+        }
+
+       
+
+        private void dgvDoiTra_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            string MPDT = dgvDoiTra.SelectedRows[0].Cells[0].Value.ToString();
+            dgvSPDT.DataSource = ssv.getSPDT(MPDT);
+        }
+
+        private void cbMaNVDT_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            this.txtTenNVDT.Text = khsv.getTenNhanVien(cbMaNVDT.Text);
+        }
+
+        private void cbMaKHDT_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            this.txtTenKHDT.Text = khsv.getTenKhachHang(cbMaKHDT.Text);
+            dgvHDDT.DataSource = ssv.getHoaDonKH(cbMaKHDT.Text);
+        }
+
+        private void dgvHDDT_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            txtTenSPTT.Text = dgvHDDT.SelectedRows[0].Cells[1].Value.ToString();
+            txtGiaSPTT.Text = dgvHDDT.SelectedRows[0].Cells[3].Value.ToString();
+            txtSoLuongTT.Text = dgvHDDT.SelectedRows[0].Cells[2].Value.ToString();
+        }
+
+        private void dgvSPDT_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            String maSanPham = dgvDoiTra.SelectedRows[0].Cells[0].Value.ToString();
+            dgvSPDT.DataSource = ssv.getSPDT(maSanPham);
+        }
+
+        private void tabPage41_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tabDT_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            loadComboKhachHang();
+            cbMaKHTT.SelectedItem = null;
+            txtTenKHTT.Text = null;
+            dgvSPDT.DataSource = null;
+        }
+
+        private void cbSPDT_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnThemPDT_Click(object sender, EventArgs e)
+        {
+            var sql = "INSERT INTO dbo.PhieuDoiTra (maPhieuDoiTra, maNhanVien, maKhachHang, ngayDoiTra, congViec, tongTien) VALUES (@maPhieuDoiTra, @maNhanVien, @maKhachHang, @ngayDoiTra, @congViec, @tongTien)";
+            var cmd = new SqlCommand(sql, DBConnect.Connect());
+            cmd.Parameters.AddWithValue("maPhieuDoiTra", txtMPDT.Text);
+            cmd.Parameters.AddWithValue("maNhanVien", cbMaNVDT.Text);
+            cmd.Parameters.AddWithValue("maKhachHang", cbMaKHDT.Text);
+            cmd.Parameters.AddWithValue("ngayDoiTra", dateDoiTra.Value);
+            cmd.Parameters.AddWithValue("congViec", cbCongViecDT.Text);
+            cmd.Parameters.AddWithValue("tongTien", 0);
+            var kq = cmd.ExecuteNonQuery();
+            if (kq > 0)
+            {
+                MessageBox.Show("Thêm dữ liệu thành công!", "Thông báo", MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
+                LoadDsDoiTra();
+            }
+            else
+            {
+                MessageBox.Show("Thêm dữ liệu thất bại!", "Thông báo lỗi", MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
+        }
+
+        private void label253423423_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button155245_Click(object sender, EventArgs e)
+        {
+            
+            string MPDT = dgvDoiTra.SelectedRows[0].Cells[0].Value.ToString();
+            if (ssv.themCTPhieuDoiTra(MPDT, cbSPDT.Text,Convert.ToInt32(txtSLDT.Text)))
+            {
+                dgvSPDT.DataSource = ssv.getSPDT(MPDT);
+                MessageBox.Show("Thêm CTP Đổi trả thành công");
+            }
+            else
+                MessageBox.Show("Thêm CTP Đổi trả thất bại");
+
+
+            //int soLuongTT;
+            //if (int.TryParse(txtSoLuongTT.Text, out soLuongTT))
+            //{
+            //    if (ssv.themCTPhieuDoiTra(MPDT, cbSPDT.Text, soLuongTT))
+            //    {
+            //        dgvSPDT.DataSource = ssv.getSPDT(MPDT);
+            //        MessageBox.Show("Thêm CTP Đổi trả thành công");
+            //    }
+            //    else
+            //    {
+            //        MessageBox.Show("Thêm CTP Đổi trả thất bại");
+            //    }
+            //}
         }
     }
 }

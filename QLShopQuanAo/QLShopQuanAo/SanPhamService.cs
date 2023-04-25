@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -30,6 +31,27 @@ namespace QLShopQuanAo
                 row.Cells["chatLieu"].Value = dr["ChatLieu"];
             }
             dr.Close();
+        }
+        public DataTable getSanPham()
+        {
+            SqlDataAdapter da = new SqlDataAdapter("SELECT * FROM SanPham", DBConnect.Conn);
+            DataTable dtSanPham = new DataTable();
+            da.Fill(dtSanPham);
+            return dtSanPham;
+        }
+        public string getTenSanPham(string MSP)
+        {
+            string name = "";
+            string sql = "select * from SanPham where maSanPham =@maSanPham";
+            SqlCommand cmd = new SqlCommand(sql, DBConnect.Conn);
+            cmd.Parameters.AddWithValue("@maSanPham", MSP);
+            SqlDataReader rd = cmd.ExecuteReader();
+            if (rd.Read())
+            {
+                name = rd["tenSanPham"].ToString();
+            }
+            rd.Close();
+            return name;
         }
     }
 }
