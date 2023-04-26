@@ -32,9 +32,10 @@ namespace QLShopQuanAo
             }
             dr.Close();
         }
-        public DataTable getSanPham()
+        public DataTable getSanPham(string mk)
         {
-            SqlDataAdapter da = new SqlDataAdapter("SELECT * FROM SanPham", DBConnect.Conn);
+            string SQL = string.Format("select  * from ChiTietHoaDon where maHoaDon= '{0}'", mk);
+            SqlDataAdapter da = new SqlDataAdapter(SQL, DBConnect.Conn);
             DataTable dtSanPham = new DataTable();
             da.Fill(dtSanPham);
             return dtSanPham;

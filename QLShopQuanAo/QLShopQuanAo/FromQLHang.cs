@@ -658,5 +658,9 @@ namespace QLShopQuanAo
             return loiNhuan;
         }
 
+        private void tabPage1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

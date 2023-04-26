@@ -42,8 +42,9 @@ namespace QLShopQuanAo
 
         public void loadComboSanPham()
         {
+            //string mhd = dgvHDDT.SelectedRows[0].Cells[0].Value.ToString();
             cbSPDT.ValueMember = "maSanPham";
-            cbSPDT.DataSource = spsv.getSanPham();
+            cbSPDT.DataSource = spsv.getSanPham(txtMHDDT.Text);
         }
 
         private void btDangXuat_Click(object sender, EventArgs e)
@@ -64,7 +65,8 @@ namespace QLShopQuanAo
             {
                 MessageBox.Show("Nhap day du thong tin", "Khach Hang");
             }
-            else {
+            else
+            {
                 {
                     KhachHang kh = new KhachHang(txtTenKH.Text, txtSDTKH.Text, txtSDTKH.Text);
                     if (khsv.ktraKhachHang(txtSDTKH.Text) == false)
@@ -115,7 +117,7 @@ namespace QLShopQuanAo
             txtTenKH.Text = "";
             txtMaKH.Text = "";
         }
- 
+
 
         private void dgKHNV_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
         {
@@ -123,7 +125,7 @@ namespace QLShopQuanAo
             txtTenKH.Text = dgKHNV.SelectedRows[0].Cells[1].Value.ToString();
             txtDCKH.Text = dgKHNV.SelectedRows[0].Cells[2].Value.ToString();
             txtSDTKH.Text = dgKHNV.SelectedRows[0].Cells[3].Value.ToString();
-            
+
         }
 
         private void btXoaKH_Click(object sender, EventArgs e)
@@ -187,7 +189,7 @@ namespace QLShopQuanAo
             this.txtTenKHTT.Text = khsv.getTenKhachHang(cbMaKHTT.Text);
         }
 
-        
+
 
         private void btresetSPTT_Click(object sender, EventArgs e)
         {
@@ -213,7 +215,7 @@ namespace QLShopQuanAo
             if (txtMaHoaDonTT.Text != "")
             {
 
-                
+
                 if (txtSoLuongTT.Text == "")
                 {
                     MessageBox.Show("Hãy nhập số lượng");
@@ -234,7 +236,7 @@ namespace QLShopQuanAo
                             Convert.ToInt32(txtGiaSPTT.Text),
                             Convert.ToInt32(txtSoLuongTT.Text) * Convert.ToInt32(txtGiaSPTT.Text)
                             );
-                        if (ssv.ktraSanPhamTT(txtMaHoaDonTT.Text,txtMaSPTT.Text) == false)
+                        if (ssv.ktraSanPhamTT(txtMaHoaDonTT.Text, txtMaSPTT.Text) == false)
                         {
                             if (ssv.themCThoadon(cthd))
                             {
@@ -295,7 +297,7 @@ namespace QLShopQuanAo
         private void btSearchHD_Click(object sender, EventArgs e)
         {
             dgCTHDTT.DataSource = ssv.getCTHD(txtMaHoaDonTT.Text);
-            
+
             if (dgCTHDTT.Rows.Count == 0)
             {
                 txtTongTien.Text = 0.ToString();
@@ -376,7 +378,7 @@ namespace QLShopQuanAo
         private void btSuaSP_Click(object sender, EventArgs e)
         {
             if (txtMaHoaDonTT.Text != "")
-            {     
+            {
                 if (txtSoLuongTT.Text == "")
                 {
                     MessageBox.Show("Hãy nhập số lượng");
@@ -403,16 +405,16 @@ namespace QLShopQuanAo
 
                         if (ssv.capNhatSP(cthd))
                         {
-                          
+
                             dgCTHDTT.DataSource = ssv.getCTHD(MHD);
-                           
+
                             int i = soluongbannew - soluongold;
 
                             ssv.CanNhatSoLuong(stock, i, MSP);
 
                             spsv.loadSanPhamNhanVien(dgSanPhamNV);
 
-                                TongTien += i * Convert.ToInt32(txtGiaSPTT.Text.ToString());
+                            TongTien += i * Convert.ToInt32(txtGiaSPTT.Text.ToString());
                             txtTongTien.Text = TongTien.ToString();
                             ssv.CapNhatTongTien(Convert.ToInt32(txtTongTien.Text.ToString()), MHD);
                             MessageBox.Show("Sửa thành công");
@@ -426,7 +428,7 @@ namespace QLShopQuanAo
                 MessageBox.Show("Hãy lập hóa đơn hoặc thêm hóa đơn cần sửa");
         }
 
-       
+
 
         private void dgvDoiTra_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -450,6 +452,8 @@ namespace QLShopQuanAo
             txtTenSPTT.Text = dgvHDDT.SelectedRows[0].Cells[1].Value.ToString();
             txtGiaSPTT.Text = dgvHDDT.SelectedRows[0].Cells[3].Value.ToString();
             txtSoLuongTT.Text = dgvHDDT.SelectedRows[0].Cells[2].Value.ToString();
+            txtMHDDT.Text = dgvHDDT.SelectedRows[0].Cells[0].Value.ToString();
+            txtGiaSPDT.Text = dgvHDDT.SelectedRows[0].Cells[3].Value.ToString();
         }
 
         private void dgvSPDT_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -470,11 +474,12 @@ namespace QLShopQuanAo
             txtTenKHTT.Text = null;
             dgvSPDT.DataSource = null;
             dgDSHDNV.DataSource = tkdtsv.getHoaDon();
+            spsv.loadSanPhamNhanVien(dgSanPhamNV);
         }
 
         private void cbSPDT_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            
         }
 
         private void btnThemPDT_Click(object sender, EventArgs e)
@@ -508,30 +513,64 @@ namespace QLShopQuanAo
 
         private void button155245_Click(object sender, EventArgs e)
         {
-            
+            int i = Convert.ToInt32(txtSLDT.Text);
             string MPDT = dgvDoiTra.SelectedRows[0].Cells[0].Value.ToString();
-            if (ssv.themCTPhieuDoiTra(MPDT, cbSPDT.Text,Convert.ToInt32(txtSLDT.Text)))
+            if (ssv.themCTPhieuDoiTra(MPDT, cbSPDT.Text, Convert.ToInt32(txtSLDT.Text)))
             {
                 dgvSPDT.DataSource = ssv.getSPDT(MPDT);
+                ssv.CanNhatSoLuong(ssv.getStock(cbSPDT.Text), i * -1, cbSPDT.Text);
+                int giaSPDT = Convert.ToInt32(txtGiaSPDT.Text);
+                int TongTienDT = i * giaSPDT;
+                ssv.CapNhatGiaTienDT(MPDT, TongTienDT);
+                LoadDsDoiTra();
                 MessageBox.Show("Thêm CTP Đổi trả thành công");
             }
             else
                 MessageBox.Show("Thêm CTP Đổi trả thất bại");
+        }
+        private void timKiemSPNV()
+        {
+            try
+            {
+                var sql = "SELECT maSanPham, tenSanPham,  giaXuat, Size, tinhTrang,  soLuong, chatLieu FROM SanPham WHERE maSanPham LIKE N'%' + @TuKhoa + '%' OR tenSanPham LIKE N'%' + @TuKhoa + '%'";
+                SqlCommand cmd = new SqlCommand(sql, DBConnect.Connect());
+                cmd.Parameters.AddWithValue("TuKhoa", txtSearchNV.Text);
+                var dr = cmd.ExecuteReader();
+               
+                dgSanPhamNV.Rows.Clear();
 
+               
+                while (dr.Read())
+                {
+                    var i = dgSanPhamNV.Rows.Add();
+                    var row = dgSanPhamNV.Rows[i];
+                    row.Cells["maSanPham"].Value = dr["maSanPham"];
+                    row.Cells["tenSanPham"].Value = dr["tenSanPham"];
+                    row.Cells["giaXuat"].Value = dr["GiaXuat"];
+                    row.Cells["Size"].Value = dr["Size"];
+                    row.Cells["tinhTrang"].Value = dr["tinhTrang"];
 
-            //int soLuongTT;
-            //if (int.TryParse(txtSoLuongTT.Text, out soLuongTT))
-            //{
-            //    if (ssv.themCTPhieuDoiTra(MPDT, cbSPDT.Text, soLuongTT))
-            //    {
-            //        dgvSPDT.DataSource = ssv.getSPDT(MPDT);
-            //        MessageBox.Show("Thêm CTP Đổi trả thành công");
-            //    }
-            //    else
-            //    {
-            //        MessageBox.Show("Thêm CTP Đổi trả thất bại");
-            //    }
-            //}
+                    row.Cells["soLuong"].Value = dr["soLuong"];
+                    row.Cells["chatLieu"].Value = dr["chatLieu"];
+
+                }
+
+                dr.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void btSearchNV_Click(object sender, EventArgs e)
+        {
+            timKiemSPNV();
+        }
+
+        private void cbSPDT_DropDown(object sender, EventArgs e)
+        {
+            loadComboSanPham();
         }
     }
 }

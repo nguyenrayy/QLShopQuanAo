@@ -165,6 +165,13 @@ namespace QLShopQuanAo
             SqlCommand cmd = new SqlCommand(SQL, DBConnect.Conn);
             return cmd.ExecuteNonQuery() > 0;
         }
+       public bool CapNhatGiaTienDT(string mpdt, int TongTien)
+        {
+            string SQL = string.Format("update PhieuDoiTra SET tongTien = '{0}' where maPhieuDoiTra = '{1}'", TongTien,mpdt);
+            SqlCommand cmd = new SqlCommand(SQL, DBConnect.Conn);
+            return cmd.ExecuteNonQuery() > 0;
+        }
+
+        }
     }
-}
 
