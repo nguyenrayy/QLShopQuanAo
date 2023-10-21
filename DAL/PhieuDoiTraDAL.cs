@@ -1,0 +1,190 @@
+﻿using DTO;
+using System;
+using System.Collections.Generic;
+using System.Data.SqlClient;
+using System.Linq;
+using System.Security.Policy;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace DAL
+{
+    public class PhieuDoiTraDAL : DBConnect
+    {
+        PhieuDoiTra pdt = new PhieuDoiTra();
+
+        private List<PhieuDoiTra> pdtl = null;
+        private List<CTPhieuDoiTra> ctpdtl = null;
+        public int coutPhieuDoiTra(KhachHang kh, String mxl)
+        {
+            int i = 0;
+            Moketnoi();
+            try
+            {
+                var sql = "SELECT count(*) FROM PhieuDoiTra WHERE maKhachHang = @maKhachHang";
+                if (mxl != null)
+                {
+                    sql += " and maXuLyDoiTra = @maXuLyDoiTra";
+                }
+                var cmd = new SqlCommand(sql, conec);
+                cmd.Parameters.AddWithValue("@maKhachHang", kh.maKhachHang);
+
+                if (mxl != null)
+                {
+                    cmd.Parameters.AddWithValue("@maXuLyDoiTra", mxl);
+                }
+
+                var result = cmd.ExecuteScalar();
+                if (result != null && result != DBNull.Value)
+                {
+                    i = Convert.ToInt32(result);
+                }
+            }
+            finally { Dongketnoi(); }
+            return i;
+
+        }
+
+        public List<PhieuDoiTra> getPhieuDoiTraList(HoaDonBan hdb, XuLyDoiTra xldt)
+        {
+            List<PhieuDoiTra> pdtl = new List<PhieuDoiTra>();
+            Moketnoi();
+            try
+            {
+                var sql = "SELECT * FROM PhieuDoiTra";
+
+                if (hdb != null || xldt != null)
+                {
+                    sql += " WHERE ";
+                    if (hdb != null)
+                    {
+                        sql += " maHoaDon = @maHoaDon";
+                    }
+                    if (xldt != null)
+                    {
+                        if (hdb != null)
+                        {
+                            sql += " OR ";
+                        }
+                        sql += " maXuLyDoiTra = @maXuLyDoiTra";
+                    }
+                }
+
+                var cmd = new SqlCommand(sql, conec);
+                if (hdb != null)
+                {
+                    cmd.Parameters.AddWithValue("@maHoaDon", hdb.maHoaDon);
+                }
+                if (xldt != null)
+                {
+                    cmd.Parameters.AddWithValue("@maXuLyDoiTra", xldt.maXuLyDoiTra);
+                }
+                PhieuDoiTra pdt = null;
+                using (SqlDataReader rd = cmd.ExecuteReader())
+                {
+                    while (rd.Read())
+                    {
+                        pdt = new PhieuDoiTra();
+                        pdt.maPhieuDoiTra = rd.GetString(rd.GetOrdinal("maPhieuDoiTra"));
+                        pdt.maKhachHang = rd.GetString(rd.GetOrdinal("maKhachHang"));
+                        pdt.maNhanVien = rd.GetString(rd.GetOrdinal("maNhanVien"));
+                        pdt.ngayDoiTra = rd.GetDateTime(rd.GetOrdinal("ngayDoiTra"));
+                        pdt.maXuLyDoiTra = rd.GetString(rd.GetOrdinal("maXuLyDoiTra"));
+                        pdt.maHoaDon = rd.GetString(rd.GetOrdinal("maHoaDon"));
+                        pdtl.Add(pdt);
+                    }
+                }
+            }
+            finally
+            {
+                Dongketnoi();
+            }
+            return pdtl;
+        }
+        public bool addPhieuDoiTra(PhieuDoiTra pdt)
+        {
+            Boolean success = false;
+            Moketnoi();
+            try
+            {
+                string SQL = string.Format("INSERT INTO PhieuDoiTra VALUES ('{0}', '{1}', '{2}' , '{3}', '{4}' , '{5}' )",
+                  pdt.maPhieuDoiTra, pdt.maNhanVien, pdt.maKhachHang, pdt.ngayDoiTra, pdt.maXuLyDoiTra, pdt.maHoaDon);
+                SqlCommand cmd = new SqlCommand(SQL, conec);
+                if (cmd.ExecuteNonQuery() > 0)
+                {
+                    success =  true;
+                }
+            }
+           
+            finally { Dongketnoi(); }
+            return success;
+        }
+        public Boolean delPhieuDoiTra(PhieuDoiTra pdt)
+        {
+            Moketnoi();
+            Boolean success = false;
+            try
+            {
+                string SQL = string.Format("DELETE FROM PhieuDoiTra WHERE maPhieuDoiTra = '{0}'", pdt.maPhieuDoiTra);
+                SqlCommand cmd = new SqlCommand(SQL, conec);
+                if (cmd.ExecuteNonQuery() > 0)
+                    success = true;
+            }
+            finally { Dongketnoi(); }
+            return success;
+        }
+
+
+        public List<CTPhieuDoiTra> getCTPDTList(CTPhieuDoiTra ctpdt)
+        {
+            ctpdtl = new List<CTPhieuDoiTra>();
+
+            try
+            {
+                Moketnoi();
+                var sql = "SELECT * FROM CTPhieuDoiTra WHERE maPhieuDoiTra = @maPhieuDoiTra";
+                var cmd = new SqlCommand(sql, conec);
+                cmd.Parameters.AddWithValue("@maPhieuDoiTra", ctpdt.maPhieuDoiTra);
+
+                using (SqlDataReader rd = cmd.ExecuteReader())
+                {
+                    while (rd.Read())
+                    {
+                        ctpdt = new CTPhieuDoiTra();
+                        ctpdt.maPhieuDoiTra = rd.GetString(rd.GetOrdinal("maPhieuDoiTra"));
+                        ctpdt.maSPTheoSize = rd.GetString(rd.GetOrdinal("maSPTheoSize"));
+                        ctpdt.soLuong = rd.GetInt32(rd.GetOrdinal("soLuong"));
+                        ctpdt.maSPTheoSizeRe = rd.GetString(rd.GetOrdinal("maSPTheoSizeRe"));
+                        ctpdtl.Add(ctpdt);
+                    }
+                }
+            }
+            finally
+            {
+                Dongketnoi();
+            }
+
+            return ctpdtl;
+        }
+
+
+        public bool addCTPhieuDoiTra(CTPhieuDoiTra ctpdt)
+        {
+            Boolean success = false;
+            Moketnoi();
+            try      
+            {
+                string SQL = string.Format("INSERT INTO CTPhieuDoiTra VALUES ('{0}', '{1}', '{2}', '{3}' )",
+                    ctpdt.maPhieuDoiTra, ctpdt.maSPTheoSize, ctpdt.soLuong, ctpdt.maSPTheoSizeRe);
+                SqlCommand cmd = new SqlCommand(SQL, conec);
+                if (cmd.ExecuteNonQuery() > 0)
+                {
+                    success= true;
+                }
+            }
+            finally { Dongketnoi(); }
+            return success;
+        }
+
+    }
+}

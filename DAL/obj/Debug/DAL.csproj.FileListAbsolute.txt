@@ -1,0 +1,54 @@
+C:\Users\tring\OneDrive\Desktop\QLShopQuanAo\DAL\bin\Debug\DAL.dll
+C:\Users\tring\OneDrive\Desktop\QLShopQuanAo\DAL\bin\Debug\DAL.pdb
+C:\Users\tring\OneDrive\Desktop\QLShopQuanAo\DAL\bin\Debug\DTO.dll
+C:\Users\tring\OneDrive\Desktop\QLShopQuanAo\DAL\bin\Debug\DTO.pdb
+C:\Users\tring\OneDrive\Desktop\QLShopQuanAo\DAL\obj\Debug\DAL.csproj.AssemblyReference.cache
+C:\Users\tring\OneDrive\Desktop\QLShopQuanAo\DAL\obj\Debug\DAL.csproj.CoreCompileInputs.cache
+C:\Users\tring\OneDrive\Desktop\QLShopQuanAo\DAL\obj\Debug\DAL.csproj.CopyComplete
+C:\Users\tring\OneDrive\Desktop\QLShopQuanAo\DAL\obj\Debug\DAL.dll
+C:\Users\tring\OneDrive\Desktop\QLShopQuanAo\DAL\obj\Debug\DAL.pdb
+C:\Users\iCare Center\Desktop\QLShopQuanAo\DAL\bin\Debug\DAL.dll
+C:\Users\iCare Center\Desktop\QLShopQuanAo\DAL\bin\Debug\DAL.pdb
+C:\Users\iCare Center\Desktop\QLShopQuanAo\DAL\bin\Debug\DTO.dll
+C:\Users\iCare Center\Desktop\QLShopQuanAo\DAL\bin\Debug\DTO.pdb
+C:\Users\iCare Center\Desktop\QLShopQuanAo\DAL\obj\Debug\DAL.csproj.AssemblyReference.cache
+C:\Users\iCare Center\Desktop\QLShopQuanAo\DAL\obj\Debug\DAL.csproj.CoreCompileInputs.cache
+C:\Users\iCare Center\Desktop\QLShopQuanAo\DAL\obj\Debug\DAL.csproj.CopyComplete
+C:\Users\iCare Center\Desktop\QLShopQuanAo\DAL\obj\Debug\DAL.dll
+C:\Users\iCare Center\Desktop\QLShopQuanAo\DAL\obj\Debug\DAL.pdb
+C:\Users\tring\OneDrive\Desktop\test\QLShopQuanAo\DAL\bin\Debug\DAL.dll
+C:\Users\tring\OneDrive\Desktop\test\QLShopQuanAo\DAL\bin\Debug\DAL.pdb
+C:\Users\tring\OneDrive\Desktop\test\QLShopQuanAo\DAL\bin\Debug\DTO.dll
+C:\Users\tring\OneDrive\Desktop\test\QLShopQuanAo\DAL\bin\Debug\DTO.pdb
+C:\Users\tring\OneDrive\Desktop\test\QLShopQuanAo\DAL\obj\Debug\DAL.csproj.AssemblyReference.cache
+C:\Users\tring\OneDrive\Desktop\test\QLShopQuanAo\DAL\obj\Debug\DAL.csproj.CoreCompileInputs.cache
+C:\Users\tring\OneDrive\Desktop\test\QLShopQuanAo\DAL\obj\Debug\DAL.csproj.CopyComplete
+C:\Users\tring\OneDrive\Desktop\test\QLShopQuanAo\DAL\obj\Debug\DAL.dll
+C:\Users\tring\OneDrive\Desktop\test\QLShopQuanAo\DAL\obj\Debug\DAL.pdb
+C:\Users\tring\OneDrive\Desktop\QLShopQuanAo2\DAL\bin\Debug\DAL.dll
+C:\Users\tring\OneDrive\Desktop\QLShopQuanAo2\DAL\bin\Debug\DAL.pdb
+C:\Users\tring\OneDrive\Desktop\QLShopQuanAo2\DAL\bin\Debug\DTO.dll
+C:\Users\tring\OneDrive\Desktop\QLShopQuanAo2\DAL\bin\Debug\DTO.pdb
+C:\Users\tring\OneDrive\Desktop\QLShopQuanAo2\DAL\obj\Debug\DAL.csproj.AssemblyReference.cache
+C:\Users\tring\OneDrive\Desktop\QLShopQuanAo2\DAL\obj\Debug\DAL.csproj.CoreCompileInputs.cache
+C:\Users\tring\OneDrive\Desktop\QLShopQuanAo2\DAL\obj\Debug\DAL.csproj.CopyComplete
+C:\Users\tring\OneDrive\Desktop\QLShopQuanAo2\DAL\obj\Debug\DAL.dll
+C:\Users\tring\OneDrive\Desktop\QLShopQuanAo2\DAL\obj\Debug\DAL.pdb
+C:\Users\iCare Center\Desktop\QLShopQuanAo2\DAL\bin\Debug\DAL.dll
+C:\Users\iCare Center\Desktop\QLShopQuanAo2\DAL\bin\Debug\DAL.pdb
+C:\Users\iCare Center\Desktop\QLShopQuanAo2\DAL\bin\Debug\DTO.dll
+C:\Users\iCare Center\Desktop\QLShopQuanAo2\DAL\bin\Debug\DTO.pdb
+C:\Users\iCare Center\Desktop\QLShopQuanAo2\DAL\obj\Debug\DAL.csproj.AssemblyReference.cache
+C:\Users\iCare Center\Desktop\QLShopQuanAo2\DAL\obj\Debug\DAL.csproj.CoreCompileInputs.cache
+C:\Users\iCare Center\Desktop\QLShopQuanAo2\DAL\obj\Debug\DAL.csproj.CopyComplete
+C:\Users\iCare Center\Desktop\QLShopQuanAo2\DAL\obj\Debug\DAL.dll
+C:\Users\iCare Center\Desktop\QLShopQuanAo2\DAL\obj\Debug\DAL.pdb
+C:\Users\iCare Center\Desktop\New folder\QLShopQuanAo2\DAL\bin\Debug\DAL.dll
+C:\Users\iCare Center\Desktop\New folder\QLShopQuanAo2\DAL\bin\Debug\DAL.pdb
+C:\Users\iCare Center\Desktop\New folder\QLShopQuanAo2\DAL\bin\Debug\DTO.dll
+C:\Users\iCare Center\Desktop\New folder\QLShopQuanAo2\DAL\bin\Debug\DTO.pdb
+C:\Users\iCare Center\Desktop\New folder\QLShopQuanAo2\DAL\obj\Debug\DAL.csproj.AssemblyReference.cache
+C:\Users\iCare Center\Desktop\New folder\QLShopQuanAo2\DAL\obj\Debug\DAL.csproj.CoreCompileInputs.cache
+C:\Users\iCare Center\Desktop\New folder\QLShopQuanAo2\DAL\obj\Debug\DAL.csproj.CopyComplete
+C:\Users\iCare Center\Desktop\New folder\QLShopQuanAo2\DAL\obj\Debug\DAL.dll
+C:\Users\iCare Center\Desktop\New folder\QLShopQuanAo2\DAL\obj\Debug\DAL.pdb
