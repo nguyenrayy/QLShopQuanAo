@@ -101,10 +101,10 @@
             this.txtNVNVSearch.BackColor = System.Drawing.SystemColors.MenuHighlight;
             this.txtNVNVSearch.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtNVNVSearch.Dock = System.Windows.Forms.DockStyle.Right;
-            this.txtNVNVSearch.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtNVNVSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtNVNVSearch.Location = new System.Drawing.Point(40, 0);
             this.txtNVNVSearch.Name = "txtNVNVSearch";
-            this.txtNVNVSearch.Size = new System.Drawing.Size(278, 22);
+            this.txtNVNVSearch.Size = new System.Drawing.Size(278, 27);
             this.txtNVNVSearch.TabIndex = 1;
             this.txtNVNVSearch.TextChanged += new System.EventHandler(this.txtNVNVSearch_TextChanged);
             // 
@@ -127,7 +127,7 @@
             this.lnNVNVDs.Location = new System.Drawing.Point(4, 10);
             this.lnNVNVDs.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lnNVNVDs.Name = "lnNVNVDs";
-            this.lnNVNVDs.Size = new System.Drawing.Size(174, 19);
+            this.lnNVNVDs.Size = new System.Drawing.Size(212, 24);
             this.lnNVNVDs.TabIndex = 1;
             this.lnNVNVDs.Text = "Danh sách Nhân Viên";
             // 
@@ -150,6 +150,7 @@
             this.dgNVNV.Location = new System.Drawing.Point(9, 6);
             this.dgNVNV.Name = "dgNVNV";
             this.dgNVNV.ReadOnly = true;
+            this.dgNVNV.RowHeadersWidth = 51;
             this.dgNVNV.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgNVNV.Size = new System.Drawing.Size(863, 189);
             this.dgNVNV.TabIndex = 0;
@@ -208,7 +209,7 @@
             this.cbNVNVGioiTinh.FormattingEnabled = true;
             this.cbNVNVGioiTinh.Location = new System.Drawing.Point(173, 141);
             this.cbNVNVGioiTinh.Name = "cbNVNVGioiTinh";
-            this.cbNVNVGioiTinh.Size = new System.Drawing.Size(129, 26);
+            this.cbNVNVGioiTinh.Size = new System.Drawing.Size(129, 31);
             this.cbNVNVGioiTinh.TabIndex = 15;
             // 
             // txtNVNVTen
@@ -217,7 +218,7 @@
             this.txtNVNVTen.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtNVNVTen.Location = new System.Drawing.Point(173, 111);
             this.txtNVNVTen.Name = "txtNVNVTen";
-            this.txtNVNVTen.Size = new System.Drawing.Size(192, 19);
+            this.txtNVNVTen.Size = new System.Drawing.Size(192, 23);
             this.txtNVNVTen.TabIndex = 14;
             this.txtNVNVTen.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNVNVHo_KeyPress);
             // 
@@ -227,7 +228,7 @@
             this.txtNVNVHo.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtNVNVHo.Location = new System.Drawing.Point(173, 78);
             this.txtNVNVHo.Name = "txtNVNVHo";
-            this.txtNVNVHo.Size = new System.Drawing.Size(192, 19);
+            this.txtNVNVHo.Size = new System.Drawing.Size(192, 23);
             this.txtNVNVHo.TabIndex = 13;
             this.txtNVNVHo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNVNVHo_KeyPress);
             // 
@@ -238,7 +239,7 @@
             this.txtNVNVMa.Location = new System.Drawing.Point(173, 41);
             this.txtNVNVMa.Name = "txtNVNVMa";
             this.txtNVNVMa.ReadOnly = true;
-            this.txtNVNVMa.Size = new System.Drawing.Size(192, 19);
+            this.txtNVNVMa.Size = new System.Drawing.Size(192, 23);
             this.txtNVNVMa.TabIndex = 12;
             // 
             // lbNVNVDiaChi
@@ -246,7 +247,7 @@
             this.lbNVNVDiaChi.AutoSize = true;
             this.lbNVNVDiaChi.Location = new System.Drawing.Point(35, 209);
             this.lbNVNVDiaChi.Name = "lbNVNVDiaChi";
-            this.lbNVNVDiaChi.Size = new System.Drawing.Size(64, 20);
+            this.lbNVNVDiaChi.Size = new System.Drawing.Size(82, 25);
             this.lbNVNVDiaChi.TabIndex = 11;
             this.lbNVNVDiaChi.Text = "Địa Chỉ:";
             // 
@@ -255,7 +256,7 @@
             this.lbNVNVNgaySinh.AutoSize = true;
             this.lbNVNVNgaySinh.Location = new System.Drawing.Point(35, 176);
             this.lbNVNVNgaySinh.Name = "lbNVNVNgaySinh";
-            this.lbNVNVNgaySinh.Size = new System.Drawing.Size(81, 20);
+            this.lbNVNVNgaySinh.Size = new System.Drawing.Size(103, 25);
             this.lbNVNVNgaySinh.TabIndex = 10;
             this.lbNVNVNgaySinh.Text = "Ngày Sinh";
             // 
@@ -264,7 +265,7 @@
             this.lbNVNVGioiTinh.AutoSize = true;
             this.lbNVNVGioiTinh.Location = new System.Drawing.Point(35, 143);
             this.lbNVNVGioiTinh.Name = "lbNVNVGioiTinh";
-            this.lbNVNVGioiTinh.Size = new System.Drawing.Size(71, 20);
+            this.lbNVNVGioiTinh.Size = new System.Drawing.Size(90, 25);
             this.lbNVNVGioiTinh.TabIndex = 9;
             this.lbNVNVGioiTinh.Text = "Giới Tính";
             // 
@@ -273,7 +274,7 @@
             this.lnNVNVMa.AutoSize = true;
             this.lnNVNVMa.Location = new System.Drawing.Point(35, 44);
             this.lnNVNVMa.Name = "lnNVNVMa";
-            this.lnNVNVMa.Size = new System.Drawing.Size(109, 20);
+            this.lnNVNVMa.Size = new System.Drawing.Size(137, 25);
             this.lnNVNVMa.TabIndex = 8;
             this.lnNVNVMa.Text = "Mã Nhân Viên";
             // 
@@ -282,7 +283,7 @@
             this.lbNVNVHo.AutoSize = true;
             this.lbNVNVHo.Location = new System.Drawing.Point(35, 77);
             this.lbNVNVHo.Name = "lbNVNVHo";
-            this.lbNVNVHo.Size = new System.Drawing.Size(112, 20);
+            this.lbNVNVHo.Size = new System.Drawing.Size(138, 25);
             this.lbNVNVHo.TabIndex = 7;
             this.lbNVNVHo.Text = "Họ và tên đệm";
             // 
@@ -291,7 +292,7 @@
             this.lbNVNVTen.AutoSize = true;
             this.lbNVNVTen.Location = new System.Drawing.Point(35, 110);
             this.lbNVNVTen.Name = "lbNVNVTen";
-            this.lbNVNVTen.Size = new System.Drawing.Size(114, 20);
+            this.lbNVNVTen.Size = new System.Drawing.Size(144, 25);
             this.lbNVNVTen.TabIndex = 6;
             this.lbNVNVTen.Text = "Tên Nhân Viên";
             // 
@@ -303,7 +304,7 @@
             this.lnNVNVTTNV.Location = new System.Drawing.Point(5, 15);
             this.lnNVNVTTNV.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lnNVNVTTNV.Name = "lnNVNVTTNV";
-            this.lnNVNVTTNV.Size = new System.Drawing.Size(165, 19);
+            this.lnNVNVTTNV.Size = new System.Drawing.Size(203, 24);
             this.lnNVNVTTNV.TabIndex = 5;
             this.lnNVNVTTNV.Text = "Thông tin Nhân Viên";
             // 
@@ -349,7 +350,7 @@
             this.lbWarningNVNV.ForeColor = System.Drawing.Color.Red;
             this.lbWarningNVNV.Location = new System.Drawing.Point(27, 110);
             this.lbWarningNVNV.Name = "lbWarningNVNV";
-            this.lbWarningNVNV.Size = new System.Drawing.Size(0, 20);
+            this.lbWarningNVNV.Size = new System.Drawing.Size(0, 25);
             this.lbWarningNVNV.TabIndex = 24;
             // 
             // cbNVNVChucVu
@@ -359,7 +360,7 @@
             this.cbNVNVChucVu.FormattingEnabled = true;
             this.cbNVNVChucVu.Location = new System.Drawing.Point(134, 71);
             this.cbNVNVChucVu.Name = "cbNVNVChucVu";
-            this.cbNVNVChucVu.Size = new System.Drawing.Size(162, 26);
+            this.cbNVNVChucVu.Size = new System.Drawing.Size(162, 31);
             this.cbNVNVChucVu.TabIndex = 18;
             // 
             // btNVNVXoa
@@ -419,7 +420,7 @@
             this.txtNVNVSDT.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtNVNVSDT.Location = new System.Drawing.Point(134, 45);
             this.txtNVNVSDT.Name = "txtNVNVSDT";
-            this.txtNVNVSDT.Size = new System.Drawing.Size(192, 19);
+            this.txtNVNVSDT.Size = new System.Drawing.Size(192, 23);
             this.txtNVNVSDT.TabIndex = 18;
             this.txtNVNVSDT.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNVNVSDT_KeyPress);
             // 
@@ -428,7 +429,7 @@
             this.lbNVNVCuaHang.AutoSize = true;
             this.lbNVNVCuaHang.Location = new System.Drawing.Point(130, 14);
             this.lbNVNVCuaHang.Name = "lbNVNVCuaHang";
-            this.lbNVNVCuaHang.Size = new System.Drawing.Size(112, 20);
+            this.lbNVNVCuaHang.Size = new System.Drawing.Size(141, 25);
             this.lbNVNVCuaHang.TabIndex = 14;
             this.lbNVNVCuaHang.Text = "Tên Cửa Hàng";
             // 
@@ -440,7 +441,7 @@
             this.label1.Location = new System.Drawing.Point(14, 15);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(91, 19);
+            this.label1.Size = new System.Drawing.Size(109, 24);
             this.label1.TabIndex = 12;
             this.label1.Text = "Cửa hàng:";
             // 
@@ -449,7 +450,7 @@
             this.lbNVNVChucVu.AutoSize = true;
             this.lbNVNVChucVu.Location = new System.Drawing.Point(27, 77);
             this.lbNVNVChucVu.Name = "lbNVNVChucVu";
-            this.lbNVNVChucVu.Size = new System.Drawing.Size(74, 20);
+            this.lbNVNVChucVu.Size = new System.Drawing.Size(95, 25);
             this.lbNVNVChucVu.TabIndex = 13;
             this.lbNVNVChucVu.Text = "Chức Vụ:";
             // 
@@ -458,7 +459,7 @@
             this.lbNVNVSDT.AutoSize = true;
             this.lbNVNVSDT.Location = new System.Drawing.Point(27, 44);
             this.lbNVNVSDT.Name = "lbNVNVSDT";
-            this.lbNVNVSDT.Size = new System.Drawing.Size(45, 20);
+            this.lbNVNVSDT.Size = new System.Drawing.Size(59, 25);
             this.lbNVNVSDT.TabIndex = 12;
             this.lbNVNVSDT.Text = "SĐT:";
             // 
@@ -484,7 +485,7 @@
             // 
             // FNVNhanVien
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.SkyBlue;
             this.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;

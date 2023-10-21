@@ -1,14 +1,17 @@
 ﻿using DTO;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Twilio;
+using Twilio.Rest.Api.V2010.Account;
 
 namespace DAL
 {
-    public class KhachHangDAL
+    public class KhachHangDAL:DBConnect
     {
         DBConnect DBConnect = new DBConnect();
         public List<KhachHang> getKhachHangList(String x)
@@ -120,6 +123,49 @@ namespace DAL
             return success;
             
         }
+        public void SendPromotionSMS(string promotionMessage)
+        {
+
+            List<KhachHang> khl = new List<KhachHang>();
+            Moketnoi();
+            SqlCommand cmd = new SqlCommand();
+            cmd.CommandType = CommandType.Text;
+            cmd.CommandText = "SELECT * FROM KhachHang";
+            cmd.Connection = conec;
+            SqlDataReader rd = cmd.ExecuteReader();
+            while (rd.Read())
+            {
+                KhachHang kh = new KhachHang();
+                kh.tenKhach = rd["tenKhach"].ToString();
+                kh.soDienThoai = rd["soDienThoai"].ToString();
+                khl.Add(kh);
+            }
+            rd.Close();
+
+            string twilioAccountSid = "AC5b783e3ca07e2574ff563832d11a039a";
+            string twilioAuthToken = "fd3a03163fa906e544304259a30e27fb";
+            string twilioPhoneNumber = "+19733232910";
+            TwilioClient.Init(twilioAccountSid, twilioAuthToken);
+
+            try
+            {
+                foreach (KhachHang kh1 in khl)
+                {
+                    string tenKhach = kh1.tenKhach;
+                    string soDienThoai = kh1.soDienThoai;
+                    var message = MessageResource.Create(
+                    body: $"Shop ABC xin chào " + tenKhach + " chúng tôi gửi bạn chương trình khuyến mãi:" + promotionMessage,
+                    from: new Twilio.Types.PhoneNumber(twilioPhoneNumber),
+                    to: new Twilio.Types.PhoneNumber("+84" + soDienThoai)
+                );
+                }
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
         public Boolean delKhachHang(KhachHang kh)
         {
             DBConnect.Moketnoi();
@@ -139,6 +185,50 @@ namespace DAL
             return success;
         }
 
-       
+        public List<KhachHang> TimKiemKH(string tuKhoa)
+        {
+            List<KhachHang> ketQua = new List<KhachHang>();
+
+            try
+            {
+                Moketnoi();
+
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.CommandType = CommandType.Text;
+                    // Sử dụng câu truy vấn SQL để tìm kiếm sản phẩm theo từ khóa
+                    cmd.CommandText = "SELECT * FROM KhachHang WHERE maKhachHang LIKE @tuKhoa OR tenKhach LIKE @tuKhoa OR gioiTinh LIKE @tuKhoa OR diaChi LIKE @tuKhoa OR soDienThoai LIKE @tuKhoa";
+                    cmd.Connection = conec;
+                    cmd.Parameters.AddWithValue("@tuKhoa", "%" + tuKhoa + "%");
+
+                    SqlDataReader rd = cmd.ExecuteReader();
+                    while (rd.Read())
+                    {
+                        KhachHang kh = new KhachHang();
+                        kh.maKhachHang = rd["maKhachHang"].ToString();
+                        kh.tenKhach = rd["tenKhach"].ToString();
+                        kh.gioiTinh = (Boolean)rd["gioiTinh"];
+                        kh.diaChi = rd["diaChi"].ToString();
+                        kh.ngaySinh = rd.GetDateTime(3);
+                        kh.soDienThoai = rd["soDienThoai"].ToString();
+                        ketQua.Add(kh);
+                    }
+
+                    rd.Close();
+                }
+
+            }
+            catch (Exception ex)
+            {
+                // Xử lý ngoại lệ nếu có lỗi
+                // Ví dụ: MessageBox.Show("Lỗi khi tìm kiếm sản phẩm: " + ex.Message);
+                throw ex;
+            }
+            finally
+            {
+                Dongketnoi();
+            }
+            return ketQua;
+        }
     }
 }

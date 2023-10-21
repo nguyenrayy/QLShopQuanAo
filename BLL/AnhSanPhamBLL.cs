@@ -1,4 +1,5 @@
 ﻿using DAL;
+using DTO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,10 +11,10 @@ namespace BLL
     public class AnhSanPhamBLL
     {
         AnhSanPhamDAL anhSanPhamDAL = new AnhSanPhamDAL();
-        public void ThemAnhSanPham(string maSanPham, string urlAnh)
+        public void ThemAnhSanPham(AnhSanPham asp)
         {
 
-            anhSanPhamDAL.ThemAnhSanPham(maSanPham, urlAnh);
+            anhSanPhamDAL.ThemAnhSanPham(asp);
 
         }
         public List<string> LayDanhSachDuongDanAnh(string maSanPham)

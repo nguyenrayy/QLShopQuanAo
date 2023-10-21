@@ -169,6 +169,29 @@ namespace DAL
             Dongketnoi();
             return SPTheoCuaHangList;
         }
+        public List<SanPham_CuaHang> getPNTheoCH(SanPham_CuaHang spch)
+        {
+            List<SanPham_CuaHang> SPTheoCuaHangList = new List<SanPham_CuaHang>();
+            Moketnoi();
+            var sql = "select * from SanPham_CuaHang where maCuaHang = @maCuaHang";
+            var cmd = new SqlCommand(sql, conec);
+            cmd.Parameters.AddWithValue("@maCuaHang", spch.maCuaHang);
+            SanPham_CuaHang SPCH = null;
+            using (SqlDataReader rd = cmd.ExecuteReader())
+            {
+                while (rd.Read())
+                {
+                    SPCH = new SanPham_CuaHang();
+                    SPCH.maSPTheoSize = rd["maSPTheoSize"].ToString();
+                    SPCH.maCuaHang = rd["maCuaHang"].ToString();
+                    SPCH.soLuong = Convert.ToInt32(rd["soLuong"].ToString());
+
+                    SPTheoCuaHangList.Add(SPCH);
+                }
+            }
+            Dongketnoi();
+            return SPTheoCuaHangList;
+        }
         public SanPham_CuaHang getSanPhamCuaHang(String mch, String maSPTheoSize)
         {
             

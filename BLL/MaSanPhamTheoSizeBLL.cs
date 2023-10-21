@@ -19,9 +19,9 @@ namespace BLL
         {
             spda.ThemSizeVaSoLuong(spts);
         }
-        public bool KiemTraMaSPVaMaSizeTonTai(string maSize, string maSanPham)
+        public bool KiemTraMaSPTSTonTai(string maSPTS)
         {
-            return spda.KiemTraMaSPVaMaSizeTonTai(maSize, maSanPham);
+            return spda.KiemTraMaSPTSTonTai(maSPTS);
         }
         public List<string> LayMaSizeTheoMaSanPham(string maSanPham)
         {
@@ -45,5 +45,9 @@ namespace BLL
         {
             return spda.getMSPTheoSize(mspts);
         }
-    }
+        public List<MaSanPhamTheoSize> getSPTheoSIZE(SanPham sp)
+        {
+            return spda.getSPTheoSIZE(sp);
+        }
+        }
 }

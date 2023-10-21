@@ -48,16 +48,14 @@ namespace DAL
             cmd.ExecuteNonQuery();
             Dongketnoi();
         }
-        public bool KiemTraMaSPVaMaSizeTonTai(string maSize, string maSanPham)
+        public bool KiemTraMaSPTSTonTai(string maSPTS)
         {
             Moketnoi();
             SqlCommand cmd = new SqlCommand();
             cmd.CommandType = CommandType.Text;
-            cmd.CommandText = "SELECT COUNT(*) FROM MaSanPhamTheoSize WHERE maSize = @maSize AND maSanPham = @maSanPham";
+            cmd.CommandText = "SELECT COUNT(*) FROM MaSanPhamTheoSize WHERE maSPTheoSize = @maSPTheoSize";
             cmd.Connection = conec;
-            cmd.Parameters.AddWithValue("@maSize", maSize);
-            cmd.Parameters.AddWithValue("@maSanPham", maSanPham);
-
+            cmd.Parameters.AddWithValue("@maSPTheoSize", maSPTS);
             int count = (int)cmd.ExecuteScalar();
             Dongketnoi();
 
@@ -193,6 +191,31 @@ namespace DAL
                 Dongketnoi();
                 return SPTheoSize;
             }
+        }
+        public List<MaSanPhamTheoSize> getSPTheoSIZE(SanPham sp)
+        {
+            List<MaSanPhamTheoSize> ctsp = new List<MaSanPhamTheoSize>();
+            Moketnoi();
+            var sql = "SELECT * FROM MaSanPhamTheoSize where maSanPham = @maSanPham";
+            var cmd = new SqlCommand(sql, conec);
+
+            cmd.Parameters.AddWithValue("@maSanPham", sp.maSanPham);
+
+            MaSanPhamTheoSize msp = null;
+            using (SqlDataReader rd = cmd.ExecuteReader())
+            {
+                while (rd.Read())
+                {
+                    msp = new MaSanPhamTheoSize();
+                    msp.maSPTheoSize = rd.GetString(rd.GetOrdinal("maSPTheoSize"));
+                    msp.maSize = rd["maSize"].ToString();
+                    msp.maSanPham = sp.maSanPham.ToString();
+                    msp.soLuongTonKho = Convert.ToInt32(rd["soLuongTonKho"]);
+                    ctsp.Add(msp);
+                }
+            }
+            Dongketnoi();
+            return ctsp;
         }
 
     }

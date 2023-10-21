@@ -44,5 +44,9 @@ namespace BLL
         {
             return spchDAL.updateSanPhamCuaHang(spch);
         }
-    }
+        public List<SanPham_CuaHang> getPNTheoCH(SanPham_CuaHang spch)
+        {
+            return spchDAL.getPNTheoCH(spch);
+        }
+        }
 }

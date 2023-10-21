@@ -16,7 +16,7 @@ namespace BLL
         SanPhamBLL spBLL = new SanPhamBLL();
         PhieuDoiTraBLL pdtBLL = new PhieuDoiTraBLL();
         PhieuNhapBLL pnBLL = new PhieuNhapBLL();
-
+        PhieuNhapKhoBLL pnkBLL = new PhieuNhapKhoBLL();
         ChiTietHoaDon cthd = new ChiTietHoaDon();
         List<ChiTietHoaDon> cthdl;
         List<CTPhieuDoiTra> ctpdtl;
@@ -71,6 +71,23 @@ namespace BLL
                 tongTienPDT += tientungSP * ctpn.soLuong;
             }
             return tongTienPDT;
+        }
+
+        public decimal TinhTongTienTungPhieuNhapKho(PhieuNhapKho pnk)
+        {
+            String msp = "";
+            int tientungSP = 0;
+            decimal tongTienPNK = 0;
+
+            List<ChiTietPhieuNhapKho> ctpnkl = pnkBLL.getCTPhieuNhapKho(pnk);
+
+            foreach (ChiTietPhieuNhapKho ctpnk in ctpnkl)
+            {
+                msp = ctpnk.maSPTheoSize.Split('_')[0];
+                tientungSP = spBLL.getSanPham(msp).giaNhap;
+                tongTienPNK += tientungSP * ctpnk.soLuong;
+            }
+            return tongTienPNK;
         }
 
         public List<Tuple<DateTime, decimal>> TongTienHDTheoNgay(List<HoaDonBan> hdbl, DateTime fromDate, DateTime toDate)
@@ -130,18 +147,36 @@ namespace BLL
             TienNhap = TongTienPNTheoNgay;
             return TienNhap;
         }
-        
-        public List<Tuple<String, int>> LoadSanPhamList(List<HoaDonBan> hdbl ,List<PhieuDoiTra> pdtl)
+        public List<Tuple<DateTime, decimal>> TongTienPhieuNhapKho(List<PhieuNhapKho> pnkl, DateTime fromDate, DateTime toDate)
+        {
+            List<Tuple<DateTime, decimal>> TienNhapKho = new List<Tuple<DateTime, decimal>>();
+
+            List<PhieuNhapKho> PNKTheoNgay = pnkl
+                   .Where(h => h.ngayNhap.Date >= fromDate.Date && h.ngayNhap.Date <= toDate.Date)
+                   .ToList();
+
+            var TongTienPNKTheoNgay = PNKTheoNgay
+               .GroupBy(h => h.ngayNhap.Date)
+               .Select(group => new Tuple<DateTime, decimal>(
+                   group.Key,
+                   group.Sum(h => h.TongTien))
+               )
+               .OrderBy(tuple => tuple.Item1)
+               .ToList();
+            TienNhapKho = TongTienPNKTheoNgay;
+            return TienNhapKho;
+        }
+        public List<Tuple<String, int>> LoadSanPhamList(List<HoaDonBan> hdbl, List<PhieuDoiTra> pdtl)
         {
             List<Tuple<String, int>> SoLuongSPBanRa = new List<Tuple<String, int>>();
 
-            foreach(HoaDonBan hdb in hdbl)
+            foreach (HoaDonBan hdb in hdbl)
             {
                 ChiTietHoaDon cthd = new ChiTietHoaDon();
                 cthd.maHoaDon = hdb.maHoaDon;
                 cthdl = hdbBLL.getCTHDList(cthd);
 
-                foreach(ChiTietHoaDon x in cthdl)
+                foreach (ChiTietHoaDon x in cthdl)
                 {
                     string msp = x.maSanPhamTheoSize;
                     int currentQuantity = 0;
@@ -156,7 +191,7 @@ namespace BLL
                         currentQuantity = existingItem.Item2;
                         SoLuongSPBanRa.Remove(existingItem);
                         SoLuongSPBanRa.Add(new Tuple<string, int>(msp, currentQuantity + x.soLuong));
-                   
+
                     }
 
                     foreach (PhieuDoiTra pdt in pdtl)
@@ -178,12 +213,12 @@ namespace BLL
                                         SoLuongSPBanRa.Add(new Tuple<string, int>(ctpdtx.maSPTheoSize, ctpdtx.soLuong));
 
                                         Tuple<string, int> exis2 = SoLuongSPBanRa.Find(item => item.Item1 == ctpdtx.maSPTheoSizeRe);
-                                        if(exis2 != null)
+                                        if (exis2 != null)
                                         {
                                             SoLuongSPBanRa.Remove(exis2);
                                             SoLuongSPBanRa.Add(new Tuple<string, int>(exis2.Item1, exis2.Item2 - ctpdtx.soLuong));
-                                            
-                                        }    
+
+                                        }
                                     }
                                     else
                                     {
@@ -223,4 +258,3 @@ namespace BLL
 
     }
 }
-

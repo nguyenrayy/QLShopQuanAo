@@ -33,8 +33,127 @@ namespace DAL
                 NhaSX.Add(nsx);
             }
             rd.Close();
-            Dongketnoi();
             return NhaSX;
+        }
+
+        public void ThemNSX(NhaSanXuat nsx)
+        {
+            Moketnoi();
+            SqlCommand cmd = new SqlCommand();
+            cmd.CommandType = CommandType.Text;
+            cmd.CommandText = "INSERT INTO NhaSanXuat VALUES (@maNhaSanXuat, @tenNhaSanXuat, @soDienThoai, @diaChi, @email, @website)";
+            cmd.Connection = conec;
+            cmd.Parameters.AddWithValue("@maNhaSanXuat", nsx.maNhaSanXuat);
+            cmd.Parameters.AddWithValue("@tenNhaSanXuat", nsx.tenNhaSanXuat);
+            cmd.Parameters.AddWithValue("@soDienThoai", nsx.soDienThoai);
+            cmd.Parameters.AddWithValue("@diaChi", nsx.diaChi);
+            cmd.Parameters.AddWithValue("@email", nsx.email);
+            cmd.Parameters.AddWithValue("@website", nsx.website);
+            cmd.ExecuteNonQuery();
+            Dongketnoi();
+        }
+
+        public void SuaNSX(NhaSanXuat nsx)
+        {
+            Moketnoi();
+
+            try
+            {
+                SqlCommand cmd = new SqlCommand();
+                cmd.CommandType = CommandType.Text;
+                cmd.CommandText = "UPDATE NhaSanXuat SET tenNhaSanXuat = @tenNhaSanXuat, soDienThoai = @soDienThoai, diaChi = @diaChi, email = @email, website = @website WHERE maNhaSanXuat = @maNhaSanXuat";
+                cmd.Connection = conec;
+                cmd.Parameters.AddWithValue("@maNhaSanXuat", nsx.maNhaSanXuat);
+                cmd.Parameters.AddWithValue("@tenNhaSanXuat", nsx.tenNhaSanXuat);
+                cmd.Parameters.AddWithValue("@soDienThoai", nsx.soDienThoai);
+                cmd.Parameters.AddWithValue("@diaChi", nsx.diaChi);
+                cmd.Parameters.AddWithValue("@email", nsx.email);
+                cmd.Parameters.AddWithValue("@website", nsx.website);
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                Dongketnoi();
+            }
+        }
+
+        public void XoaNSX(string maNSX)
+        {
+            Moketnoi();
+
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.CommandType = CommandType.Text;
+                    cmd.CommandText = "DELETE FROM NhaSanXuat WHERE maNhaSanXuat = @maNSX";
+                    cmd.Connection = conec;
+                    cmd.Parameters.AddWithValue("@maNSX", maNSX);
+
+                    cmd.ExecuteNonQuery();
+                }
+            }
+            catch (Exception ex)
+            {
+                // Xử lý ngoại lệ nếu có lỗi
+                // Ví dụ: MessageBox.Show("Lỗi khi xóa sản phẩm: " + ex.Message);
+                throw ex;
+            }
+            finally
+            {
+                Dongketnoi();
+            }
+        }
+
+        public List<NhaSanXuat> TimKiemNSX(string tuKhoa)
+        {
+            List<NhaSanXuat> ketQua = new List<NhaSanXuat>();
+
+            try
+            {
+                Moketnoi();
+
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.CommandType = CommandType.Text;
+                    // Sử dụng câu truy vấn SQL để tìm kiếm sản phẩm theo từ khóa
+                    cmd.CommandText = "SELECT * FROM NhaSanXuat WHERE maNhaSanXuat LIKE @tuKhoa OR tenNhaSanXuat LIKE @tuKhoa OR soDienThoai LIKE @tuKhoa OR diaChi LIKE @tuKhoa OR email LIKE @tuKhoa OR website LIKE @tuKhoa";
+                    cmd.Connection = conec;
+                    cmd.Parameters.AddWithValue("@tuKhoa", "%" + tuKhoa + "%");
+
+                    SqlDataReader rd = cmd.ExecuteReader();
+                    while (rd.Read())
+                    {
+                        NhaSanXuat nsx = new NhaSanXuat();
+                        nsx.maNhaSanXuat = rd["maNhaSanXuat"].ToString();
+                        nsx.tenNhaSanXuat = rd["tenNhaSanXuat"].ToString();
+                        nsx.soDienThoai = rd["soDienThoai"].ToString();
+                        nsx.diaChi = rd["diaChi"].ToString();
+                        nsx.email = rd["email"].ToString();
+                        nsx.website = rd["website"].ToString();
+                        ketQua.Add(nsx);
+                    }
+
+                    rd.Close();
+                }
+
+            }
+            catch (Exception ex)
+            {
+                // Xử lý ngoại lệ nếu có lỗi
+                // Ví dụ: MessageBox.Show("Lỗi khi tìm kiếm sản phẩm: " + ex.Message);
+                throw ex;
+            }
+            finally
+            {
+                Dongketnoi();
+            }
+            return ketQua;
         }
     }
 }

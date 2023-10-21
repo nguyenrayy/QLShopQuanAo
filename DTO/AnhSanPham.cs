@@ -8,10 +8,13 @@ namespace DTO
 {
     public class AnhSanPham
     {
+        public string maAnh
+        { get; set; }
         public string urlAnh
         { get; set; }
         public string maSanPham
         { get; set; }
+
     }
 }
 

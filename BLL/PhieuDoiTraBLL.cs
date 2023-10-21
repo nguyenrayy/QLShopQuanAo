@@ -50,5 +50,9 @@ namespace BLL
         {
             return pdtDAL.addCTPhieuDoiTra(ctpdt);
         }
-    }
+        public List<PhieuDoiTra> TimKiemPDT(string tuKhoa)
+        {
+            return pdtDAL.TimKiemPDT(tuKhoa);
+        }
+        }
 }

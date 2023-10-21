@@ -1,6 +1,7 @@
 ﻿using DTO;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -198,6 +199,49 @@ namespace DAL
             }
             finally { Dongketnoi(); }
             return success;
+        }
+        public List<HoaDonBan> TimKiemHDB(string tuKhoa)
+        {
+            List<HoaDonBan> ketQua = new List<HoaDonBan>();
+
+            try
+            {
+                Moketnoi();
+
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.CommandType = CommandType.Text;
+                    // Sử dụng câu truy vấn SQL để tìm kiếm sản phẩm theo từ khóa
+                    cmd.CommandText = "SELECT * FROM HoaDonBan WHERE maHoaDon LIKE @tuKhoa OR maNhanVien LIKE @tuKhoa OR maKhachHang LIKE @tuKhoa OR ngayLapHoaDon LIKE @tuKhoa ";
+                    cmd.Connection = conec;
+                    cmd.Parameters.AddWithValue("@tuKhoa", "%" + tuKhoa + "%");
+
+                    SqlDataReader rd = cmd.ExecuteReader();
+                    while (rd.Read())
+                    {
+                        HoaDonBan hdb = new HoaDonBan();
+                        hdb.maHoaDon = rd["maHoaDon"].ToString();
+                        hdb.maNhanVien = rd["maNhanVien"].ToString();
+                        hdb.maKhachHang = rd["maKhachHang"].ToString();
+                        hdb.ngayLapHoaDon = rd.GetDateTime(rd.GetOrdinal("ngayLapHoaDon"));
+                        ketQua.Add(hdb);
+                    }
+
+                    rd.Close();
+                }
+
+            }
+            catch (Exception ex)
+            {
+                // Xử lý ngoại lệ nếu có lỗi
+                // Ví dụ: MessageBox.Show("Lỗi khi tìm kiếm sản phẩm: " + ex.Message);
+                throw ex;
+            }
+            finally
+            {
+                Dongketnoi();
+            }
+            return ketQua;
         }
 
     }

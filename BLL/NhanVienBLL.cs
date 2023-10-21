@@ -59,5 +59,10 @@ namespace BLL
         {
             return nvdal.TimKiemNhanVien(tuKhoa);
         }
-    }
+
+        public void SuaNhanVien(NhanVien nv)
+        {
+            nvdal.SuaNhanVien(nv);
+        }
+        }
 }

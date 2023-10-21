@@ -91,10 +91,10 @@ namespace GUI
                         lbKetQuaLogin.Text = "Sai tài khoản hoặc mật khẩu !";
                         break;
                     case 1:
-                        //FAdmin fad = new FAdmin();
-                        //this.Hide();
-                        //fad.ShowDialog();
-                        //break;
+                        FAdminMenu fad = new FAdminMenu();
+                        this.Hide();
+                        fad.ShowDialog();
+                        break;
                     default:
                         FNhanVien fnv = new FNhanVien();
                         this.Hide();

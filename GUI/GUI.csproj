@@ -60,11 +60,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FAdmin.cs">
+    <Compile Include="FAminMenu.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FAdmin.Designer.cs">
-      <DependentUpon>FAdmin.cs</DependentUpon>
+    <Compile Include="FAminMenu.Designer.cs">
+      <DependentUpon>FAminMenu.cs</DependentUpon>
     </Compile>
     <Compile Include="FNhanVien.cs">
       <SubType>Form</SubType>
@@ -102,6 +102,42 @@
     <Compile Include="FNVNhanVien.Designer.cs">
       <DependentUpon>FNVNhanVien.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\FQLCuaHang.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FQLCuaHang.Designer.cs">
+      <DependentUpon>FQLCuaHang.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FQLDoanhThu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FQLDoanhThu.Designer.cs">
+      <DependentUpon>FQLDoanhThu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FQLHoaDon.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FQLHoaDon.Designer.cs">
+      <DependentUpon>FQLHoaDon.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FQLKhachHang.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FQLKhachHang.Designer.cs">
+      <DependentUpon>FQLKhachHang.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FQLPhieuNhap.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FQLPhieuNhap.Designer.cs">
+      <DependentUpon>FQLPhieuNhap.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FQLSanPham.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FQLSanPham.Designer.cs">
+      <DependentUpon>FQLSanPham.cs</DependentUpon>
+    </Compile>
     <Compile Include="Login.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -114,6 +150,8 @@
     <Compile Include="LoginForget.Designer.cs">
       <DependentUpon>LoginForget.cs</DependentUpon>
     </Compile>
+    <Compile Include="obj\Debug\.NETFramework,Version=v4.7.2.AssemblyAttributes.cs" />
+    <Compile Include="obj\Release\.NETFramework,Version=v4.7.2.AssemblyAttributes.cs" />
     <Compile Include="PassChange.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -122,8 +160,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="FAdmin.resx">
-      <DependentUpon>FAdmin.cs</DependentUpon>
+    <Compile Include="ThemeColor.cs" />
+    <EmbeddedResource Include="FAminMenu.resx">
+      <DependentUpon>FAminMenu.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FNhanVien.resx">
       <DependentUpon>FNhanVien.cs</DependentUpon>
@@ -143,6 +182,24 @@
     <EmbeddedResource Include="FNVNhanVien.resx">
       <DependentUpon>FNVNhanVien.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FQLCuaHang.resx">
+      <DependentUpon>FQLCuaHang.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FQLDoanhThu.resx">
+      <DependentUpon>FQLDoanhThu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FQLHoaDon.resx">
+      <DependentUpon>FQLHoaDon.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FQLKhachHang.resx">
+      <DependentUpon>FQLKhachHang.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FQLPhieuNhap.resx">
+      <DependentUpon>FQLPhieuNhap.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FQLSanPham.resx">
+      <DependentUpon>FQLSanPham.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
     </EmbeddedResource>
@@ -161,6 +218,8 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <None Include="bin\Debug\GUI.exe.config" />
+    <None Include="obj\Release\GUI.csproj.AssemblyReference.cache" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -184,6 +243,20 @@
       <Project>{28462347-35c8-46ab-860e-e42057e70841}</Project>
       <Name>DTO</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="bin\Debug\BLL.dll" />
+    <Content Include="bin\Debug\BLL.pdb" />
+    <Content Include="bin\Debug\BouncyCastle.Crypto.dll" />
+    <Content Include="bin\Debug\DAL.dll" />
+    <Content Include="bin\Debug\DAL.pdb" />
+    <Content Include="bin\Debug\DTO.dll" />
+    <Content Include="bin\Debug\DTO.pdb" />
+    <Content Include="bin\Debug\GUI.exe" />
+    <Content Include="bin\Debug\GUI.pdb" />
+    <Content Include="bin\Debug\Guna.UI2.dll" />
+    <Content Include="bin\Debug\itextsharp.dll" />
+    <Content Include="bin\Debug\itextsharp.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

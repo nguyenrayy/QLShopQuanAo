@@ -59,6 +59,9 @@ namespace BLL
         {
             return pn;
         }
-       
-    }
+        public List<PhieuNhap> TimKiemPNCH(string tuKhoa)
+        {
+            return pnDAL.TimKiemPNCH(tuKhoa);
+        }
+        }
 }

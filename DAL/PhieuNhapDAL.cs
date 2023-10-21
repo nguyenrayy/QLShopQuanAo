@@ -2,6 +2,7 @@
 using DTO;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Security.Policy;
@@ -186,7 +187,51 @@ namespace BLL
             finally { Dongketnoi(); }
             return success;
         }
+        public List<PhieuNhap> TimKiemPNCH(string tuKhoa)
+        {
+            List<PhieuNhap> ketQua = new List<PhieuNhap>();
 
+            try
+            {
+                Moketnoi();
+
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.CommandType = CommandType.Text;
+                    // Sử dụng câu truy vấn SQL để tìm kiếm sản phẩm theo từ khóa
+                    cmd.CommandText = "SELECT * FROM PhieuNhap WHERE maPhieuNhap LIKE @tuKhoa OR maNhanVien LIKE @tuKhoa OR maCuaHang LIKE @tuKhoa OR ngayNhap LIKE @tuKhoa OR trangThai LIKE @tuKhoa";
+                    cmd.Connection = conec;
+                    cmd.Parameters.AddWithValue("@tuKhoa", "%" + tuKhoa + "%");
+
+                    SqlDataReader rd = cmd.ExecuteReader();
+                    while (rd.Read())
+                    {
+                        PhieuNhap pn = new PhieuNhap();
+                        pn.maPhieuNhap = rd["maPhieuNhap"].ToString();
+                        pn.maNhanVien = rd["maNhanVien"].ToString();
+                        pn.maCuaHang = rd["maCuaHang"].ToString();
+                        pn.ngayNhap = rd.GetDateTime(rd.GetOrdinal("ngayNhap"));
+                        pn.trangThai = rd.GetBoolean(rd.GetOrdinal("trangThai"));
+
+                        ketQua.Add(pn);
+                    }
+
+                    rd.Close();
+                }
+
+            }
+            catch (Exception ex)
+            {
+                // Xử lý ngoại lệ nếu có lỗi
+                // Ví dụ: MessageBox.Show("Lỗi khi tìm kiếm sản phẩm: " + ex.Message);
+                throw ex;
+            }
+            finally
+            {
+                Dongketnoi();
+            }
+            return ketQua;
+        }
 
     }
 }

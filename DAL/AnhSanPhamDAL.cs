@@ -6,12 +6,13 @@ using System.Linq;
 using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
+using DTO;
 
 namespace DAL
 {
     public class AnhSanPhamDAL : DBConnect
     {
-        public void ThemAnhSanPham(string maSanPham, string urlAnh)
+        public void ThemAnhSanPham(AnhSanPham asp)
         {
             Moketnoi();
 
@@ -20,10 +21,12 @@ namespace DAL
                 using (SqlCommand cmd = new SqlCommand())
                 {
                     cmd.CommandType = CommandType.Text;
-                    cmd.CommandText = "INSERT INTO AnhSanPham (maSanPham, urlAnh) VALUES (@maSanPham, @urlAnh)";
+                    cmd.CommandText = "INSERT INTO AnhSanPham VALUES (@maAnh, @urlAnh, @maSanPham)";
                     cmd.Connection = conec;
-                    cmd.Parameters.AddWithValue("@maSanPham", maSanPham);
-                    cmd.Parameters.AddWithValue("@urlAnh", urlAnh);
+                    cmd.Parameters.AddWithValue("@maAnh", asp.maAnh);
+                    cmd.Parameters.AddWithValue("@urlAnh", asp.urlAnh);
+                    cmd.Parameters.AddWithValue("@maSanPham", asp.maSanPham);
+
 
                     cmd.ExecuteNonQuery();
                 }

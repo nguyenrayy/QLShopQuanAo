@@ -83,5 +83,10 @@ namespace BLL
             }
             return hdblSameStore;
         }
-    }
+        public List<HoaDonBan> TimKiemHDB(string tuKhoa)
+        {
+            return hdbDAL.TimKiemHDB(tuKhoa);
+        }
+
+        }
 }

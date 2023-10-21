@@ -299,6 +299,39 @@ namespace DAL
             }
             return ketQua;
         }
+
+        public void SuaNhanVien(NhanVien nv)
+        {
+            Moketnoi();
+
+            try
+            {
+                SqlCommand cmd = new SqlCommand();
+                cmd.CommandType = CommandType.Text;
+                cmd.CommandText = "UPDATE NhanVien SET hoNhanVien = @hoNV, tenNhanVien = @tenNV, gioiTinh = @gioiTinh, diaChi = @diaChi, soDienThoai = @soDienThoai, ngaySinh = @ngaySinh, chucVu = @chucVu, pass = @pass, maCuaHang = @maCuaHang WHERE maNhanVien = @maNV";
+                cmd.Connection = conec;
+                cmd.Parameters.AddWithValue("@maNV", nv.maNhanVien);
+                cmd.Parameters.AddWithValue("@hoNV", nv.hoNhanVien);
+                cmd.Parameters.AddWithValue("@tenNV", nv.tenNhanVien);
+                cmd.Parameters.AddWithValue("@gioiTinh", nv.gioiTinh);
+                cmd.Parameters.AddWithValue("@diaChi", nv.diaChi);
+                cmd.Parameters.AddWithValue("@soDienThoai", nv.soDienThoai);
+                cmd.Parameters.AddWithValue("@ngaySinh", nv.ngaySinh);
+                cmd.Parameters.AddWithValue("@chucVu", nv.chucVu);
+                cmd.Parameters.AddWithValue("@pass", nv.pass);
+                cmd.Parameters.AddWithValue("@maCuaHang", nv.maCuaHang);
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                Dongketnoi();
+            }
+        }
     }
 }
 

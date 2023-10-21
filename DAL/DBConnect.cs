@@ -10,11 +10,11 @@ using DTO;
 namespace DAL
 {
     //Data Source=DELL\MSSQLSERVER02;Initial Catalog=ShopQuanAoNewVer2;Integrated Security=True
-    //Data Source=DOTRINGUYEN;Initial Catalog=ShopQuanAoNew;Integrated Security=True
+    //Data Source=DOTRINGUYEN;Initial Catalog=shopQuanAo;Integrated Security=True
     public class DBConnect
     {
         public SqlConnection conec = null;
-        string strconec = @" Data Source = DELL\MSSQLSERVER02;Initial Catalog = ShopQuanAoNewVer2; Integrated Security = True";
+        string strconec = @"Data Source=DOTRINGUYEN;Initial Catalog=shopQuanAo;Integrated Security=True";
        
         public void Moketnoi()
         {

@@ -1,6 +1,7 @@
 ﻿using DTO;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Security.Policy;
@@ -184,6 +185,52 @@ namespace DAL
             }
             finally { Dongketnoi(); }
             return success;
+        }
+
+        public List<PhieuDoiTra> TimKiemPDT(string tuKhoa)
+        {
+            List<PhieuDoiTra> ketQua = new List<PhieuDoiTra>();
+
+            try
+            {
+                Moketnoi();
+
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.CommandType = CommandType.Text;
+                    // Sử dụng câu truy vấn SQL để tìm kiếm sản phẩm theo từ khóa
+                    cmd.CommandText = "SELECT * FROM PhieuDoiTra WHERE maPhieuDoiTra LIKE @tuKhoa OR maNhanVien LIKE @tuKhoa OR maKhachHang LIKE @tuKhoa OR ngayDoiTra LIKE @tuKhoa OR maXuLyDoiTra LIKE @tuKhoa OR maHoaDon LIKE @tuKhoa";
+                    cmd.Connection = conec;
+                    cmd.Parameters.AddWithValue("@tuKhoa", "%" + tuKhoa + "%");
+
+                    SqlDataReader rd = cmd.ExecuteReader();
+                    while (rd.Read())
+                    {
+                        PhieuDoiTra pdt = new PhieuDoiTra();
+                        pdt.maPhieuDoiTra = rd.GetString(rd.GetOrdinal("maPhieuDoiTra"));
+                        pdt.maKhachHang = rd.GetString(rd.GetOrdinal("maKhachHang"));
+                        pdt.maNhanVien = rd.GetString(rd.GetOrdinal("maNhanVien"));
+                        pdt.ngayDoiTra = rd.GetDateTime(rd.GetOrdinal("ngayDoiTra"));
+                        pdt.maXuLyDoiTra = rd.GetString(rd.GetOrdinal("maXuLyDoiTra"));
+                        pdt.maHoaDon = rd.GetString(rd.GetOrdinal("maHoaDon"));
+                        ketQua.Add(pdt);
+                    }
+
+                    rd.Close();
+                }
+
+            }
+            catch (Exception ex)
+            {
+                // Xử lý ngoại lệ nếu có lỗi
+                // Ví dụ: MessageBox.Show("Lỗi khi tìm kiếm sản phẩm: " + ex.Message);
+                throw ex;
+            }
+            finally
+            {
+                Dongketnoi();
+            }
+            return ketQua;
         }
 
     }
