@@ -10,6 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Forms.DataVisualization.Charting;
 
 namespace GUI.Forms
 {
@@ -25,7 +26,7 @@ namespace GUI.Forms
             loadCbMaSize();
             LoadDsCTSanPham();
             picSP_HD.Hide();
-            
+    
         }
         private void LoadDsSanPham()
         {
@@ -88,7 +89,7 @@ namespace GUI.Forms
         private void btnChonAnh_Click(object sender, EventArgs e)
         {
             // Đường dẫn đầy đủ đến thư mục "Pic"
-            string fullPath = @"C:\Users\tring\OneDrive\Desktop\QLShopQuanAo\Pic";
+            string fullPath = @"C:\Users\tring\OneDrive\Desktop\test\QLShopQuanAo\Pic";
             danhSachDuongDanAnh = new List<string>();
             // Kiểm tra xem thư mục tồn tại hay không
             if (Directory.Exists(fullPath))
@@ -107,8 +108,8 @@ namespace GUI.Forms
                             PictureBox pictureBox = new PictureBox();
                             pictureBox.Image = new System.Drawing.Bitmap(fileName);
                             pictureBox.SizeMode = PictureBoxSizeMode.Zoom;
-                            pictureBox.Width = 100; // Điều chỉnh kích thước PictureBox theo nhu cầu
-                            pictureBox.Height = 100;
+                            pictureBox.Height = 106;
+                            pictureBox.Width = 160;
 
                             // Thêm PictureBox vào form
                             flowLayoutPanel1.Controls.Add(pictureBox);
@@ -237,8 +238,8 @@ namespace GUI.Forms
                 PictureBox pictureBox = new PictureBox();
                 pictureBox.Image = new Bitmap(duongDanAnh);
                 pictureBox.SizeMode = PictureBoxSizeMode.Zoom;
-                pictureBox.Height = 150;
-                pictureBox.Margin = new Padding(0);
+                pictureBox.Height = 106;
+                pictureBox.Width = 160; 
                 flPicSP.Controls.Add(pictureBox);
 
                 pictureBox.MouseEnter += (sender, e) =>
@@ -351,15 +352,25 @@ namespace GUI.Forms
                 {
                     if (MessageBox.Show("Bạn có thật sự muốn xóa sản phẩm này?", "Cảnh báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                     {
-                        string maSP = txtMaSP.Text; // Lấy mã sản phẩm từ TextBox
-                        AnhSanPhamBLL asp = new AnhSanPhamBLL();
-                        asp.XoaMaSanPhamTrongAnh(maSP);
-                        MaSanPhamTheoSizeBLL mspts = new MaSanPhamTheoSizeBLL();
-                        mspts.XoaSanPhamTheoSize(maSP);
+                        string maSP = txtMaSP.Text;
                         SanPhamBLL spbll = new SanPhamBLL();
-                        spbll.XoaSanPham(maSP); // Truyền mã sản phẩm (chuỗi) vào phương thức
-                        MessageBox.Show("Xóa sản phẩm thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        LoadDsSanPham();
+                        bool isForeignKey = spbll.IsForeignKeyInOtherTables(maSP);
+
+                        if (isForeignKey)
+                        {
+                            MessageBox.Show("Xóa sản phẩm thất bại. Do sản phẩm đang được sử dụng.", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                           
+                        }
+                        else
+                        {
+                            // Nếu không phải là khóa ngoại, thực hiện xóa sản phẩm
+                            AnhSanPhamBLL asp = new AnhSanPhamBLL();
+                            asp.XoaMaSanPhamTrongAnh(maSP);
+                            spbll.XoaSanPham(maSP); // Truyền mã sản phẩm (chuỗi) vào phương thức
+                            MessageBox.Show("Xóa sản phẩm thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            LoadDsSanPham();
+                        }
+                    
                     }
                 }
                 catch (Exception exception)
@@ -551,6 +562,10 @@ namespace GUI.Forms
             {
                 e.Handled = true; // Ngăn chặn ký tự không phải số được nhập vào TextBox
             }
+            if (e.KeyChar == '-' && ((sender as TextBox).Text.IndexOf('-') >= 0 || (sender as TextBox).SelectionStart != 0))
+            {
+                e.Handled = true; // Ngăn người dùng nhập thêm dấu trừ '-'
+            }
         }
 
 
@@ -584,6 +599,54 @@ namespace GUI.Forms
                 }
         }
 
-        
+        private void btnXoaCTSP_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(txtMaSP.Text) ||
+                string.IsNullOrWhiteSpace(txtTenSP.Text) ||
+                string.IsNullOrWhiteSpace(txtMoTaSP.Text) ||
+                string.IsNullOrWhiteSpace(txtGiaNhap.Text) ||
+                string.IsNullOrWhiteSpace(txtGiaNiemYet.Text) ||
+                string.IsNullOrWhiteSpace(txtChatLieu.Text)||
+                string.IsNullOrWhiteSpace(cbSize.Text) ||
+                string.IsNullOrWhiteSpace(txtSoLuong.Text) 
+                )
+            {
+                MessageBox.Show("Vui lòng chọn sản phẩm theo size cần xóa.", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            else
+            {
+                try
+                {
+                    if (MessageBox.Show("Bạn có thật sự muốn xóa size sản phẩm này?", "Cảnh báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                    {
+                        string maSP = txtMaSP.Text;
+                        string maSize = cbSize.Text;// Lấy mã sản phẩm từ TextBox
+                        string maSPTS = maSP + '_' + maSize;
+                        MaSanPhamTheoSizeBLL sptsBLL = new MaSanPhamTheoSizeBLL();
+                        bool isForeignKey = sptsBLL.IsForeignKeyInOtherTables(maSPTS);
+
+                        if (isForeignKey)
+                        {
+                            MessageBox.Show("Xóa size sản phẩm thất bại. Do sản phẩm đang được sử dụng.", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                        }
+                        else
+                        {
+                            sptsBLL.XoaSanPhamTheoSize(maSP, maSize); // Truyền mã sản phẩm (chuỗi) vào phương thức
+                            MessageBox.Show("Xóa size sản phẩm thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            LoadChiTietSanPham(maSP);
+                        }
+                        
+                    }
+                }
+                catch (Exception exception)
+                {
+                    MessageBox.Show("Xóa size sản phẩm thất bại. Lỗi: " + exception.Message, "Thông báo lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+       
     }
 }

@@ -66,5 +66,9 @@ namespace BLL
             List<object> resultList = query.ToList<object>();
             return resultList;
         }
+        public bool IsForeignKeyInOtherTables(string maSP)
+        {
+            return spda.IsForeignKeyInOtherTables(maSP);
+        }
     }
 }

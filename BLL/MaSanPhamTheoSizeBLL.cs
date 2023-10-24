@@ -37,9 +37,9 @@ namespace BLL
         {
             spda.SuaSoLuongTonKho(sp);
         }
-        public void XoaSanPhamTheoSize(string maSP)
+        public void XoaSanPhamTheoSize(string maSP, string maSize)
         {
-            spda.XoaSanPhamTheoSize(maSP);
+            spda.XoaSanPhamTheoSize(maSP, maSize);
         }
         public MaSanPhamTheoSize getMSPTheoSize(MaSanPhamTheoSize mspts)
         {
@@ -48,6 +48,10 @@ namespace BLL
         public List<MaSanPhamTheoSize> getSPTheoSIZE(SanPham sp)
         {
             return spda.getSPTheoSIZE(sp);
+        }
+        public bool IsForeignKeyInOtherTables(string mspts)
+        {
+            return spda.IsForeignKeyInOtherTables(mspts);
         }
         }
 }

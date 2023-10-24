@@ -60,12 +60,12 @@ namespace GUI.Forms
                 string promotionMessage = rtxtTinNhanGui.Text;
                 KhachHangBLL khBLL = new KhachHangBLL();
                 khBLL.SendPromotionSMS(promotionMessage);
-                MessageBox.Show("Thêm sản phẩm thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Gửi tin nhắn cho khách hàng thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception exception)
             {
                 // Hiển thị thông báo khi sửa thất bại và bao gồm thông điệp lỗi từ ngoại lệ trong thông báo
-                MessageBox.Show("Thêm sản phẩm thất bại. Lỗi: " + exception.Message, "Thông báo lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Gửi tin nhắn cho khách hàng thất bại! Lỗi: " + exception.Message, "Thông báo lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
         }
@@ -115,6 +115,17 @@ namespace GUI.Forms
                 DataGridViewRow selectedRow = dgvKhachHang.Rows[e.RowIndex];
                 
                 loadHoaDonList(selectedRow.Cells["maKhachHang"].Value.ToString());
+            }
+        }
+
+        private void dgvKhachHang_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (dgvKhachHang.Columns[e.ColumnIndex].Name == "ngaySinhKH" && e.Value != null)
+            {
+                // Định dạng giá trị trong cột "Ngày nhập" theo định dạng dd/MM/yyyy
+                DateTime dateValue = (DateTime)e.Value;
+                e.Value = dateValue.ToString("dd/MM/yyyy");
+                e.FormattingApplied = true; // Đánh dấu rằng việc định dạng đã được áp dụng
             }
         }
     }

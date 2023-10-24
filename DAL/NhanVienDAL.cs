@@ -332,6 +332,22 @@ namespace DAL
                 Dongketnoi();
             }
         }
+        public bool IsForeignKeyInOtherTables(string maNV)
+        {
+            Moketnoi();
+            var sql = "SELECT SUM(totalCount) FROM ( SELECT COUNT(*) AS totalCount FROM HoaDonBan WHERE maNhanVien = @MaNV " +
+              "UNION " +
+              "SELECT COUNT(*) AS totalCount FROM PhieuNhap WHERE maNhanVien = @MaNV) AS CombinedCounts";
+            var cmd = new SqlCommand(sql, conec);
+            cmd.Parameters.AddWithValue("@MaNV", maNV);
+
+            int count = (int)cmd.ExecuteScalar();
+
+            Dongketnoi();
+
+            return count > 0;
+        }
+
     }
 }
 

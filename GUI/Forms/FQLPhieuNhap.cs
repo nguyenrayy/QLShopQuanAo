@@ -8,6 +8,7 @@ using System.Drawing;
 using System.Linq;
 using System.Security.Policy;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -224,7 +225,7 @@ namespace GUI.Forms
                            
                         }
 
-                        MessageBox.Show("Thêm số lượng size cho sản phẩm thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show("Lưu phiếu nhập kho thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         LoadDsPhieuNhapKho();
 
                     }
@@ -235,9 +236,9 @@ namespace GUI.Forms
                     }
                     finally
                     {
-                        ctpnkTam = null;
-
-                    }
+                    ctpnkTam.Clear();
+                        dgvCTPhieuNhapKho.DataSource = null;
+                }
                 
                 
             }
@@ -307,6 +308,8 @@ namespace GUI.Forms
             txtSLSPPNK.Clear();
             cbSizePNK.SelectedIndex = -1;
             cbMSPPNK.SelectedIndex = -1;
+            ctpnkTam.Clear();
+            dgvCTPhieuNhapKho.DataSource = null;
         }
 
         private void btnThemNSX_Click(object sender, EventArgs e)
@@ -441,7 +444,17 @@ namespace GUI.Forms
                 txtWebsiteNSX.Text = selectedRow.Cells["websiteNSX"].Value.ToString();
             }
         }
-
+        private void textBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true; // Ngăn chặn ký tự không phải số được nhập vào TextBox
+            }
+            if (e.KeyChar == '-' && ((sender as TextBox).Text.IndexOf('-') >= 0 || (sender as TextBox).SelectionStart != 0))
+            {
+                e.Handled = true; // Ngăn người dùng nhập thêm dấu trừ '-'
+            }
+        }
         private void btnXoaNSX_Click(object sender, EventArgs e)
         {
             try
@@ -450,9 +463,18 @@ namespace GUI.Forms
                 {
                     string maNSX = txtMaNSX.Text;
                     NhaSanXuatBLL nsxBLL = new NhaSanXuatBLL();
-                    nsxBLL.XoaNSX(maNSX);
-                    MessageBox.Show("Xóa nhà sản xuất thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    LoadDsNSX();
+                    bool isForeignKey = nsxBLL.IsForeignKeyInOtherTables(maNSX);
+                    if (isForeignKey)
+                    {
+                        MessageBox.Show("Xóa nhà sản xuất thất bại. Do thông tin nhà sản xuất đang được lưu.", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                    }
+                    else
+                    {
+                        nsxBLL.XoaNSX(maNSX);
+                        MessageBox.Show("Xóa nhà sản xuất thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        LoadDsNSX();
+                    }
                 }
             }
             catch (Exception exception)
@@ -494,17 +516,25 @@ namespace GUI.Forms
             PhieuNhapBLL pnBLL = new PhieuNhapBLL();
             List<PhieuNhap> dspnGui = pnBLL.getPhieuNhapList(nv);
             dgvPhieuNhap.Rows.Clear();
+            string tt = null;
             foreach (PhieuNhap pn in dspnGui)
             {
                 // Tạo một hàng mới trong DataGridView
                 DataGridViewRow row = new DataGridViewRow();
-
+                if(pn.trangThai == true)
+                {
+                    tt = "Đã nhập";
+                }
+                else
+                {
+                    tt = "Chưa nhập";
+                }
                 // Thêm các ô thông tin từ đối tượng SanPham vào các ô trong hàng
                 row.Cells.Add(new DataGridViewTextBoxCell { Value = pn.maPhieuNhap });
                 row.Cells.Add(new DataGridViewTextBoxCell { Value = pn.maNhanVien });
                 row.Cells.Add(new DataGridViewTextBoxCell { Value = pn.maCuaHang });
                 row.Cells.Add(new DataGridViewTextBoxCell { Value = pn.ngayNhap });
-                row.Cells.Add(new DataGridViewTextBoxCell { Value = pn.trangThai });
+                row.Cells.Add(new DataGridViewTextBoxCell { Value = tt });
 
                 // Thêm hàng vào DataGridView
                 dgvPhieuNhap.Rows.Add(row);
@@ -533,14 +563,14 @@ namespace GUI.Forms
                 }
                 txtTrangThaiPN.Text = selectedRow.Cells["trangThaiPN"].Value.ToString();
                 spchTam = new List<SanPham_CuaHang>();
-                if (txtTrangThaiPN.Text == "True")
+                if (txtTrangThaiPN.Text == "Đã nhập")
                 {
-                    lbSLSP.Text = "True";
+                    lbSLSP.Text = "Đã thêm";
                     lbSLSP.BackColor = Color.Green;
                 }
                 else
                 {
-                    lbSLSP.Text = "False";
+                    lbSLSP.Text = "Chưa thêm";
                     lbSLSP.BackColor = Color.Red;
                 }
 
@@ -607,7 +637,7 @@ namespace GUI.Forms
 
                 txtMaSPPN.Text = maSP;
                 txtsoLuongSPTSPN.Text = selectedRow.Cells["soLuongSPPN"].Value.ToString();
-                if (txtTrangThaiPN.Text == "False")
+                if (txtTrangThaiPN.Text == "Chưa nhập")
                 {
 
 
@@ -615,7 +645,7 @@ namespace GUI.Forms
                     if (spchTam == null)
                     {
                         // Nếu danh sách chưa được khởi tạo, mặc định là False
-                        lbSLSP.Text = "False";
+                        lbSLSP.Text = "Chưa thêm";
                         lbSLSP.BackColor = Color.Red;
                     }
                     else
@@ -624,21 +654,21 @@ namespace GUI.Forms
                         if (spchTam.Any(item => item.maSPTheoSize == maSP))
                         {
                             // Nếu đã thêm, giữ nguyên giá trị True
-                            lbSLSP.Text = "True";
+                            lbSLSP.Text = "Đã thêm";
                             lbSLSP.BackColor = Color.Green;
 
                         }
                         else
                         {
                             // Nếu chưa thêm, cập nhật giá trị False
-                            lbSLSP.Text = "False";
+                            lbSLSP.Text = "Chưa thêm";
                             lbSLSP.BackColor = Color.Red;
                         }
                     }
                 }
                 else
                 {
-                    lbSLSP.Text = "True";
+                    lbSLSP.Text = "Đã thêm";
                     lbSLSP.BackColor = Color.Green;
                 }
             }
@@ -658,7 +688,7 @@ namespace GUI.Forms
             }
             else
             {
-                if (txtTrangThaiPN.Text == "False")
+                if (txtTrangThaiPN.Text == "Chưa nhập")
                 {
                     // Load số lượng tồn kho hiện tại từ cơ sở dữ liệu
                     MaSanPhamTheoSizeBLL msptsBLL = new MaSanPhamTheoSizeBLL();
@@ -679,11 +709,11 @@ namespace GUI.Forms
                     else
                     {
 
-                        if (lbSLSP.Text == "True")
+                        if (lbSLSP.Text == "Đã thêm")
                         {
                             MessageBox.Show("Không thêm được sản phẩm vì sản phẩm đã được thêm vào rồi!", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                             // Nếu đã thêm, giữ nguyên giá trị True
-                            lbSLSP.Text = "True";
+                            lbSLSP.Text = "Đã thêm";
                             lbSLSP.BackColor = Color.Green;
                         }
                         else
@@ -694,7 +724,7 @@ namespace GUI.Forms
                             spch.maSPTheoSize = txtMaSPPN.Text;
                             spch.soLuong = int.Parse(txtsoLuongSPTSPN.Text);
                             spchTam.Add(spch);
-                            lbSLSP.Text = "True";
+                            lbSLSP.Text = "Đã thêm";
                             lbSLSP.BackColor = Color.Green;
                         }
                     }
@@ -807,8 +837,6 @@ namespace GUI.Forms
                                     maSPtheoSize.soLuongTonKho -= spchList.soLuong;
                                     msptsBLL.SuaSoLuongTonKho(maSPtheoSize);
                                     spchBLL.ThemSPChoCH(spchList);
-
-
                                 }
 
 
@@ -822,14 +850,13 @@ namespace GUI.Forms
                                 ngayNhap = dateNgayNhapPN.Value,
                                 trangThai = true
                             };
-                            if (pnBLL.editPhieuNhap(pn))
-                            {
-                                MessageBox.Show("Số lượng sản phẩm được thêm cho cửa hàng thành công.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                LoadSPCHPN(txtMaCHPN.Text);
-                                loadPhieuNhapList();
-                            }
-                            else
-                                MessageBox.Show("Số lượng sản phẩm được thêm cho cửa hàng thất bại.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            pnBLL.editPhieuNhap(pn);
+                            MessageBox.Show("Số lượng sản phẩm được thêm cho cửa hàng thành công.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            LoadSPCHPN(txtMaCHPN.Text);
+                            loadPhieuNhapList();
+                                
+
+
 
                         }
                     }
@@ -920,6 +947,66 @@ namespace GUI.Forms
             foreach (PhieuNhap pn in ketQuaTimKiem)
             {
                 dgvPhieuNhap.Rows.Add(pn.maPhieuNhap, pn.maNhanVien, pn.maCuaHang, pn.ngayNhap, pn.trangThai);
+            }
+        }
+
+        private void txtEmailNSX_Leave(object sender, EventArgs e)
+        {
+            string email = txtEmailNSX.Text.Trim();
+            if (IsValidEmail(email))
+            {
+            }
+            else
+            {
+                MessageBox.Show("Địa chỉ email không hợp lệ. Vui lòng nhập lại!", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtEmailNSX.Focus();
+            }
+        }
+        private bool IsValidEmail(string email)
+        {
+            // Sử dụng biểu thức chính quy để kiểm tra địa chỉ email
+            string pattern = @"^[\w-]+(\.[\w-]+)*@[\w-]+(\.[\w-]+)*(\.[a-z]{2,})$";
+            return Regex.IsMatch(email, pattern, RegexOptions.IgnoreCase);
+        }
+
+        private void txtWebsiteNSX_Leave(object sender, EventArgs e)
+        {
+            string website = txtWebsiteNSX.Text.Trim();
+            if (IsValidWebsite(website))
+            { 
+            }
+            else
+            {
+                MessageBox.Show("Địa chỉ website không hợp lệ. Vui lòng nhập lại!", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtWebsiteNSX.Focus();
+            }
+        }
+        private bool IsValidWebsite(string website)
+        {
+            // Sử dụng biểu thức chính quy để kiểm tra địa chỉ website
+            string pattern = @"^(http|https)://[a-zA-Z0-9.-]+\.[a-z]{2,}$";
+            return Regex.IsMatch(website, pattern, RegexOptions.IgnoreCase);
+        }
+
+        private void dgvPhieuNhapKho_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (dgvPhieuNhapKho.Columns[e.ColumnIndex].Name == "ngayNhapPhieuNhapKho" && e.Value != null)
+            {
+                // Định dạng giá trị trong cột "Ngày nhập" theo định dạng dd/MM/yyyy
+                DateTime dateValue = (DateTime)e.Value;
+                e.Value = dateValue.ToString("dd/MM/yyyy");
+                e.FormattingApplied = true; // Đánh dấu rằng việc định dạng đã được áp dụng
+            }
+        }
+
+        private void dgvPhieuNhap_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (dgvPhieuNhap.Columns[e.ColumnIndex].Name == "ngayNhapPN" && e.Value != null)
+            {
+                // Định dạng giá trị trong cột "Ngày nhập" theo định dạng dd/MM/yyyy
+                DateTime dateValue = (DateTime)e.Value;
+                e.Value = dateValue.ToString("dd/MM/yyyy");
+                e.FormattingApplied = true; // Đánh dấu rằng việc định dạng đã được áp dụng
             }
         }
     }

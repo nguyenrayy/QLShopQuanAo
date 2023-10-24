@@ -143,7 +143,7 @@ namespace DAL
             rd.Close();
 
             string twilioAccountSid = "AC5b783e3ca07e2574ff563832d11a039a";
-            string twilioAuthToken = "fd3a03163fa906e544304259a30e27fb";
+            string twilioAuthToken = "b5a19624c9084f3238e1bb202b244573";
             string twilioPhoneNumber = "+19733232910";
             TwilioClient.Init(twilioAccountSid, twilioAuthToken);
 
@@ -154,9 +154,10 @@ namespace DAL
                     string tenKhach = kh1.tenKhach;
                     string soDienThoai = kh1.soDienThoai;
                     var message = MessageResource.Create(
-                    body: $"Shop ABC xin chào " + tenKhach + " chúng tôi gửi bạn chương trình khuyến mãi:" + promotionMessage,
+                    body: $"Shop ABC xin chào " + tenKhach + " ." + promotionMessage,
                     from: new Twilio.Types.PhoneNumber(twilioPhoneNumber),
-                    to: new Twilio.Types.PhoneNumber("+84" + soDienThoai)
+                    //to: new Twilio.Types.PhoneNumber("+84" + soDienThoai)
+                    to: new Twilio.Types.PhoneNumber("+84" + "396195139")
                 );
                 }
 

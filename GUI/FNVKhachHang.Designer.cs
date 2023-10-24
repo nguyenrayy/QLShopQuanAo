@@ -44,7 +44,6 @@
             this.btDoiSL_PD = new Guna.UI2.WinForms.Guna2Button();
             this.btXoa_CTPD = new Guna.UI2.WinForms.Guna2Button();
             this.panCTPDLeft = new System.Windows.Forms.Panel();
-            this.lbTinhTienChenhLech = new System.Windows.Forms.Label();
             this.lbSoLuong_CTPD = new System.Windows.Forms.TextBox();
             this.lbMSP_CTPD = new System.Windows.Forms.Label();
             this.lbPD3 = new System.Windows.Forms.Label();
@@ -189,7 +188,6 @@
             this.btPhieuDoi = new Guna.UI2.WinForms.Guna2Button();
             this.btPhieuTra = new Guna.UI2.WinForms.Guna2Button();
             this.panNguonThuKH = new System.Windows.Forms.Panel();
-            this.lbXepHang = new System.Windows.Forms.Label();
             this.lbRank = new System.Windows.Forms.Label();
             this.lbNguonThuKH = new System.Windows.Forms.Label();
             this.lbTongTienKH = new System.Windows.Forms.Label();
@@ -244,6 +242,7 @@
             this.printPreviewPD = new System.Windows.Forms.PrintPreviewDialog();
             this.printDialogPD = new System.Windows.Forms.PrintDialog();
             this.printPT = new System.Drawing.Printing.PrintDocument();
+            this.lbXepHang = new System.Windows.Forms.Label();
             this.tabCTPDCont.SuspendLayout();
             this.panPDCont.SuspendLayout();
             this.panCTPDLeft.SuspendLayout();
@@ -445,7 +444,6 @@
             // panCTPDLeft
             // 
             this.panCTPDLeft.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.panCTPDLeft.Controls.Add(this.lbTinhTienChenhLech);
             this.panCTPDLeft.Controls.Add(this.lbSoLuong_CTPD);
             this.panCTPDLeft.Controls.Add(this.lbMSP_CTPD);
             this.panCTPDLeft.Controls.Add(this.lbPD3);
@@ -462,15 +460,6 @@
             this.panCTPDLeft.Name = "panCTPDLeft";
             this.panCTPDLeft.Size = new System.Drawing.Size(476, 368);
             this.panCTPDLeft.TabIndex = 64;
-            // 
-            // lbTinhTienChenhLech
-            // 
-            this.lbTinhTienChenhLech.AutoSize = true;
-            this.lbTinhTienChenhLech.ForeColor = System.Drawing.Color.Red;
-            this.lbTinhTienChenhLech.Location = new System.Drawing.Point(18, 220);
-            this.lbTinhTienChenhLech.Name = "lbTinhTienChenhLech";
-            this.lbTinhTienChenhLech.Size = new System.Drawing.Size(0, 20);
-            this.lbTinhTienChenhLech.TabIndex = 70;
             // 
             // lbSoLuong_CTPD
             // 
@@ -2240,17 +2229,6 @@
             this.panNguonThuKH.Size = new System.Drawing.Size(312, 118);
             this.panNguonThuKH.TabIndex = 26;
             // 
-            // lbXepHang
-            // 
-            this.lbXepHang.AutoSize = true;
-            this.lbXepHang.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbXepHang.ForeColor = System.Drawing.Color.Goldenrod;
-            this.lbXepHang.Location = new System.Drawing.Point(240, 97);
-            this.lbXepHang.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lbXepHang.Name = "lbXepHang";
-            this.lbXepHang.Size = new System.Drawing.Size(0, 19);
-            this.lbXepHang.TabIndex = 29;
-            // 
             // lbRank
             // 
             this.lbRank.AutoSize = true;
@@ -2398,9 +2376,10 @@
             // dpKHNVNgaySinh
             // 
             this.dpKHNVNgaySinh.Checked = true;
+            this.dpKHNVNgaySinh.CustomFormat = "dd/MM/yyyy";
             this.dpKHNVNgaySinh.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.dpKHNVNgaySinh.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dpKHNVNgaySinh.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dpKHNVNgaySinh.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dpKHNVNgaySinh.Location = new System.Drawing.Point(205, 188);
             this.dpKHNVNgaySinh.MaxDate = new System.DateTime(9998, 12, 31, 0, 0, 0, 0);
             this.dpKHNVNgaySinh.MinDate = new System.DateTime(1753, 1, 1, 0, 0, 0, 0);
@@ -2855,6 +2834,16 @@
             // 
             this.printPT.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.printPT_PrintPage);
             // 
+            // lbXepHang
+            // 
+            this.lbXepHang.AutoSize = true;
+            this.lbXepHang.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbXepHang.Location = new System.Drawing.Point(207, 98);
+            this.lbXepHang.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbXepHang.Name = "lbXepHang";
+            this.lbXepHang.Size = new System.Drawing.Size(0, 19);
+            this.lbXepHang.TabIndex = 29;
+            // 
             // FNVKhachHang
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -3143,6 +3132,7 @@
         private System.Windows.Forms.PrintDialog printDialogPD;
         private Guna.UI2.WinForms.Guna2Button btInPhieuTra;
         private System.Drawing.Printing.PrintDocument printPT;
+
         private System.Windows.Forms.FlowLayoutPanel fpNo1;
         private Guna.UI2.WinForms.Guna2Button btThemKHNV;
         private Guna.UI2.WinForms.Guna2Button btSuaKHNV;
@@ -3152,7 +3142,6 @@
         private Guna.UI2.WinForms.Guna2Button btPhieuDoi;
         private Guna.UI2.WinForms.Guna2Button btPhieuTra;
         private System.Windows.Forms.Panel panNguonThuKH;
-        private System.Windows.Forms.Label lbXepHang;
         private System.Windows.Forms.Label lbRank;
         private System.Windows.Forms.Label lbNguonThuKH;
         private System.Windows.Forms.Label lbTongTienKH;
@@ -3161,6 +3150,6 @@
         private System.Windows.Forms.Label lbCountHDKH;
         private System.Windows.Forms.Label lbWarningKH;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label lbTinhTienChenhLech;
+        private System.Windows.Forms.Label lbXepHang;
     }
 }

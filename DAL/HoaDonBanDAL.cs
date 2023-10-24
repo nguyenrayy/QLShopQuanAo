@@ -49,19 +49,31 @@ namespace DAL
             Moketnoi();
             try
             {
-                string SQL = string.Format("INSERT INTO HoaDonBan VALUES ('{0}', '{1}', '{2}' , '{3}')",
-                  hdb.maHoaDon, hdb.maNhanVien, hdb.maKhachHang, hdb.ngayLapHoaDon);
+                string SQL = "INSERT INTO HoaDonBan (maHoaDon, maNhanVien, maKhachHang, ngayLapHoaDon) " +
+                             "VALUES (@maHoaDon, @maNhanVien, @maKhachHang, @ngayLapHoaDon)";
+
                 SqlCommand cmd = new SqlCommand(SQL, conec);
+                cmd.Parameters.AddWithValue("@maHoaDon", hdb.maHoaDon);
+                cmd.Parameters.AddWithValue("@maNhanVien", hdb.maNhanVien);
+                cmd.Parameters.AddWithValue("@maKhachHang", hdb.maKhachHang);
+                cmd.Parameters.AddWithValue("@ngayLapHoaDon", hdb.ngayLapHoaDon);
+
                 if (cmd.ExecuteNonQuery() > 0)
                 {
                     return true;
                 }
             }
             catch (Exception ex)
-            { return false; }
-            finally { Dongketnoi(); }
+            {
+                return false;
+            }
+            finally
+            {
+                Dongketnoi();
+            }
             return false;
         }
+
         public Boolean delHoaDonBan(HoaDonBan hdb)
         {
             Moketnoi();
@@ -98,7 +110,7 @@ namespace DAL
             return i;
 
         }
-       
+
         public List<ChiTietHoaDon> getCTHDList(ChiTietHoaDon cthd)
         {
             List<ChiTietHoaDon> cthdbl = new List<ChiTietHoaDon>();

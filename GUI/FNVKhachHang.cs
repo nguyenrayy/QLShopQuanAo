@@ -68,7 +68,7 @@ namespace GUI
 
             tabNhanVienMenu.SizeMode = TabSizeMode.Fixed;
             tabNhanVienMenu.ItemSize = new System.Drawing.Size(0, 1);
-            
+
             ch = chBLL.getCuaHang(nv.maCuaHang);
             dgSPDT.Hide();
             flPicSP.Hide();
@@ -144,6 +144,7 @@ namespace GUI
             SetKhach();
 
             double TTT = hdbBLL.tinhTongTien(kh, hdbl,pdtl);
+
             lbCountHD.Text = hdbBLL.countHoaDonBan(kh).ToString();
             lbTongTienKH.Text = TTT.ToString();
             XepHangKhachHang(TTT, lbXepHang);
@@ -176,6 +177,7 @@ namespace GUI
             }
             else
                 XH = 0;
+
 
             lbXepHang.Text = xepHang;
         }
@@ -330,6 +332,7 @@ namespace GUI
             {
                 tabNhanVienMenu.SelectedTab = tabNhanVienMenu.TabPages["tabHDB"];
                 if(pnPDTLeft != null) {
+
                     loadKhachHangPDT(pnPDTLeft, pnSPNVLeft);
                 }
                 loadKhachHangInfo(GetKhach());
@@ -564,6 +567,7 @@ namespace GUI
                     {
                         lbWarningSP.Text = "Hóa đơn đã được lưu không thể thêm !";
                     }    
+
                 }
             }
         }
@@ -672,42 +676,53 @@ namespace GUI
                     DialogResult result = MessageBox.Show("Bạn có chắc sẽ lưu hóa đơn ?", "Hóa đơn", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
                     if (result == DialogResult.OK)
                     {
-                        if (hdbBLL.addHoaDonBan(hdb))
+                        try
                         {
-                            bool checkThanhCong = true;
 
-                            foreach (ChiTietHoaDon cthd in cthdl)
+
+                            if (hdbBLL.addHoaDonBan(hdb))
                             {
-                                spch = spchBLL.getSanPhamCuaHang(nv.maCuaHang, cthd.maSanPhamTheoSize);
-                                spch.soLuong -= cthd.soLuong;
-                                if (!spchBLL.updateSanPhamCuaHang(spch))
+                                bool checkThanhCong = true;
+
+                                foreach (ChiTietHoaDon cthd in cthdl)
                                 {
-                                    checkThanhCong = false;
-                                    break;
+                                    spch = spchBLL.getSanPhamCuaHang(nv.maCuaHang, cthd.maSanPhamTheoSize);
+                                    spch.soLuong -= cthd.soLuong;
+                                    if (!spchBLL.updateSanPhamCuaHang(spch))
+                                    {
+                                        checkThanhCong = false;
+                                        break;
+                                    }
+                                    if (!hdbBLL.addChiTietHoaDon(cthd))
+                                    {
+                                        checkThanhCong = false;
+                                        break;
+                                    }
+
+
                                 }
-                                if (!hdbBLL.addChiTietHoaDon(cthd))
+                                if (checkThanhCong)
                                 {
-                                    checkThanhCong = false;
-                                    break;
+                                    MessageBox.Show("Lưu hóa đơn thành công !", "Hóa đơn", MessageBoxButtons.OK);
+                                    hdbl.Add(hdb);
+
+                                    spchl = spchBLL.getSPTheoCuaHangList();
+                                    loadSanPhamNhanVien(dgSPNV, spl, spchl);
                                 }
-
-
-                            }
-                            if (checkThanhCong)
-                            {
-                                MessageBox.Show("Lưu hóa đơn thành công !", "Hóa đơn", MessageBoxButtons.OK);
-                                hdbl.Add(hdb);
-
-                                spchl = spchBLL.getSPTheoCuaHangList();
-                                loadSanPhamNhanVien(dgSPNV, spl, spchl);
+                                else
+                                {
+                                    lbWarningCTHD.Text = "Lưu sản phẩm vào hóa đơn thất bại !";
+                                }
                             }
                             else
-                            {
-                                lbWarningCTHD.Text = "Lưu sản phẩm vào hóa đơn thất bại !";
-                            }
+                                MessageBox.Show("Lưu hóa đơn thất bại !", "Hóa đơn", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+
                         }
-                        else
-                            MessageBox.Show("Lưu hóa đơn thất bại !", "Hóa đơn", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show("Không thể thêm sản phẩm cho cửa hàng. Lỗi: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
                     }
                 }
             }
@@ -796,7 +811,7 @@ namespace GUI
         // In Hóa Đơn 
         private void printHD_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
         {
-           
+
             pBLL.VeHoaDon(nv, ch, cthdl, e, GetKhach());
         }
 
@@ -965,11 +980,13 @@ namespace GUI
             }
             else
                 lbWarningPD.Text = "";
+
             if(dgHD_PDT.Columns.Contains("giamGia"))
             {
                 giamgia = (double)dgHD_PDT.SelectedRows[0].Cells["giamGia"].Value;
             }    
             
+
             if (doiColumn && e.ColumnIndex == dgHD_PDT.Columns["Doi"].Index && pdt != null)
             {
                 dgSPDT.Show();
@@ -1204,6 +1221,7 @@ namespace GUI
                 double giamgiax = (double)row.Cells["giamGia"].Value;
 
                 row.Cells["priceunit"].Value = donGia;
+
                 row.Cells["total"].Value = ((soLuong * donGia)- (soLuong * donGia* giamgiax)).ToString();
 
                 tongTien += ((soLuong * donGia) - (soLuong * donGia * giamgiax));
@@ -1212,15 +1230,19 @@ namespace GUI
 
             lbTongTienCTPD.Text = tongTien.ToString();
             double check = tongTien - tongTienRe;
+
             if(check > 0)
             {
-                lbTinhTienChenhLech.Text = "Khách hàng trả thêm " + check.ToString() + "VND";
+                //lbTinhTienChenhLech.Text = "Khách hàng trả thêm " + check.ToString() + "VND";
             }    
+
             else
             {
                 check = check * -1;
-                lbTinhTienChenhLech.Text = "Cửa hàng hoàn lại " + check.ToString() + " VND";
+                //lbTinhTienChenhLech.Text = "Cửa hàng hoàn lại " + check.ToString() + " VND";
+
             }    
+
         }
         private void CTHDList_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -1244,7 +1266,7 @@ namespace GUI
             lbMSP_CTPD.Text = "";
             lbWarningCTPD.Text = "";
             lbSoLuong_CTPD.Text = "";
-            lbTinhTienChenhLech.Text = "";
+            //lbTinhTienChenhLech.Text = "";
         }
         // Button Đổi số lượng CTPD
         private void btDoiSL_PD_Click(object sender, EventArgs e)
@@ -1272,7 +1294,7 @@ namespace GUI
                         sanPhamCanCapNhat.soLuong = Convert.ToInt32(lbSoLuong_CTPD.Text);
                         dgCTPD.Refresh();
                         lbWarningCTPD.Text = "Đổi số lượng thành công !";
-                        lbTinhTienChenhLech.Text = "";
+                        //lbTinhTienChenhLech.Text = "";
 
                     }
                 }
@@ -1294,7 +1316,7 @@ namespace GUI
                 {
                     ctpdtl.RemoveAll(ctpd => ctpd.maSPTheoSize == lbMSP_CTPD.Text);
                     lbWarningCTPD.Text = "Xóa SP Thành công !";
-                    lbTinhTienChenhLech.Text = "";
+                    //lbTinhTienChenhLech.Text = "";
                     dgCTPD.DataSource = null;
                     loadCTPD(ctpdtl);
 
@@ -1383,6 +1405,7 @@ namespace GUI
             //    bool pnValid = pdtl.Exists(hdn => hdn.maPhieuDoiTra == pdt.maPhieuDoiTra);
             //    if (pnValid)
             //    {
+
                     MessageBoxButtons buttons = MessageBoxButtons.YesNo;
                     DialogResult result = MessageBox.Show("Bạn muốn xem trước Phiếu Đổi:", "Lựa chọn", buttons, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
                     if (result == DialogResult.Yes)
@@ -1400,6 +1423,7 @@ namespace GUI
                         }
                     }
 
+
             //    }
             //    else
             //    {
@@ -1411,7 +1435,9 @@ namespace GUI
         }
         private void printPD_PrintPage(object sender, PrintPageEventArgs e)
         {
+
             pBLL.VePhieuDoi(nv, ch, ctpdtl, e,GetKhach());
+
         }
         //=============================== Tác Vụ Trả Hàng ====================================
 
@@ -1458,6 +1484,7 @@ namespace GUI
                 tongTien += thanhTien ;
             }
             
+
             lbTongTien_CTPT.Text = tongTien.ToString() + "VNĐ";
         }
         private void btPhieuTra_Click(object sender, EventArgs e)
@@ -1665,6 +1692,7 @@ namespace GUI
             //        bool pnValid = pdtl.Exists(hdn => hdn.maPhieuDoiTra == pdt.maPhieuDoiTra);
             //        if (pnValid)
             //        {
+
                         MessageBoxButtons buttons = MessageBoxButtons.YesNo;
                         DialogResult result = MessageBox.Show("Bạn muốn xem trước Phiếu Trả:", "Lựa chọn", buttons, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
                         if (result == DialogResult.Yes)
@@ -1697,6 +1725,5 @@ namespace GUI
             pBLL.VePhieuTra(nv, ch, ctpdtl, e, GetKhach());
         }
 
-      
     }
 }

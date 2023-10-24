@@ -209,5 +209,27 @@ namespace GUI.Forms
                 dgvPhieuDoiTra.Rows.Add(pdt.maPhieuDoiTra, pdt.maNhanVien, pdt.maKhachHang, pdt.ngayDoiTra, pdt.maXuLyDoiTra, pdt.maHoaDon);
             }
         }
+
+        private void dgvQLHoaDon_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if(dgvQLHoaDon.Columns[e.ColumnIndex].Name == "ngayLapHoaDon" && e.Value != null)
+            {
+                // Định dạng giá trị trong cột "Ngày nhập" theo định dạng dd/MM/yyyy
+                DateTime dateValue = (DateTime)e.Value;
+                e.Value = dateValue.ToString("dd/MM/yyyy");
+                e.FormattingApplied = true; // Đánh dấu rằng việc định dạng đã được áp dụng
+            }
+        }
+
+        private void dgvPhieuDoiTra_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (dgvPhieuDoiTra.Columns[e.ColumnIndex].Name == "ngayDoiTra" && e.Value != null)
+            {
+                // Định dạng giá trị trong cột "Ngày nhập" theo định dạng dd/MM/yyyy
+                DateTime dateValue = (DateTime)e.Value;
+                e.Value = dateValue.ToString("dd/MM/yyyy");
+                e.FormattingApplied = true; // Đánh dấu rằng việc định dạng đã được áp dụng
+            }
+        }
     }
 }

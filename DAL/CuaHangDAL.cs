@@ -181,6 +181,21 @@ namespace DAL
             }
             return ketQua;
         }
+        public bool IsForeignKeyInOtherTables(string maCH)
+        {
+            Moketnoi();
+            var sql = "SELECT SUM(totalCount) FROM ( SELECT COUNT(*) AS totalCount FROM NhanVien WHERE maCuaHang = @MaCH " +
+              "UNION " +
+              "SELECT COUNT(*) AS totalCount FROM SanPham_CuaHang WHERE maCuaHang = @MaCH) AS CombinedCounts";
+            var cmd = new SqlCommand(sql, conec);
+            cmd.Parameters.AddWithValue("@MaCH", maCH);
+
+            int count = (int)cmd.ExecuteScalar();
+
+            Dongketnoi();
+
+            return count > 0;
+        }
 
     }
 }

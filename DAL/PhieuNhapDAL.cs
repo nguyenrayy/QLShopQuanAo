@@ -47,26 +47,35 @@ namespace BLL
             return pnl;
         }
 
-      
+
         public bool addPhieuNhap(PhieuNhap pn)
         {
-            Boolean success = false;
+            bool success = false;
             Moketnoi();
             try
             {
-                string SQL = string.Format("INSERT INTO PhieuNhap VALUES ('{0}', '{1}', '{2}' , '{3}', '{4}' )",
-                     pn.maPhieuNhap, pn.maNhanVien, pn.maCuaHang, pn.ngayNhap, pn.trangThai);
-                
+                string SQL = "INSERT INTO PhieuNhap (maPhieuNhap, maNhanVien, maCuaHang, ngayNhap, trangThai) " +
+                             "VALUES (@maPhieuNhap, @maNhanVien, @maCuaHang, @ngayNhap, @trangThai)";
+
                 SqlCommand cmd = new SqlCommand(SQL, conec);
+                cmd.Parameters.AddWithValue("@maPhieuNhap", pn.maPhieuNhap);
+                cmd.Parameters.AddWithValue("@maNhanVien", pn.maNhanVien);
+                cmd.Parameters.AddWithValue("@maCuaHang", pn.maCuaHang);
+                cmd.Parameters.AddWithValue("@ngayNhap", pn.ngayNhap);
+                cmd.Parameters.AddWithValue("@trangThai", pn.trangThai);
+
                 if (cmd.ExecuteNonQuery() > 0)
                 {
-                    success =  true;
+                    success = true;
                 }
             }
-            
-            finally { Dongketnoi(); }
+            finally
+            {
+                Dongketnoi();
+            }
             return success;
         }
+
         public bool editPhieuNhap(PhieuNhap pn)
         {
             Boolean success = false;
