@@ -240,6 +240,13 @@
             this.printPreviewPD = new System.Windows.Forms.PrintPreviewDialog();
             this.printDialogPD = new System.Windows.Forms.PrintDialog();
             this.printPT = new System.Drawing.Printing.PrintDocument();
+            this.lbTinhTienChenhLech = new System.Windows.Forms.Label();
+            this.label4ccc = new System.Windows.Forms.Label();
+            this.lbXepHang = new System.Windows.Forms.Label();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.textBox4 = new System.Windows.Forms.TextBox();
             this.tabCTPDCont.SuspendLayout();
             this.panPDCont.SuspendLayout();
             this.panCTPDLeft.SuspendLayout();
@@ -431,6 +438,7 @@
             // panCTPDLeft
             // 
             this.panCTPDLeft.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panCTPDLeft.Controls.Add(this.lbTinhTienChenhLech);
             this.panCTPDLeft.Controls.Add(this.lbSoLuong_CTPD);
             this.panCTPDLeft.Controls.Add(this.lbMSP_CTPD);
             this.panCTPDLeft.Controls.Add(this.lbPD3);
@@ -643,6 +651,10 @@
             // 
             // pnRightCTHD
             // 
+            this.pnRightCTHD.Controls.Add(this.textBox4);
+            this.pnRightCTHD.Controls.Add(this.textBox3);
+            this.pnRightCTHD.Controls.Add(this.textBox2);
+            this.pnRightCTHD.Controls.Add(this.textBox1);
             this.pnRightCTHD.Controls.Add(this.lbWarningCTHD);
             this.pnRightCTHD.Controls.Add(this.btLuuHoaDon);
             this.pnRightCTHD.Controls.Add(this.InHD);
@@ -2054,9 +2066,9 @@
             this.panel1.Controls.Add(this.fpNo1);
             this.panel1.Controls.Add(this.panNguonThuKH);
             this.panel1.Controls.Add(this.lbWarningKH);
-            this.panel1.Location = new System.Drawing.Point(527, 278);
+            this.panel1.Location = new System.Drawing.Point(527, 244);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(343, 338);
+            this.panel1.Size = new System.Drawing.Size(343, 372);
             this.panel1.TabIndex = 8;
             // 
             // fpNo1
@@ -2068,7 +2080,7 @@
             this.fpNo1.Controls.Add(this.btKHNV_LHD);
             this.fpNo1.Controls.Add(this.btPhieuDoi);
             this.fpNo1.Controls.Add(this.btPhieuTra);
-            this.fpNo1.Location = new System.Drawing.Point(6, 137);
+            this.fpNo1.Location = new System.Drawing.Point(6, 189);
             this.fpNo1.Name = "fpNo1";
             this.fpNo1.Size = new System.Drawing.Size(337, 197);
             this.fpNo1.TabIndex = 27;
@@ -2195,6 +2207,8 @@
             // panNguonThuKH
             // 
             this.panNguonThuKH.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panNguonThuKH.Controls.Add(this.lbXepHang);
+            this.panNguonThuKH.Controls.Add(this.label4ccc);
             this.panNguonThuKH.Controls.Add(this.lbNguonThuKH);
             this.panNguonThuKH.Controls.Add(this.lbTongTienKH);
             this.panNguonThuKH.Controls.Add(this.lbCountHD);
@@ -2202,7 +2216,7 @@
             this.panNguonThuKH.Controls.Add(this.lbCountHDKH);
             this.panNguonThuKH.Location = new System.Drawing.Point(19, 13);
             this.panNguonThuKH.Name = "panNguonThuKH";
-            this.panNguonThuKH.Size = new System.Drawing.Size(312, 95);
+            this.panNguonThuKH.Size = new System.Drawing.Size(312, 123);
             this.panNguonThuKH.TabIndex = 26;
             // 
             // lbNguonThuKH
@@ -2267,7 +2281,7 @@
             // 
             this.lbWarningKH.AutoSize = true;
             this.lbWarningKH.ForeColor = System.Drawing.Color.Red;
-            this.lbWarningKH.Location = new System.Drawing.Point(15, 114);
+            this.lbWarningKH.Location = new System.Drawing.Point(14, 151);
             this.lbWarningKH.Name = "lbWarningKH";
             this.lbWarningKH.Size = new System.Drawing.Size(0, 25);
             this.lbWarningKH.TabIndex = 23;
@@ -2292,9 +2306,9 @@
             this.pnKHNVView.Controls.Add(this.lbKHNVTen);
             this.pnKHNVView.Controls.Add(this.lbKHNVHo);
             this.pnKHNVView.Controls.Add(this.lbKHNVTTKH);
-            this.pnKHNVView.Location = new System.Drawing.Point(7, 278);
+            this.pnKHNVView.Location = new System.Drawing.Point(7, 244);
             this.pnKHNVView.Name = "pnKHNVView";
-            this.pnKHNVView.Size = new System.Drawing.Size(513, 338);
+            this.pnKHNVView.Size = new System.Drawing.Size(513, 372);
             this.pnKHNVView.TabIndex = 7;
             // 
             // cbKHNVGioiTinh
@@ -2350,9 +2364,10 @@
             // dpKHNVNgaySinh
             // 
             this.dpKHNVNgaySinh.Checked = true;
+            this.dpKHNVNgaySinh.CustomFormat = "dd/MM/yyyy";
             this.dpKHNVNgaySinh.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.dpKHNVNgaySinh.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dpKHNVNgaySinh.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dpKHNVNgaySinh.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dpKHNVNgaySinh.Location = new System.Drawing.Point(205, 188);
             this.dpKHNVNgaySinh.MaxDate = new System.DateTime(9998, 12, 31, 0, 0, 0, 0);
             this.dpKHNVNgaySinh.MinDate = new System.DateTime(1753, 1, 1, 0, 0, 0, 0);
@@ -2807,6 +2822,64 @@
             // 
             this.printPT.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.printPT_PrintPage);
             // 
+            // lbTinhTienChenhLech
+            // 
+            this.lbTinhTienChenhLech.AutoSize = true;
+            this.lbTinhTienChenhLech.ForeColor = System.Drawing.Color.Red;
+            this.lbTinhTienChenhLech.Location = new System.Drawing.Point(17, 220);
+            this.lbTinhTienChenhLech.Name = "lbTinhTienChenhLech";
+            this.lbTinhTienChenhLech.Size = new System.Drawing.Size(0, 25);
+            this.lbTinhTienChenhLech.TabIndex = 64;
+            // 
+            // label4ccc
+            // 
+            this.label4ccc.AutoSize = true;
+            this.label4ccc.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4ccc.Location = new System.Drawing.Point(52, 99);
+            this.label4ccc.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label4ccc.Name = "label4ccc";
+            this.label4ccc.Size = new System.Drawing.Size(108, 23);
+            this.label4ccc.TabIndex = 28;
+            this.label4ccc.Text = "Xếp Hạng: ";
+            // 
+            // lbXepHang
+            // 
+            this.lbXepHang.AutoSize = true;
+            this.lbXepHang.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbXepHang.Location = new System.Drawing.Point(182, 98);
+            this.lbXepHang.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbXepHang.Name = "lbXepHang";
+            this.lbXepHang.Size = new System.Drawing.Size(0, 23);
+            this.lbXepHang.TabIndex = 29;
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(59, 25);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(100, 30);
+            this.textBox1.TabIndex = 61;
+            // 
+            // textBox2
+            // 
+            this.textBox2.Location = new System.Drawing.Point(186, 25);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(100, 30);
+            this.textBox2.TabIndex = 64;
+            // 
+            // textBox3
+            // 
+            this.textBox3.Location = new System.Drawing.Point(59, 75);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(100, 30);
+            this.textBox3.TabIndex = 65;
+            // 
+            // textBox4
+            // 
+            this.textBox4.Location = new System.Drawing.Point(186, 74);
+            this.textBox4.Name = "textBox4";
+            this.textBox4.Size = new System.Drawing.Size(100, 30);
+            this.textBox4.TabIndex = 66;
+            // 
             // FNVKhachHang
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
@@ -3110,5 +3183,12 @@
         private System.Windows.Forms.PrintDialog printDialogPD;
         private Guna.UI2.WinForms.Guna2Button btInPhieuTra;
         private System.Drawing.Printing.PrintDocument printPT;
+        private System.Windows.Forms.Label lbTinhTienChenhLech;
+        private System.Windows.Forms.Label lbXepHang;
+        private System.Windows.Forms.Label label4ccc;
+        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox textBox1;
     }
 }

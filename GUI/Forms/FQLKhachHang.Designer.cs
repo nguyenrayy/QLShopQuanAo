@@ -44,13 +44,13 @@
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.label6 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.dgvQLHoaDon = new System.Windows.Forms.DataGridView();
             this.maHoaDon = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.maNhanVienHD = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.maKhachHangHD = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ngayLapHoaDon = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvKhachHang)).BeginInit();
             this.panel7.SuspendLayout();
             this.panel8.SuspendLayout();
@@ -95,6 +95,7 @@
             this.dgvKhachHang.Size = new System.Drawing.Size(1006, 150);
             this.dgvKhachHang.TabIndex = 3;
             this.dgvKhachHang.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvKhachHang_CellClick);
+            this.dgvKhachHang.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgvKhachHang_CellFormatting);
             // 
             // maKhachHang
             // 
@@ -197,6 +198,26 @@
             this.panel1.Size = new System.Drawing.Size(1111, 643);
             this.panel1.TabIndex = 186;
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(21, 441);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(259, 32);
+            this.label2.TabIndex = 189;
+            this.label2.Text = "Danh sách hóa đơn";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(21, 199);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(429, 32);
+            this.label1.TabIndex = 188;
+            this.label1.Text = "Thông báo chương trình giảm giá";
+            // 
             // dgvQLHoaDon
             // 
             this.dgvQLHoaDon.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
@@ -237,26 +258,6 @@
             this.ngayLapHoaDon.HeaderText = "Ngày lập hóa đơn";
             this.ngayLapHoaDon.MinimumWidth = 6;
             this.ngayLapHoaDon.Name = "ngayLapHoaDon";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(21, 199);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(429, 32);
-            this.label1.TabIndex = 188;
-            this.label1.Text = "Thông báo chương trình giảm giá";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(21, 441);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(259, 32);
-            this.label2.TabIndex = 189;
-            this.label2.Text = "Danh sách hóa đơn";
             // 
             // FQLKhachHang
             // 

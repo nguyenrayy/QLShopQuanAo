@@ -79,6 +79,7 @@
             this.maSPTSPDTMoi = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.soLuongSPDT = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.maSPTSPDTCu = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.label3 = new System.Windows.Forms.Label();
             this.tabQLHD.SuspendLayout();
             this.tabHD.SuspendLayout();
             this.panel6.SuspendLayout();
@@ -327,6 +328,7 @@
             this.dgvQLHoaDon.Size = new System.Drawing.Size(947, 136);
             this.dgvQLHoaDon.TabIndex = 132;
             this.dgvQLHoaDon.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvQLHoaDon_CellClick);
+            this.dgvQLHoaDon.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgvQLHoaDon_CellFormatting);
             // 
             // maHoaDon
             // 
@@ -406,6 +408,7 @@
             // tabPDT
             // 
             this.tabPDT.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(212)))), ((int)(((byte)(226)))), ((int)(((byte)(212)))));
+            this.tabPDT.Controls.Add(this.label3);
             this.tabPDT.Controls.Add(this.panel3);
             this.tabPDT.Controls.Add(this.dgvPhieuDoiTra);
             this.tabPDT.Controls.Add(this.dgvCTPhieuDoiTra);
@@ -479,13 +482,14 @@
             this.ngayDoiTra,
             this.maXuLyDoiTra,
             this.maHDDT});
-            this.dgvPhieuDoiTra.Location = new System.Drawing.Point(148, 96);
+            this.dgvPhieuDoiTra.Location = new System.Drawing.Point(43, 96);
             this.dgvPhieuDoiTra.Name = "dgvPhieuDoiTra";
             this.dgvPhieuDoiTra.RowHeadersWidth = 51;
             this.dgvPhieuDoiTra.RowTemplate.Height = 24;
-            this.dgvPhieuDoiTra.Size = new System.Drawing.Size(801, 150);
+            this.dgvPhieuDoiTra.Size = new System.Drawing.Size(1015, 189);
             this.dgvPhieuDoiTra.TabIndex = 2;
             this.dgvPhieuDoiTra.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPhieuDoiTra_CellClick);
+            this.dgvPhieuDoiTra.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgvPhieuDoiTra_CellFormatting);
             // 
             // maPhieuDoiTra
             // 
@@ -532,11 +536,11 @@
             this.maSPTSPDTMoi,
             this.soLuongSPDT,
             this.maSPTSPDTCu});
-            this.dgvCTPhieuDoiTra.Location = new System.Drawing.Point(148, 321);
+            this.dgvCTPhieuDoiTra.Location = new System.Drawing.Point(43, 397);
             this.dgvCTPhieuDoiTra.Name = "dgvCTPhieuDoiTra";
             this.dgvCTPhieuDoiTra.RowHeadersWidth = 51;
             this.dgvCTPhieuDoiTra.RowTemplate.Height = 24;
-            this.dgvCTPhieuDoiTra.Size = new System.Drawing.Size(801, 150);
+            this.dgvCTPhieuDoiTra.Size = new System.Drawing.Size(1015, 183);
             this.dgvCTPhieuDoiTra.TabIndex = 3;
             // 
             // maDTCTPDT
@@ -563,6 +567,16 @@
             this.maSPTSPDTCu.MinimumWidth = 6;
             this.maSPTSPDTCu.Name = "maSPTSPDTCu";
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(15, 322);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(403, 32);
+            this.label3.TabIndex = 140;
+            this.label3.Text = "Danh sách chi tiết phiếu đổi trả";
+            // 
             // FQLHoaDon
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -571,7 +585,7 @@
             this.ClientSize = new System.Drawing.Size(1104, 638);
             this.Controls.Add(this.tabQLHD);
             this.Name = "FQLHoaDon";
-            this.Text = "Hóa đơn";
+            this.Text = "Quản lý hóa đơn";
             this.tabQLHD.ResumeLayout(false);
             this.tabHD.ResumeLayout(false);
             this.panel6.ResumeLayout(false);
@@ -586,6 +600,7 @@
             this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.tabPDT.ResumeLayout(false);
+            this.tabPDT.PerformLayout();
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
             this.panel4.ResumeLayout(false);
@@ -649,5 +664,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Panel panel6;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label3;
     }
 }

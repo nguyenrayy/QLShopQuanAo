@@ -32,5 +32,9 @@ namespace BLL
         {
             return nsxDAL.TimKiemNSX(tuKhoa);
         }
-    }
+        public bool IsForeignKeyInOtherTables(string MaNSX)
+        {
+            return nsxDAL.IsForeignKeyInOtherTables(MaNSX);
+        }
+        }
 }

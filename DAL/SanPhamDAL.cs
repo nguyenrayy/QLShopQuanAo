@@ -49,7 +49,7 @@ namespace DAL
             Moketnoi();
             SqlCommand cmd = new SqlCommand();
             cmd.CommandType = CommandType.Text;
-            cmd.CommandText = "INSERT INTO SanPham VALUES (@maSP, @tenSP, @motaSP, @giaNhap, @donGiaNiemYet, @ngayNhap, @chatLieu, @maNhaSX)";
+            cmd.CommandText = "INSERT INTO SanPham VALUES (@maSP, @tenSP, @motaSP, @giaNhap, @donGiaNiemYet, @chatLieu)";
             cmd.Connection = conec;
             cmd.Parameters.AddWithValue("@maSP", sp.maSanPham);
             cmd.Parameters.AddWithValue("@tenSP", sp.tenSanPham);
@@ -84,7 +84,7 @@ namespace DAL
             {
                 SqlCommand cmd = new SqlCommand();
                 cmd.CommandType = CommandType.Text;
-                cmd.CommandText = "UPDATE SanPham SET tenSanPham = @tenSP, moTaSanPham = @motaSP, giaNhap = @giaNhap, donGiaNiemYet = @donGiaNiemYet, ngayNhap = @ngayNhap, chatLieu = @chatLieu, maNhaSanXuat = @maNhaSX WHERE maSanPham = @maSP";
+                cmd.CommandText = "UPDATE SanPham SET tenSanPham = @tenSP, moTaSanPham = @motaSP, giaNhap = @giaNhap, donGiaNiemYet = @donGiaNiemYet,  chatLieu = @chatLieu WHERE maSanPham = @maSP";
                 cmd.Connection = conec;
                 cmd.Parameters.AddWithValue("@maSP", sp.maSanPham);
                 cmd.Parameters.AddWithValue("@tenSP", sp.tenSanPham);
@@ -210,6 +210,20 @@ namespace DAL
             }
             Dongketnoi();
             return sp;
+        }
+
+        public bool IsForeignKeyInOtherTables(string maSP)
+        {
+            Moketnoi();
+            var sql = "SELECT COUNT(*) FROM MaSanPhamTheoSize WHERE maSanPham = @MaSP";
+            var cmd = new SqlCommand(sql, conec);
+            cmd.Parameters.AddWithValue("@MaSP", maSP);
+
+            int count = (int)cmd.ExecuteScalar();
+
+            Dongketnoi();
+
+            return count > 0;
         }
 
     }

@@ -21,7 +21,6 @@ namespace GUI
         public FAdminMenu()
         {
             InitializeComponent();
-
         }
 
         private Color SelectThemeColor()
@@ -44,7 +43,7 @@ namespace GUI
                     currentButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                     panelTitleBar.BackColor = color;
                     panelLogo.BackColor = ThemeColor.ChangeColorBrightness(color, -0.3);
-                    //btnCloseChildForm.Visible = true;
+                   
                 }
             }
         }
@@ -116,6 +115,39 @@ namespace GUI
             Login lg = new Login();
             this.Hide();
             lg.ShowDialog();
+        }
+
+        
+        private void Reset()
+        {
+            DisableButton();
+            lblTitle.Text = "HOME";
+            panelTitleBar.BackColor = Color.FromArgb(110, 133, 183);
+            panelLogo.BackColor = Color.FromArgb(37, 49, 109);
+            currentButton = null;
+            
+        }
+
+        private void panelLogo_Click(object sender, EventArgs e)
+        {
+            if (activeForm != null)
+                activeForm.Close();
+            Reset();
+        }
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+        private void btnMaximize_Click(object sender, EventArgs e)
+        {
+            if (WindowState == FormWindowState.Normal)
+                this.WindowState = FormWindowState.Maximized;
+            else
+                this.WindowState = FormWindowState.Normal;
+        }
+        private void bntMinimize_Click(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Minimized;
         }
     }
 }

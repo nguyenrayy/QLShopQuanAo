@@ -104,22 +104,33 @@ namespace DAL
         }
         public bool addPhieuDoiTra(PhieuDoiTra pdt)
         {
-            Boolean success = false;
+            bool success = false;
             Moketnoi();
             try
             {
-                string SQL = string.Format("INSERT INTO PhieuDoiTra VALUES ('{0}', '{1}', '{2}' , '{3}', '{4}' , '{5}' )",
-                  pdt.maPhieuDoiTra, pdt.maNhanVien, pdt.maKhachHang, pdt.ngayDoiTra, pdt.maXuLyDoiTra, pdt.maHoaDon);
+                string SQL = "INSERT INTO PhieuDoiTra (maPhieuDoiTra, maNhanVien, maKhachHang, ngayDoiTra, maXuLyDoiTra, maHoaDon) " +
+                             "VALUES (@maPhieuDoiTra, @maNhanVien, @maKhachHang, @ngayDoiTra, @maXuLyDoiTra, @maHoaDon)";
+
                 SqlCommand cmd = new SqlCommand(SQL, conec);
+                cmd.Parameters.AddWithValue("@maPhieuDoiTra", pdt.maPhieuDoiTra);
+                cmd.Parameters.AddWithValue("@maNhanVien", pdt.maNhanVien);
+                cmd.Parameters.AddWithValue("@maKhachHang", pdt.maKhachHang);
+                cmd.Parameters.AddWithValue("@ngayDoiTra", pdt.ngayDoiTra);
+                cmd.Parameters.AddWithValue("@maXuLyDoiTra", pdt.maXuLyDoiTra);
+                cmd.Parameters.AddWithValue("@maHoaDon", pdt.maHoaDon);
+
                 if (cmd.ExecuteNonQuery() > 0)
                 {
-                    success =  true;
+                    success = true;
                 }
             }
-           
-            finally { Dongketnoi(); }
+            finally
+            {
+                Dongketnoi();
+            }
             return success;
         }
+
         public Boolean delPhieuDoiTra(PhieuDoiTra pdt)
         {
             Moketnoi();

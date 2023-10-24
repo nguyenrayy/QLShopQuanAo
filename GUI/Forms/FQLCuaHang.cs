@@ -150,7 +150,7 @@ namespace GUI.Forms
                 DataGridViewRow selectedRow = dgvCuaHang.Rows[e.RowIndex];
                 string maCuaHang = dgvCuaHang.Rows[e.RowIndex].Cells[0].Value.ToString();
                 LoadDsSPCH(maCuaHang);
-
+                cbMaCuaHangSP.Text = maCuaHang;
                 txtMaCH.Text = selectedRow.Cells["maCuaHang1"].Value.ToString();
                 txtMaCH.ReadOnly = true; // không cho sửa mã
                 txtTenCH.Text = selectedRow.Cells["tenCuaHang"].Value.ToString();
@@ -191,9 +191,18 @@ namespace GUI.Forms
                 {
                     string maCH = txtMaCH.Text;
                     CuaHangBLL chBLL = new CuaHangBLL();
-                    chBLL.XoaCuaHang(maCH);
-                    MessageBox.Show("Xóa cửa hàng " + txtTenCH.Text + " thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    LoadDsCuaHang();
+                    bool isForeignKey = chBLL.IsForeignKeyInOtherTables(maCH);
+                    if (isForeignKey)
+                    {
+                        MessageBox.Show("Xóa cửa hàng thất bại. Do cửa hàng đang được hoạt động.", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                    }
+                    else
+                    {
+                        chBLL.XoaCuaHang(maCH);
+                        MessageBox.Show("Xóa cửa hàng " + txtTenCH.Text + " thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        LoadDsCuaHang();
+                    }
                 }
             }
             catch (Exception exception)
@@ -277,43 +286,54 @@ namespace GUI.Forms
                 {
                     string maSanPham = cbMaSanPhamCH.Text;
                     int soLuongNhap = int.Parse(txtSoLuongSPCH.Text);
-
-                    // Load số lượng tồn kho hiện tại từ cơ sở dữ liệu
-                    MaSanPhamTheoSizeBLL msptsBLL = new MaSanPhamTheoSizeBLL();
-                    List<MaSanPhamTheoSize> msptsList = msptsBLL.LoadDlMaSPTheoSize();
-                    MaSanPhamTheoSize maSPtheoSize = msptsList.SingleOrDefault(s => s.maSPTheoSize == maSanPham);
-
-                    if (maSPtheoSize != null)
+                    SanPham_CuaHangBLL spchBLL = new SanPham_CuaHangBLL();
+                    List<SanPham_CuaHang> dsSPCH = spchBLL.getPNTheoCH(new SanPham_CuaHang { maCuaHang = txtMaCH.Text });
+                    SanPham_CuaHang mspts = dsSPCH.SingleOrDefault(s => s.maSPTheoSize == maSanPham);
+                    if (mspts != null)
                     {
-                        // Kiểm tra xem số lượng nhập có vượt quá số lượng tồn kho không
-                        if (soLuongNhap > maSPtheoSize.soLuongTonKho)
-                        {
-                            MessageBox.Show("Số lượng nhập vượt quá số lượng tồn kho. Không thể thêm sản phẩm.", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        }
-                        else
-                        {
-                            // Trừ số lượng nhập từ số lượng tồn kho hiện tại
-                            maSPtheoSize.soLuongTonKho -= soLuongNhap;
+                        MessageBox.Show("Sản phẩm theo size đã được thêm cho cửa hàng.", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+                    else
+                    {
+                        // Load số lượng tồn kho hiện tại từ cơ sở dữ liệu
+                        MaSanPhamTheoSizeBLL msptsBLL = new MaSanPhamTheoSizeBLL();
+                        List<MaSanPhamTheoSize> msptsList = msptsBLL.LoadDlMaSPTheoSize();
+                        MaSanPhamTheoSize maSPtheoSize = msptsList.SingleOrDefault(s => s.maSPTheoSize == maSanPham);
 
-                            // Cập nhật số lượng tồn kho mới vào cơ sở dữ liệu
-                            msptsBLL.SuaSoLuongTonKho(maSPtheoSize);
-                        }
+                        if (maSPtheoSize != null)
+                        {
+                            // Kiểm tra xem số lượng nhập có vượt quá số lượng tồn kho không
+                            if (soLuongNhap > maSPtheoSize.soLuongTonKho)
+                            {
+                                MessageBox.Show("Số lượng nhập vượt quá số lượng tồn kho. Không thể thêm sản phẩm.", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            }
+                            else
+                            {
 
+
+                                // Trừ số lượng nhập từ số lượng tồn kho hiện tại
+                                maSPtheoSize.soLuongTonKho -= soLuongNhap;
+
+                                // Cập nhật số lượng tồn kho mới vào cơ sở dữ liệu
+                                msptsBLL.SuaSoLuongTonKho(maSPtheoSize);
+                                SanPham_CuaHang spch = new SanPham_CuaHang
+                                {
+                                    maCuaHang = cbMaCuaHangSP.Text,
+                                    maSPTheoSize = maSanPham,
+                                    soLuong = soLuongNhap
+                                };
+                                spchBLL.ThemSPChoCH(spch);
+
+                                MessageBox.Show("Sản phẩm được thêm cho cửa hàng thành công.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                LoadDsSPCH(cbMaCuaHangSP.Text);
+
+                            }
+
+                        }
                     }
 
-                    // Tiến hành thêm sản phẩm cho cửa hàng
-                    SanPham_CuaHang spch = new SanPham_CuaHang
-                    {
-                        maCuaHang = cbMaCuaHangSP.Text,
-                        maSPTheoSize = maSanPham,
-                        soLuong = soLuongNhap
-                    };
 
-                    SanPham_CuaHangBLL spchBLL = new SanPham_CuaHangBLL();
-                    spchBLL.ThemSPChoCH(spch);
 
-                    MessageBox.Show("Sản phẩm được thêm cho cửa hàng thành công.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    LoadDsSPCH(maSanPham);
                 }
                 catch (Exception ex)
                 {
@@ -336,48 +356,57 @@ namespace GUI.Forms
 
                 // Declare the spch variable here
 
-
-                // Load số lượng tồn kho hiện tại từ cơ sở dữ liệu
-                MaSanPhamTheoSizeBLL msptsBLL = new MaSanPhamTheoSizeBLL();
-                List<MaSanPhamTheoSize> msptsList = msptsBLL.LoadDlMaSPTheoSize();
-                MaSanPhamTheoSize sanPham = msptsList.SingleOrDefault(s => s.maSPTheoSize == maSanPham);
-
-                if (sanPham != null)
+                SanPham_CuaHangBLL spchBLL = new SanPham_CuaHangBLL();
+                List<SanPham_CuaHang> dsSPCH = spchBLL.getPNTheoCH(new SanPham_CuaHang { maCuaHang = txtMaCH.Text });
+                SanPham_CuaHang mspts = dsSPCH.SingleOrDefault(s => s.maSPTheoSize == maSanPham);
+                if (mspts != null)
                 {
-                    int soLuongBanDau = int.Parse(dgvSanPhamCuaHang.SelectedRows[0].Cells["soLuongSPCH"].Value.ToString());
-                    int soLuongChenhLech = soLuongNhapMoi - soLuongBanDau;
+                    MaSanPhamTheoSizeBLL msptsBLL = new MaSanPhamTheoSizeBLL();
+                    List<MaSanPhamTheoSize> msptsList = msptsBLL.LoadDlMaSPTheoSize();
+                    MaSanPhamTheoSize sanPham = msptsList.SingleOrDefault(s => s.maSPTheoSize == maSanPham);
 
-                    // Kiểm tra xem số lượng nhập mới có vượt quá số lượng tồn kho không
-                    if (soLuongChenhLech > sanPham.soLuongTonKho)
+                    if (sanPham != null)
                     {
-                        MessageBox.Show("Số lượng nhập vượt quá số lượng tồn kho. Không thể sửa sản phẩm.", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        return; // Không thực hiện sửa sản phẩm nếu số lượng nhập vượt quá tồn kho
-                    }
-                    else
-                    {
-                        // Tính toán số lượng tồn kho mới bằng số lượng nhập mới
-                        sanPham.soLuongTonKho -= soLuongChenhLech;
+                        int soLuongBanDau = int.Parse(dgvSanPhamCuaHang.SelectedRows[0].Cells["soLuongSPCH"].Value.ToString());
+                        int soLuongChenhLech = soLuongNhapMoi - soLuongBanDau;
 
-                        // Cập nhật số lượng tồn kho mới vào cơ sở dữ liệu
-                        msptsBLL.SuaSoLuongTonKho(sanPham);
-                    }
+                        // Kiểm tra xem số lượng nhập mới có vượt quá số lượng tồn kho không
+                        if (soLuongChenhLech > sanPham.soLuongTonKho)
+                        {
+                            MessageBox.Show("Số lượng sửa vượt quá số lượng tồn kho. Không thể sửa sản phẩm.", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            return; // Không thực hiện sửa sản phẩm nếu số lượng nhập vượt quá tồn kho
+                        }
+                        else
+                        {
+                            // Tính toán số lượng tồn kho mới bằng số lượng nhập mới
+                            sanPham.soLuongTonKho -= soLuongChenhLech;
 
+                            // Cập nhật số lượng tồn kho mới vào cơ sở dữ liệu
+                            msptsBLL.SuaSoLuongTonKho(sanPham);
+                            // Tiến hành sửa sản phẩm cho cửa hàng
+                            SanPham_CuaHang spch = new SanPham_CuaHang
+                            {
+                                maCuaHang = maCuaHang,
+                                maSPTheoSize = maSanPham,
+                                soLuong = soLuongNhapMoi
+                            };
+
+                            spchBLL.SuaSPCuaCH(spch);
+
+                            MessageBox.Show("Sửa thông tin sản phẩm cho cửa hàng thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                            LoadDsSPCH(maCuaHang);
+                        }
+                    }
+                }
+                else
+                {
+
+                    MessageBox.Show("Sản phẩm theo size không tồn tại.", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
 
                 }
 
-                // Tiến hành sửa sản phẩm cho cửa hàng
-                SanPham_CuaHang spch = new SanPham_CuaHang
-                {
-                    maCuaHang = maCuaHang,
-                    maSPTheoSize = maSanPham,
-                    soLuong = soLuongNhapMoi
-                };
-                SanPham_CuaHangBLL spchBLL = new SanPham_CuaHangBLL();
-                spchBLL.SuaSPCuaCH(spch);
 
-                MessageBox.Show("Sửa thông tin sản phẩm cho cửa hàng thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                LoadDsSPCH(maCuaHang);
             }
             catch (Exception exception)
             {
@@ -700,9 +729,18 @@ namespace GUI.Forms
                 {
                     string maNV = txtMaNV.Text;
                     NhanVienBLL nvBLL = new NhanVienBLL();
-                    nvBLL.XoaNhanVien(maNV);
-                    MessageBox.Show("Xóa nhân viên thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    LoadDsNhanVien();
+                    bool isForeignKey = nvBLL.IsForeignKeyInOtherTables(maNV);
+                    if (isForeignKey)
+                    {
+                        MessageBox.Show("Xóa nhân viên thất bại. Do nhân viên đang làm việc.", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                    }
+                    else
+                    {
+                        nvBLL.XoaNhanVien(maNV);
+                        MessageBox.Show("Xóa nhân viên thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        LoadDsNhanVien();
+                    }
                 }
             }
             catch (Exception exception)
@@ -772,6 +810,15 @@ namespace GUI.Forms
             }
         }
 
-        
+        private void dgvNhanVien_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (dgvNhanVien.Columns[e.ColumnIndex].Name == "ngaySinh" && e.Value != null)
+            {
+                // Định dạng giá trị trong cột "Ngày nhập" theo định dạng dd/MM/yyyy
+                DateTime dateValue = (DateTime)e.Value;
+                e.Value = dateValue.ToString("dd/MM/yyyy");
+                e.FormattingApplied = true; // Đánh dấu rằng việc định dạng đã được áp dụng
+            }
+        }
     }
 }

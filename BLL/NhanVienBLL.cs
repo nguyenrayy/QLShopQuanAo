@@ -64,5 +64,9 @@ namespace BLL
         {
             nvdal.SuaNhanVien(nv);
         }
+        public bool IsForeignKeyInOtherTables(string maNV)
+        {
+            return nvdal.IsForeignKeyInOtherTables(maNV);
+        }
         }
 }

@@ -12,6 +12,7 @@ namespace BLL
     {
         HoaDonBanDAL hdbDAL = new HoaDonBanDAL();
         SanPhamBLL spBLL = new SanPhamBLL();
+        PhieuDoiTraBLL pdtBLL = new PhieuDoiTraBLL();
         public List<HoaDonBan> getHoaDonBanList(KhachHang kh)
         {
             return hdbDAL.getHoaDonBanList(kh);
@@ -56,9 +57,75 @@ namespace BLL
         {
             return hdbDAL.countHoaDonBan(kh);
         }
-        public double tinhTongTien(KhachHang kh)
+        public double tinhTongTien(KhachHang kh, List<HoaDonBan> hdbl, List<PhieuDoiTra> pdtl)
         {
-            return hdbDAL.tinhTongTien(kh);
+            double tongTien = 0;
+            hdbl = hdbl.Where(hd => hd.maKhachHang == kh.maKhachHang).ToList();
+            foreach (var hoaDon in hdbl)
+            {
+                ChiTietHoaDon cthdxx = new ChiTietHoaDon();
+                cthdxx.maHoaDon = hoaDon.maHoaDon;
+                List<ChiTietHoaDon> cthdl = hdbDAL.getCTHDList(cthdxx);
+
+                double tongTienHoaDon = 0;
+
+                foreach (ChiTietHoaDon chiTiet in cthdl)
+                {
+                    String msp = chiTiet.maSanPhamTheoSize.Split('_')[0];
+                    SanPham sanPham = spBLL.getSanPham(msp);
+                    if (sanPham != null)
+                    {
+                        int donGia = sanPham.donGiaNiemYet;
+                        double tienGiamGia = donGia * chiTiet.soLuong * chiTiet.giamGia;
+                        double thanhTien = donGia * chiTiet.soLuong - tienGiamGia;
+                        tongTienHoaDon += thanhTien;
+                    }
+                }
+
+                var phieuDoiTra = pdtl.Where(pd => pd.maHoaDon == hoaDon.maHoaDon);
+
+                foreach (var phieu in phieuDoiTra)
+                {
+
+                    CTPhieuDoiTra ctpdtxx = new CTPhieuDoiTra();
+                    ctpdtxx.maPhieuDoiTra = phieu.maPhieuDoiTra;
+                    List<CTPhieuDoiTra> ctpdtl = pdtBLL.getCTPDTList(ctpdtxx);
+
+                    foreach (var chiTiet in ctpdtl)
+                    {
+                        String msp = chiTiet.maSPTheoSize.Split('_')[0];
+                        var sanPham = spBLL.getSanPham(msp);
+                        if (sanPham != null)
+                        {
+                            double giamgia = cthdl.FirstOrDefault(x => x.maSanPhamTheoSize == chiTiet.maSPTheoSize)?.giamGia ?? 0;
+                            double donGia = sanPham.donGiaNiemYet;
+                            double tienGiamGia = donGia * chiTiet.soLuong * giamgia;
+                            double thanhTien = donGia * chiTiet.soLuong - tienGiamGia;
+                            tongTienHoaDon -= thanhTien;
+                        }
+                    }
+
+                    if (phieu.maXuLyDoiTra == "1")
+                    {
+                        foreach (var chiTiet in ctpdtl)
+                        {
+                            String mspRE = chiTiet.maSPTheoSizeRe.Split('_')[0];
+                            var sanPhamRe = spBLL.getSanPham(mspRE);
+                            if (sanPhamRe != null)
+                            {
+                                double giamgia = cthdl.FirstOrDefault(x => x.maSanPhamTheoSize == chiTiet.maSPTheoSize)?.giamGia ?? 0;
+                                double donGia = sanPhamRe.donGiaNiemYet;
+                                double tienGiamGia = donGia * chiTiet.soLuong * giamgia;
+                                double thanhTien = donGia * chiTiet.soLuong - tienGiamGia;
+                                tongTienHoaDon += thanhTien;
+                            }
+                        }
+                    }
+                }
+                tongTien += tongTienHoaDon;
+            }
+
+            return tongTien;
         }
         public int TinhTongTien(List<ChiTietHoaDon> cthdlprivate)
         {
@@ -88,5 +155,5 @@ namespace BLL
             return hdbDAL.TimKiemHDB(tuKhoa);
         }
 
-        }
+    }
 }

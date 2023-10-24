@@ -58,6 +58,8 @@
             this.dpToDate = new System.Windows.Forms.DateTimePicker();
             this.lbDT001 = new System.Windows.Forms.Label();
             this.panDoanhThuTop = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.panDoanhThuRight.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chartSanPham)).BeginInit();
             this.panDoanhThuLeft.SuspendLayout();
@@ -69,29 +71,29 @@
             // cbChonSP
             // 
             this.cbChonSP.FormattingEnabled = true;
-            this.cbChonSP.Location = new System.Drawing.Point(26, 475);
+            this.cbChonSP.Location = new System.Drawing.Point(214, 493);
             this.cbChonSP.Name = "cbChonSP";
             this.cbChonSP.Size = new System.Drawing.Size(179, 24);
             this.cbChonSP.TabIndex = 10;
             // 
             // panDoanhThuRight
             // 
+            this.panDoanhThuRight.Controls.Add(this.label2);
             this.panDoanhThuRight.Controls.Add(this.label8);
             this.panDoanhThuRight.Controls.Add(this.chartSanPham);
             this.panDoanhThuRight.Controls.Add(this.cbChonSP);
             this.panDoanhThuRight.Controls.Add(this.btLoc_DT);
-            this.panDoanhThuRight.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panDoanhThuRight.Location = new System.Drawing.Point(625, 86);
+            this.panDoanhThuRight.Location = new System.Drawing.Point(738, 86);
             this.panDoanhThuRight.Margin = new System.Windows.Forms.Padding(4);
             this.panDoanhThuRight.Name = "panDoanhThuRight";
-            this.panDoanhThuRight.Size = new System.Drawing.Size(397, 541);
+            this.panDoanhThuRight.Size = new System.Drawing.Size(498, 600);
             this.panDoanhThuRight.TabIndex = 9;
             // 
             // label8
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(3, 14);
+            this.label8.Location = new System.Drawing.Point(10, 13);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(280, 32);
             this.label8.TabIndex = 135;
@@ -103,13 +105,13 @@
             this.chartSanPham.ChartAreas.Add(chartArea3);
             legend3.Name = "Legend1";
             this.chartSanPham.Legends.Add(legend3);
-            this.chartSanPham.Location = new System.Drawing.Point(9, 73);
+            this.chartSanPham.Location = new System.Drawing.Point(16, 75);
             this.chartSanPham.Name = "chartSanPham";
             series3.ChartArea = "ChartArea1";
             series3.Legend = "Legend1";
             series3.Name = "Series1";
             this.chartSanPham.Series.Add(series3);
-            this.chartSanPham.Size = new System.Drawing.Size(385, 370);
+            this.chartSanPham.Size = new System.Drawing.Size(466, 370);
             this.chartSanPham.TabIndex = 11;
             this.chartSanPham.Text = "chart2";
             // 
@@ -119,7 +121,7 @@
             this.btLoc_DT.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btLoc_DT.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
             this.btLoc_DT.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btLoc_DT.Location = new System.Drawing.Point(224, 459);
+            this.btLoc_DT.Location = new System.Drawing.Point(214, 540);
             this.btLoc_DT.Name = "btLoc_DT";
             this.btLoc_DT.Size = new System.Drawing.Size(150, 46);
             this.btLoc_DT.TabIndex = 9;
@@ -129,6 +131,7 @@
             // 
             // panDoanhThuLeft
             // 
+            this.panDoanhThuLeft.Controls.Add(this.label1);
             this.panDoanhThuLeft.Controls.Add(this.cbCuaHang);
             this.panDoanhThuLeft.Controls.Add(this.btThongKe);
             this.panDoanhThuLeft.Controls.Add(this.btnLocDTCH);
@@ -143,13 +146,13 @@
             this.panDoanhThuLeft.Location = new System.Drawing.Point(0, 86);
             this.panDoanhThuLeft.Margin = new System.Windows.Forms.Padding(4);
             this.panDoanhThuLeft.Name = "panDoanhThuLeft";
-            this.panDoanhThuLeft.Size = new System.Drawing.Size(617, 541);
+            this.panDoanhThuLeft.Size = new System.Drawing.Size(730, 707);
             this.panDoanhThuLeft.TabIndex = 8;
             // 
             // cbCuaHang
             // 
             this.cbCuaHang.FormattingEnabled = true;
-            this.cbCuaHang.Location = new System.Drawing.Point(62, 368);
+            this.cbCuaHang.Location = new System.Drawing.Point(184, 494);
             this.cbCuaHang.Name = "cbCuaHang";
             this.cbCuaHang.Size = new System.Drawing.Size(179, 24);
             this.cbCuaHang.TabIndex = 15;
@@ -160,7 +163,7 @@
             this.btThongKe.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btThongKe.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
             this.btThongKe.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btThongKe.Location = new System.Drawing.Point(431, 354);
+            this.btThongKe.Location = new System.Drawing.Point(554, 483);
             this.btThongKe.Name = "btThongKe";
             this.btThongKe.Size = new System.Drawing.Size(150, 42);
             this.btThongKe.TabIndex = 7;
@@ -174,7 +177,7 @@
             this.btnLocDTCH.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnLocDTCH.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
             this.btnLocDTCH.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnLocDTCH.Location = new System.Drawing.Point(259, 354);
+            this.btnLocDTCH.Location = new System.Drawing.Point(389, 483);
             this.btnLocDTCH.Name = "btnLocDTCH";
             this.btnLocDTCH.Size = new System.Drawing.Size(150, 42);
             this.btnLocDTCH.TabIndex = 14;
@@ -188,7 +191,7 @@
             this.btnPhieuNhapKho.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnPhieuNhapKho.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
             this.btnPhieuNhapKho.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnPhieuNhapKho.Location = new System.Drawing.Point(379, 434);
+            this.btnPhieuNhapKho.Location = new System.Drawing.Point(430, 558);
             this.btnPhieuNhapKho.Name = "btnPhieuNhapKho";
             this.btnPhieuNhapKho.Size = new System.Drawing.Size(235, 42);
             this.btnPhieuNhapKho.TabIndex = 13;
@@ -202,7 +205,7 @@
             this.btTienLoi.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btTienLoi.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
             this.btTienLoi.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btTienLoi.Location = new System.Drawing.Point(12, 486);
+            this.btTienLoi.Location = new System.Drawing.Point(63, 610);
             this.btTienLoi.Name = "btTienLoi";
             this.btTienLoi.Size = new System.Drawing.Size(150, 42);
             this.btTienLoi.TabIndex = 12;
@@ -216,7 +219,7 @@
             this.btPhieuNhap.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btPhieuNhap.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
             this.btPhieuNhap.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btPhieuNhap.Location = new System.Drawing.Point(379, 486);
+            this.btPhieuNhap.Location = new System.Drawing.Point(430, 610);
             this.btPhieuNhap.Name = "btPhieuNhap";
             this.btPhieuNhap.Size = new System.Drawing.Size(235, 41);
             this.btPhieuNhap.TabIndex = 11;
@@ -230,7 +233,7 @@
             this.btPhieuTra.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btPhieuTra.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
             this.btPhieuTra.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btPhieuTra.Location = new System.Drawing.Point(202, 486);
+            this.btPhieuTra.Location = new System.Drawing.Point(253, 610);
             this.btPhieuTra.Name = "btPhieuTra";
             this.btPhieuTra.Size = new System.Drawing.Size(150, 42);
             this.btPhieuTra.TabIndex = 10;
@@ -244,7 +247,7 @@
             this.btPhieuDoi.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btPhieuDoi.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
             this.btPhieuDoi.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btPhieuDoi.Location = new System.Drawing.Point(202, 434);
+            this.btPhieuDoi.Location = new System.Drawing.Point(253, 558);
             this.btPhieuDoi.Name = "btPhieuDoi";
             this.btPhieuDoi.Size = new System.Drawing.Size(150, 42);
             this.btPhieuDoi.TabIndex = 9;
@@ -258,7 +261,7 @@
             this.btHoaDon.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btHoaDon.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
             this.btHoaDon.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btHoaDon.Location = new System.Drawing.Point(12, 434);
+            this.btHoaDon.Location = new System.Drawing.Point(63, 558);
             this.btHoaDon.Name = "btHoaDon";
             this.btHoaDon.Size = new System.Drawing.Size(150, 42);
             this.btHoaDon.TabIndex = 8;
@@ -272,7 +275,7 @@
             this.panDT003.Dock = System.Windows.Forms.DockStyle.Top;
             this.panDT003.Location = new System.Drawing.Point(0, 0);
             this.panDT003.Name = "panDT003";
-            this.panDT003.Size = new System.Drawing.Size(617, 348);
+            this.panDT003.Size = new System.Drawing.Size(730, 462);
             this.panDT003.TabIndex = 0;
             // 
             // chartDoanhThu
@@ -287,7 +290,7 @@
             series4.Legend = "Legend1";
             series4.Name = "Series1";
             this.chartDoanhThu.Series.Add(series4);
-            this.chartDoanhThu.Size = new System.Drawing.Size(604, 345);
+            this.chartDoanhThu.Size = new System.Drawing.Size(727, 459);
             this.chartDoanhThu.TabIndex = 0;
             this.chartDoanhThu.Text = "chart1";
             // 
@@ -296,7 +299,7 @@
             this.lbDoanhThux.AutoSize = true;
             this.lbDoanhThux.Font = new System.Drawing.Font("Arial", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbDoanhThux.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.lbDoanhThux.Location = new System.Drawing.Point(395, 9);
+            this.lbDoanhThux.Location = new System.Drawing.Point(571, 9);
             this.lbDoanhThux.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.lbDoanhThux.Name = "lbDoanhThux";
             this.lbDoanhThux.Size = new System.Drawing.Size(170, 33);
@@ -362,24 +365,45 @@
             this.panDoanhThuTop.Location = new System.Drawing.Point(0, 0);
             this.panDoanhThuTop.Margin = new System.Windows.Forms.Padding(4);
             this.panDoanhThuTop.Name = "panDoanhThuTop";
-            this.panDoanhThuTop.Size = new System.Drawing.Size(1022, 86);
+            this.panDoanhThuTop.Size = new System.Drawing.Size(1227, 86);
             this.panDoanhThuTop.TabIndex = 7;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(13, 493);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(152, 25);
+            this.label1.TabIndex = 16;
+            this.label1.Text = "Chọn cửa hàng:";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(21, 494);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(157, 25);
+            this.label2.TabIndex = 136;
+            this.label2.Text = "Chọn sản phẩm:";
             // 
             // FQLDoanhThu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(238)))), ((int)(((byte)(255)))));
-            this.ClientSize = new System.Drawing.Size(1022, 627);
+            this.ClientSize = new System.Drawing.Size(1227, 793);
             this.Controls.Add(this.panDoanhThuRight);
             this.Controls.Add(this.panDoanhThuLeft);
             this.Controls.Add(this.panDoanhThuTop);
             this.Name = "FQLDoanhThu";
-            this.Text = "Doanh Thu";
+            this.Text = "Quản lý doanh Thu";
             this.panDoanhThuRight.ResumeLayout(false);
             this.panDoanhThuRight.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chartSanPham)).EndInit();
             this.panDoanhThuLeft.ResumeLayout(false);
+            this.panDoanhThuLeft.PerformLayout();
             this.panDT003.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.chartDoanhThu)).EndInit();
             this.panDoanhThuTop.ResumeLayout(false);
@@ -414,5 +438,7 @@
         private System.Windows.Forms.ComboBox cbCuaHang;
         private System.Windows.Forms.Button btnLocDTCH;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label1;
     }
 }

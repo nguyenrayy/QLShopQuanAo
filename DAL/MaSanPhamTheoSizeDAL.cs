@@ -145,7 +145,7 @@ namespace DAL
             }
         }
 
-        public void XoaSanPhamTheoSize(string maSP)
+        public void XoaSanPhamTheoSize(string maSP, string maSize)
         {
             Moketnoi();
 
@@ -154,17 +154,16 @@ namespace DAL
                 using (SqlCommand cmd = new SqlCommand())
                 {
                     cmd.CommandType = CommandType.Text;
-                    cmd.CommandText = "DELETE FROM MaSanPhamTheoSize WHERE maSanPham = @maSP";
+                    cmd.CommandText = "DELETE FROM MaSanPhamTheoSize WHERE maSanPham = @maSP and maSize = @maSize";
                     cmd.Connection = conec;
                     cmd.Parameters.AddWithValue("@maSP", maSP);
-
+                    cmd.Parameters.AddWithValue("@maSize", maSize);
                     cmd.ExecuteNonQuery();
                 }
             }
             catch (Exception ex)
             {
-                // Xử lý ngoại lệ nếu có lỗi
-                // Ví dụ: MessageBox.Show("Lỗi khi xóa sản phẩm: " + ex.Message);
+                
                 throw ex;
             }
             finally
@@ -216,6 +215,22 @@ namespace DAL
             }
             Dongketnoi();
             return ctsp;
+        }
+
+        public bool IsForeignKeyInOtherTables(string mspts)
+        {
+            Moketnoi();
+            var sql = "SELECT SUM(totalCount) FROM ( SELECT COUNT(*) AS totalCount FROM ChiTietPhieuNhapKho WHERE maSPTheoSize = @MaSP " +
+              "UNION " +
+              "SELECT COUNT(*) AS totalCount FROM SanPham_CuaHang WHERE maSPTheoSize = @MaSP) AS CombinedCounts";
+            var cmd = new SqlCommand(sql, conec);
+            cmd.Parameters.AddWithValue("@MaSP", mspts);
+
+            int count = (int)cmd.ExecuteScalar();
+
+            Dongketnoi();
+
+            return count > 0;
         }
 
     }

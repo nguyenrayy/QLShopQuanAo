@@ -53,6 +53,7 @@ namespace GUI
         List<SanPham_CuaHang> spchlt = null;
         FNVHoaDon fnvhd = new FNVHoaDon();
         CuaHang ch = new CuaHang();
+        private double giamgia = 0.0;
         public FNVKhachHang()
         {
             InitializeComponent();
@@ -67,13 +68,13 @@ namespace GUI
 
             tabNhanVienMenu.SizeMode = TabSizeMode.Fixed;
             tabNhanVienMenu.ItemSize = new System.Drawing.Size(0, 1);
-            
+
             ch = chBLL.getCuaHang(nv.maCuaHang);
             dgSPDT.Hide();
             flPicSP.Hide();
             picSP_HD.Hide();
             lbNgayDoi.Value = DateTime.Now;
-            //PhanQuyen();
+            PhanQuyen();
         }
 
         private void PhanQuyen()
@@ -82,13 +83,14 @@ namespace GUI
             if (cv.tenChucVu != "Cửa hàng trưởng")
             {
                 btXoaKHNV.Hide();
-                panNguonThuKH.Hide();
             }
             else
             {
                 btKHNV_LHD.Hide();
                 btPhieuDoi.Hide();
                 btPhieuTra.Hide();
+                btThemKHNV.Hide();
+                btResetKHNV.Hide();
             }
         }
         public KhachHang SetKhach()
@@ -141,10 +143,42 @@ namespace GUI
 
             SetKhach();
 
+            double TTT = hdbBLL.tinhTongTien(kh, hdbl, pdtl);
             lbCountHD.Text = hdbBLL.countHoaDonBan(kh).ToString();
-            lbTongTienKH.Text = hdbBLL.tinhTongTien(kh).ToString();
+            lbTongTienKH.Text = TTT.ToString();
+            XepHangKhachHang(TTT, lbXepHang);
         }
 
+        int XH = 0;
+        public void XepHangKhachHang(double Tien, Label lx)
+        {
+            string xepHang = "Mới";
+            lx.ForeColor = Color.Purple;
+            if (Tien > 800000)
+            {
+                xepHang = "Vàng";
+                lx.ForeColor = Color.Goldenrod;
+                XH = 3;
+            }
+            else
+            if (Tien > 500000)
+            {
+                xepHang = "Bạc";
+                lx.ForeColor = Color.LightGray;
+                XH = 2;
+            }
+            else
+            if (Tien > 300000)
+            {
+                xepHang = "Đồng";
+                lx.ForeColor = Color.DarkKhaki;
+                XH = 1;
+            }
+            else
+                XH = 0;
+
+            lbXepHang.Text = xepHang;
+        }
 
         // Giới hạn dữ liệu nhập vào
         private void txtKHNVSDT_KeyPress(object sender, KeyPressEventArgs e)
@@ -188,6 +222,7 @@ namespace GUI
         {
             cbKHNVGioiTinh.Items.Add("Nam");
             cbKHNVGioiTinh.Items.Add("Nữ");
+            cbKHNVGioiTinh.SelectedIndex = 0;
             cbKHNVGioiTinh.DropDownStyle = ComboBoxStyle.DropDownList;
         }
         private Boolean getGioiTinhKH()
@@ -210,6 +245,7 @@ namespace GUI
 
             lbCountHD.Text = "";
             lbTongTienKH.Text = "";
+            lbXepHang.Text = "";
         }
 
         // Thao tác với Khách Hàng
@@ -218,7 +254,7 @@ namespace GUI
         private void btThemKHNV_Click(object sender, EventArgs e)
         {
 
-            if (txtKHNVHo.Text.Equals("") || txtKHNVDiaChi.Text.Equals("") || txtKHNVSDT.Text.Equals(""))
+            if (txtKHNVHo.Text.Equals("") || txtKHNVSDT.Text.Equals(""))
             {
                 lbWarningKH.Text = "Hãy nhập đầy đủ thông tin !";
             }
@@ -293,13 +329,15 @@ namespace GUI
             else
             {
                 tabNhanVienMenu.SelectedTab = tabNhanVienMenu.TabPages["tabHDB"];
-
+                if (pnPDTLeft != null)
+                {
+                    loadKhachHangPDT(pnPDTLeft, pnSPNVLeft);
+                }
                 loadKhachHangInfo(GetKhach());
 
                 spl = spBLL.LoadDlSanPham();
                 spchl = spchBLL.getSPTheoCuaHangList();
                 loadSanPhamNhanVien(dgSPNV, spl, spchl);
-
             }
 
         }
@@ -315,6 +353,18 @@ namespace GUI
 
                 lbWarningSP.Text = "Lập Hóa Đơn thành công";
                 loadmaGiamGia();
+                if (XH == 3)
+                    cbGiamGia.SelectedValue = 0.15;
+                else
+                {
+                    if (XH == 2)
+                        cbGiamGia.SelectedValue = 0.1;
+                    else
+                    {
+                        if (XH == 1)
+                            cbGiamGia.SelectedValue = 0.05;
+                    }
+                }
             }
             else
             {
@@ -462,49 +512,58 @@ namespace GUI
                     lbWarningSP.Text = "Hãy chọn sản phẩm để thêm !";
                 else
                 {
-                    int giaBan = Convert.ToInt32(dgSPNV.SelectedRows[0].Cells["donGiaNiemYet"].Value.ToString());
+                    bool HDBValid = hdbl.Exists(ct => ct.maHoaDon == hdb.maHoaDon);
 
-                    if (txtSP_SoLuongM.Text == "")
-                        lbWarningSP.Text = " Hãy nhập số lượng muốn mua !";
-                    else
+                    if (!HDBValid)
                     {
-                        int soluongmua = Convert.ToInt32(txtSP_SoLuongM.Text);
-                        int i = Convert.ToInt32(txtSP_SoLuong.Text);
-                        if (soluongmua > i)
-                        {
-                            lbWarningSP.Text = "Số lượng lớn hơn sản phẩm đang có !";
-                        }
+                        int giaBan = Convert.ToInt32(dgSPNV.SelectedRows[0].Cells["donGiaNiemYet"].Value.ToString());
+
+                        if (txtSP_SoLuongM.Text == "")
+                            lbWarningSP.Text = " Hãy nhập số lượng muốn mua !";
                         else
                         {
-                            ChiTietHoaDon cthd = new ChiTietHoaDon();
-                            cthd.maSanPhamTheoSize = txtSP_Ma.Text;
-                            String msp = txtSP_Ma.Text.Split('_')[0];
-                            cthd.maHoaDon = hdb.maHoaDon;
-
-                            bool maSanPhamValid = cthdl.Exists(ct => ct.maSanPhamTheoSize == txtSP_Ma.Text);
-
-                            if (!maSanPhamValid)
+                            int soluongmua = Convert.ToInt32(txtSP_SoLuongM.Text);
+                            int i = Convert.ToInt32(txtSP_SoLuong.Text);
+                            if (soluongmua > i)
                             {
-                                cthd.soLuong = Convert.ToInt32(txtSP_SoLuongM.Text);
-
-                                cthd.giamGia = 0;
-
-                                cthdl.Add(cthd);
-                                lbWarningSP.Text = "Thêm Sản Phẩm thành công !";
-
-                                txtSP_Ma.Text = "";
-                                txtSP_Ten.Text = "";
-                                txtSP_Gia.Text = "";
-                                txtSP_SoLuong.Text = "";
-                                txtSP_SoLuongM.Text = "";
-                                flPicSP.Controls.Clear();
+                                lbWarningSP.Text = "Số lượng lớn hơn sản phẩm đang có !";
                             }
                             else
                             {
-                                lbWarningSP.Text = "Sản Phẩm đã có !";
-                            }
+                                ChiTietHoaDon cthd = new ChiTietHoaDon();
+                                cthd.maSanPhamTheoSize = txtSP_Ma.Text;
+                                String msp = txtSP_Ma.Text.Split('_')[0];
+                                cthd.maHoaDon = hdb.maHoaDon;
 
+                                bool maSanPhamValid = cthdl.Exists(ct => ct.maSanPhamTheoSize == txtSP_Ma.Text);
+
+                                if (!maSanPhamValid)
+                                {
+                                    cthd.soLuong = Convert.ToInt32(txtSP_SoLuongM.Text);
+
+                                    cthd.giamGia = (double)cbGiamGia.SelectedValue;
+
+                                    cthdl.Add(cthd);
+                                    lbWarningSP.Text = "Thêm Sản Phẩm thành công !";
+
+                                    txtSP_Ma.Text = "";
+                                    txtSP_Ten.Text = "";
+                                    txtSP_Gia.Text = "";
+                                    txtSP_SoLuong.Text = "";
+                                    txtSP_SoLuongM.Text = "";
+                                    flPicSP.Controls.Clear();
+                                }
+                                else
+                                {
+                                    lbWarningSP.Text = "Sản Phẩm đã có !";
+                                }
+
+                            }
                         }
+                    }
+                    else
+                    {
+                        lbWarningSP.Text = "Hóa đơn đã được lưu không thể thêm !";
                     }
                 }
             }
@@ -614,42 +673,53 @@ namespace GUI
                     DialogResult result = MessageBox.Show("Bạn có chắc sẽ lưu hóa đơn ?", "Hóa đơn", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
                     if (result == DialogResult.OK)
                     {
-                        if (hdbBLL.addHoaDonBan(hdb))
+                        try
                         {
-                            bool checkThanhCong = true;
 
-                            foreach (ChiTietHoaDon cthd in cthdl)
+
+                            if (hdbBLL.addHoaDonBan(hdb))
                             {
-                                spch = spchBLL.getSanPhamCuaHang(nv.maCuaHang, cthd.maSanPhamTheoSize);
-                                spch.soLuong -= cthd.soLuong;
-                                if (!spchBLL.updateSanPhamCuaHang(spch))
+                                bool checkThanhCong = true;
+
+                                foreach (ChiTietHoaDon cthd in cthdl)
                                 {
-                                    checkThanhCong = false;
-                                    break;
+                                    spch = spchBLL.getSanPhamCuaHang(nv.maCuaHang, cthd.maSanPhamTheoSize);
+                                    spch.soLuong -= cthd.soLuong;
+                                    if (!spchBLL.updateSanPhamCuaHang(spch))
+                                    {
+                                        checkThanhCong = false;
+                                        break;
+                                    }
+                                    if (!hdbBLL.addChiTietHoaDon(cthd))
+                                    {
+                                        checkThanhCong = false;
+                                        break;
+                                    }
+
+
                                 }
-                                if (!hdbBLL.addChiTietHoaDon(cthd))
+                                if (checkThanhCong)
                                 {
-                                    checkThanhCong = false;
-                                    break;
+                                    MessageBox.Show("Lưu hóa đơn thành công !", "Hóa đơn", MessageBoxButtons.OK);
+                                    hdbl.Add(hdb);
+
+                                    spchl = spchBLL.getSPTheoCuaHangList();
+                                    loadSanPhamNhanVien(dgSPNV, spl, spchl);
                                 }
-
-
-                            }
-                            if (checkThanhCong)
-                            {
-                                MessageBox.Show("Lưu hóa đơn thành công !", "Hóa đơn", MessageBoxButtons.OK);
-                                hdbl.Add(hdb);
-
-                                spchl = spchBLL.getSPTheoCuaHangList();
-                                loadSanPhamNhanVien(dgSPNV, spl, spchl);
+                                else
+                                {
+                                    lbWarningCTHD.Text = "Lưu sản phẩm vào hóa đơn thất bại !";
+                                }
                             }
                             else
-                            {
-                                lbWarningCTHD.Text = "Lưu sản phẩm vào hóa đơn thất bại !";
-                            }
+                                MessageBox.Show("Lưu hóa đơn thất bại !", "Hóa đơn", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+
                         }
-                        else
-                            MessageBox.Show("Lưu hóa đơn thất bại !", "Hóa đơn", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show("Không thể thêm sản phẩm cho cửa hàng. Lỗi: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
                     }
                 }
             }
@@ -738,8 +808,8 @@ namespace GUI
         // In Hóa Đơn 
         private void printHD_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
         {
-           
-            pBLL.VeHoaDon(nv, ch, cthdl, e);
+
+            pBLL.VeHoaDon(nv, ch, cthdl, e, GetKhach());
         }
 
         private void InHD_Click(object sender, EventArgs e)
@@ -813,7 +883,7 @@ namespace GUI
             lbWarningPD.Text = "";
         }
 
-        private void loadKhachHangPDT()
+        private void loadKhachHangPDT(Panel pnSPNVLeft, Panel pnPDTLeft)
         {
             Control[] controls = new Control[pnSPNVLeft.Controls.Count];
             pnSPNVLeft.Controls.CopyTo(controls, 0);
@@ -907,6 +977,11 @@ namespace GUI
             }
             else
                 lbWarningPD.Text = "";
+            if (dgHD_PDT.Columns.Contains("giamGia"))
+            {
+                giamgia = (double)dgHD_PDT.SelectedRows[0].Cells["giamGia"].Value;
+            }
+           
             if (doiColumn && e.ColumnIndex == dgHD_PDT.Columns["Doi"].Index && pdt != null)
             {
                 dgSPDT.Show();
@@ -914,7 +989,7 @@ namespace GUI
             }
             else
             {
-                lbWarningPD.Text = "Hãy lập Phiếu Đổi";
+                lbWarningPD.Text = "Hãy lập Phiếu !";
             }
 
             if (xldt.maXuLyDoiTra == "2" && dgHD_PDT.Columns.Contains("maSanPhamTheoSize"))
@@ -989,7 +1064,7 @@ namespace GUI
                             ctpdt.maPhieuDoiTra = pdt.maPhieuDoiTra;
                             ctpdt.maSPTheoSize = msp;
                             ctpdt.soLuong = i;
-
+                            ctpdt.giamGia = giamgia;
                             lbWarningPD.Text = " Bạn đã đổi " + i.ToString() + " sản phẩm. ";
 
                             // Thêm Sản Phẩm Cửa Hàng vào List tạm
@@ -1015,8 +1090,7 @@ namespace GUI
         }
         private PhieuDoiTra setPhieuDoiTra(PhieuDoiTra pdt)
         {
-            var mchnew = new String(nv.maCuaHang.Where(Char.IsLetter).ToArray());
-            pdt.maPhieuDoiTra = mchnew + nv.maNhanVien + "_" + xldt.maXuLyDoiTra + "L" + GetKhach().maKhachHang + (pdtBLL.coutPhieuDoiTra(GetKhach(), xldt.maXuLyDoiTra) + 1).ToString();
+            pdt.maPhieuDoiTra = nv.maNhanVien + "_" + xldt.maXuLyDoiTra + "L" + GetKhach().maKhachHang + (pdtBLL.coutPhieuDoiTra(GetKhach(), xldt.maXuLyDoiTra) + 1).ToString();
             pdt.maNhanVien = nv.maNhanVien;
             pdt.maKhachHang = GetKhach().maKhachHang;
             pdt.ngayDoiTra = DateTime.Now;
@@ -1036,10 +1110,9 @@ namespace GUI
             else
             {
                 tabNhanVienMenu.SelectedTab = tabNhanVienMenu.TabPages["tabPhieuDoi"];
-
                 // Load Thông tin Khách Hàng
-                loadKhachHangPDT();
-
+                loadKhachHangPDT(pnSPNVLeft, pnPDTLeft);
+                flPicSP.Hide();
                 // Load Các Hóa Đơn Bán
                 loadHoaDonBan_PDT();
 
@@ -1062,6 +1135,7 @@ namespace GUI
                 }
                 else
                 {
+                    pdt = new PhieuDoiTra();
                     pdt = new PhieuDoiTra();
                     ctpdtl = new List<CTPhieuDoiTra>();
                     spchlt = new List<SanPham_CuaHang>();
@@ -1108,10 +1182,11 @@ namespace GUI
         //Load CT Phiếu ĐỔi
         private void loadCTPD(List<CTPhieuDoiTra> ctpdtl)
         {
-            int tongTien = 0;
+            double tongTien = 0;
+            double tongTienRe = 0;
             dgCTPD.DataSource = ctpdtl;
             dgCTPD.Columns["maPhieuDoiTra"].Visible = false;
-
+            dgCTPD.Columns["giamGia"].Visible = false;
             dgCTPD.Columns["maSPTheoSize"].HeaderText = "Mã Sản Phẩm";
             dgCTPD.Columns["maSPTheoSizeRe"].HeaderText = "Mã Sản Phẩm Đổi";
             dgCTPD.Columns["soLuong"].HeaderText = "Số Lượng";
@@ -1131,15 +1206,33 @@ namespace GUI
             foreach (DataGridViewRow row in dgCTPD.Rows)
             {
                 string msp = row.Cells["maSPTheoSize"].Value.ToString().Split('_')[0];
+                string mspre = row.Cells["maSPTheoSizeRe"].Value.ToString().Split('_')[0];
+
                 int soLuong = Convert.ToInt32(row.Cells["soLuong"].Value);
+
                 int donGia = spBLL.getSanPham(msp).donGiaNiemYet;
+                int donGiaRe = spBLL.getSanPham(mspre).donGiaNiemYet;
+
+                double giamgiax = (double)row.Cells["giamGia"].Value;
 
                 row.Cells["priceunit"].Value = donGia;
-                row.Cells["total"].Value = (soLuong * donGia).ToString();
-                tongTien += soLuong * donGia;
+                row.Cells["total"].Value = ((soLuong * donGia) - (soLuong * donGia * giamgiax)).ToString();
+
+                tongTien += ((soLuong * donGia) - (soLuong * donGia * giamgiax));
+                tongTienRe += ((soLuong * donGiaRe) - (soLuong * donGiaRe * giamgiax));
             }
 
             lbTongTienCTPD.Text = tongTien.ToString();
+            double check = tongTien - tongTienRe;
+            if (check > 0)
+            {
+                lbTinhTienChenhLech.Text = "Khách hàng trả thêm " + check.ToString() + "VND";
+            }
+            else
+            {
+                check = check * -1;
+                lbTinhTienChenhLech.Text = "Cửa hàng hoàn lại " + check.ToString() + " VND";
+            }
         }
         private void CTHDList_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -1163,7 +1256,7 @@ namespace GUI
             lbMSP_CTPD.Text = "";
             lbWarningCTPD.Text = "";
             lbSoLuong_CTPD.Text = "";
-
+            lbTinhTienChenhLech.Text = "";
         }
         // Button Đổi số lượng CTPD
         private void btDoiSL_PD_Click(object sender, EventArgs e)
@@ -1191,7 +1284,8 @@ namespace GUI
                         sanPhamCanCapNhat.soLuong = Convert.ToInt32(lbSoLuong_CTPD.Text);
                         dgCTPD.Refresh();
                         lbWarningCTPD.Text = "Đổi số lượng thành công !";
-                        resetCTPD();
+                        lbTinhTienChenhLech.Text = "";
+
                     }
                 }
             }
@@ -1212,9 +1306,10 @@ namespace GUI
                 {
                     ctpdtl.RemoveAll(ctpd => ctpd.maSPTheoSize == lbMSP_CTPD.Text);
                     lbWarningCTPD.Text = "Xóa SP Thành công !";
+                    lbTinhTienChenhLech.Text = "";
                     dgCTPD.DataSource = null;
                     loadCTPD(ctpdtl);
-                    resetCTPD();
+
                 }
             }
         }
@@ -1295,40 +1390,40 @@ namespace GUI
 
         private void InPhieuDoi_Click(object sender, EventArgs e)
         {
-            if (ctpdtl.Count != 0)
+            //if (ctpdtl.Count != 0)
+            //{
+            //    bool pnValid = pdtl.Exists(hdn => hdn.maPhieuDoiTra == pdt.maPhieuDoiTra);
+            //    if (pnValid)
+            //    {
+            MessageBoxButtons buttons = MessageBoxButtons.YesNo;
+            DialogResult result = MessageBox.Show("Bạn muốn xem trước Phiếu Đổi:", "Lựa chọn", buttons, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
+            if (result == DialogResult.Yes)
             {
-                bool pnValid = pdtl.Exists(hdn => hdn.maPhieuDoiTra == pdt.maPhieuDoiTra);
-                if (pnValid)
-                {
-                    MessageBoxButtons buttons = MessageBoxButtons.YesNo;
-                    DialogResult result = MessageBox.Show("Bạn muốn xem trước Phiếu Đổi:", "Lựa chọn", buttons, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
-                    if (result == DialogResult.Yes)
-                    {
-                        printPreviewPD.Document = printPD;
-                        printPreviewPD.ShowDialog();
-                    }
-                    else
-                    {
-                        printDialogPD.Document = printPD;
-                        DialogResult result1 = printDialogPD.ShowDialog();
-                        if (result1 == DialogResult.OK)
-                        {
-                            printPD.Print();
-                        }
-                    }
-
-                }
-                else
-                {
-                    lbWarningCTPD.Text = " Hãy lưu phiếu đổi trước !";
-                }
+                printPreviewPD.Document = printPD;
+                printPreviewPD.ShowDialog();
             }
             else
-                lbWarningCTPD.Text = "Phiếu đổi rỗng";
+            {
+                printDialogPD.Document = printPD;
+                DialogResult result1 = printDialogPD.ShowDialog();
+                if (result1 == DialogResult.OK)
+                {
+                    printPD.Print();
+                }
+            }
+
+            //    }
+            //    else
+            //    {
+            //        lbWarningCTPD.Text = " Hãy lưu phiếu đổi trước !";
+            //    }
+            //}
+            //else
+            //    lbWarningCTPD.Text = "Phiếu đổi rỗng";
         }
         private void printPD_PrintPage(object sender, PrintPageEventArgs e)
         {
-            pBLL.VePhieuDoi(nv, ch, ctpdtl, e);
+            pBLL.VePhieuDoi(nv, ch, ctpdtl, e, GetKhach());
         }
         //=============================== Tác Vụ Trả Hàng ====================================
 
@@ -1362,15 +1457,19 @@ namespace GUI
             dgCTPT.Columns["maSPTheoSize"].HeaderText = "Mã SP";
             dgCTPT.Columns["maSPTheoSizeRe"].HeaderText = "Mã SP Được Trả";
             dgCTPT.Columns["soLuong"].HeaderText = "Số lượng";
+            dgCTPT.Columns["giamGia"].Visible = false;
             dgCTPT.Columns["maPhieuDoiTra"].Visible = false;
 
-            int tongTien = 0;
+            double tongTien = 0;
             foreach (CTPhieuDoiTra ctpdt in ctpdtl)
             {
+                double thanhTien = 0;
                 String msp = ctpdt.maSPTheoSize.Split('_')[0];
                 int gia = spBLL.getSanPham(msp).donGiaNiemYet;
-                tongTien += gia * ctpdt.soLuong;
+                thanhTien = ((gia * ctpdt.soLuong) - (gia * ctpdt.soLuong * ctpdt.giamGia));
+                tongTien += thanhTien;
             }
+
             lbTongTien_CTPT.Text = tongTien.ToString() + "VNĐ";
         }
         private void btPhieuTra_Click(object sender, EventArgs e)
@@ -1382,8 +1481,8 @@ namespace GUI
                 tabNhanVienMenu.SelectedTab = tabNhanVienMenu.TabPages["tabPhieuDoi"];
 
                 // Load Thông tin Khách Hàng
-                loadKhachHangPDT();
-
+                loadKhachHangPDT(pnSPNVLeft, pnPDTLeft);
+                flPicSP.Hide();
                 // Load Các Hóa Đơn Bán
                 loadHoaDonBan_PDT();
 
@@ -1425,6 +1524,7 @@ namespace GUI
                             ctpdt.maSPTheoSize = lbMSP_PT.Text;
                             ctpdt.soLuong = i;
                             ctpdt.maSPTheoSizeRe = lbMSP_PT.Text;
+                            ctpdt.giamGia = giamgia;
                             ctpdtl.Add(ctpdt);
                             lbWarningPD.Text = "Trả thành công !";
                         }
@@ -1453,7 +1553,7 @@ namespace GUI
             }
             else
             {
-                lbWarningPD.Text = "Lập Phiếu Đổi đã được lập";
+                lbWarningPD.Text = "Phiếu Trả đã được lập";
             }
         }
         // Button Xem Phiếu Trả
@@ -1571,43 +1671,44 @@ namespace GUI
 
         private void btInPhieuTra_Click(object sender, EventArgs e)
         {
+            //{
+            //    if (ctpdtl.Count != 0)
+            //    {
+            //        bool pnValid = pdtl.Exists(hdn => hdn.maPhieuDoiTra == pdt.maPhieuDoiTra);
+            //        if (pnValid)
+            //        {
+            MessageBoxButtons buttons = MessageBoxButtons.YesNo;
+            DialogResult result = MessageBox.Show("Bạn muốn xem trước Phiếu Trả:", "Lựa chọn", buttons, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
+            if (result == DialogResult.Yes)
             {
-                if (ctpdtl.Count != 0)
-                {
-                    bool pnValid = pdtl.Exists(hdn => hdn.maPhieuDoiTra == pdt.maPhieuDoiTra);
-                    if (pnValid)
-                    {
-                        MessageBoxButtons buttons = MessageBoxButtons.YesNo;
-                        DialogResult result = MessageBox.Show("Bạn muốn xem trước Phiếu Trả:", "Lựa chọn", buttons, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
-                        if (result == DialogResult.Yes)
-                        {
-                            printPreviewPD.Document = printPT;
-                            printPreviewPD.ShowDialog();
-                        }
-                        else
-                        {
-                            printDialogPD.Document = printPT;
-                            DialogResult result1 = printDialogPD.ShowDialog();
-                            if (result1 == DialogResult.OK)
-                            {
-                                printPT.Print();
-                            }
-                        }
-
-                    }
-                    else
-                    {
-                        lbWarningCTPT.Text = " Hãy lưu phiếu trả trước !";
-                    }
-                }
-                else
-                    lbWarningCTPT.Text = "Phiếu trả rỗng";
+                printPreviewPD.Document = printPT;
+                printPreviewPD.ShowDialog();
             }
+            else
+            {
+                printDialogPD.Document = printPT;
+                DialogResult result1 = printDialogPD.ShowDialog();
+                if (result1 == DialogResult.OK)
+                {
+                    printPT.Print();
+                }
+            }
+
+            //        }
+            //        else
+            //        {
+            //            lbWarningCTPT.Text = " Hãy lưu phiếu trả trước !";
+            //        }
+            //    }
+            //    else
+            //        lbWarningCTPT.Text = "Phiếu trả rỗng";
+            //}
         }
         private void printPT_PrintPage(object sender, PrintPageEventArgs e)
         {
-            pBLL.VePhieuTra(nv, ch, ctpdtl, e);
+            pBLL.VePhieuTra(nv, ch, ctpdtl, e, GetKhach());
         }
+
 
     }
 }

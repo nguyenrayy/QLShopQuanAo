@@ -37,5 +37,9 @@ namespace BLL
         {
             return chdal.TimKiemCuaHang(tuKhoa);
         }
+        public bool IsForeignKeyInOtherTables(string maCH)
+        {
+            return chdal.IsForeignKeyInOtherTables(maCH);
+        }
     }
 }

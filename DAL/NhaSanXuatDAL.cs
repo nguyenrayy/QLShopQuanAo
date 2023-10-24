@@ -155,5 +155,19 @@ namespace DAL
             }
             return ketQua;
         }
+
+        public bool IsForeignKeyInOtherTables(string MaNSX)
+        {
+            Moketnoi();
+            var sql = "SELECT COUNT(*) FROM PhieuNhapKho WHERE maNhaSanXuat = @maNSX";
+            var cmd = new SqlCommand(sql, conec);
+            cmd.Parameters.AddWithValue("@maNSX", MaNSX);
+
+            int count = (int)cmd.ExecuteScalar();
+
+            Dongketnoi();
+
+            return count > 0;
+        }
     }
 }
