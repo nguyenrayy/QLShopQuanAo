@@ -54,10 +54,12 @@ namespace GUI
             lbChucVuNV.Text = cv.tenChucVu;
             lbTenNV.Text = nv.tenNhanVien.ToString();
 
+            //C:\\Users\\tring\\OneDrive\\Desktop\\test\\QLShopQuanAo\\Pic\\male-icon.jpg
+            //C:\Users\iCare Center\Desktop\QLShopQuanAo\Pic
             if (nv.gioiTinh == true)
-                picBoxNV.Image = Image.FromFile("C:\\Users\\tring\\OneDrive\\Desktop\\test\\QLShopQuanAo\\Pic\\male-icon.jpg");
+                picBoxNV.Image = Image.FromFile("C:\\Users\\iCare Center\\Desktop\\QLShopQuanAo\\Pic\\male-icon.jpg");
             else
-                picBoxNV.Image = Image.FromFile("C:\\Users\\tring\\OneDrive\\Desktop\\test\\QLShopQuanAo\\Pic\\icon-phu-nu.jpg");
+                picBoxNV.Image = Image.FromFile("C:\\Users\\iCare Center\\Desktop\\QLShopQuanAo\\Pic\\icon-phu-nu.jpg");
             if (cv.tenChucVu != "Cửa hàng trưởng")
             {
                 pnDoanhThuNV.Hide();

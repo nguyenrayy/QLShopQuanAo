@@ -219,5 +219,7 @@ namespace GUI
                     lbWarningNVNV.Text = "Xóa thất bại !";
             }
         }
+
+
     }
 }

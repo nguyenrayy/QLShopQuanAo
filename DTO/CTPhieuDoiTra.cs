@@ -17,5 +17,7 @@ namespace DTO
         { set; get; }
         public String maSPTheoSizeRe
         { set; get; }
+        public double giamGia
+        { set; get; }
     }
 }

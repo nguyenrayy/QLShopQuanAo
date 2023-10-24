@@ -70,6 +70,7 @@ namespace DAL
                         sql += " maXuLyDoiTra = @maXuLyDoiTra";
                     }
                 }
+                sql += "  order by ngayDoiTra DESC";
 
                 var cmd = new SqlCommand(sql, conec);
                 if (hdb != null)

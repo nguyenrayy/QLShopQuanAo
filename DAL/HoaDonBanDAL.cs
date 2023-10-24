@@ -21,6 +21,7 @@ namespace DAL
             {
                 sql += " where maKhachHang = @maKhachHang";
             }
+            sql += "  order by ngayLapHoaDon DESC";
             var cmd = new SqlCommand(sql, conec);
             if (kh != null)
             {
@@ -97,27 +98,7 @@ namespace DAL
             return i;
 
         }
-        public double tinhTongTien(KhachHang kh)
-        {
-            double i = 0;
-            Moketnoi();
-            try
-            {
-                var sql = "  SELECT SUM(sp.donGiaNiemYet * soLuong - (sp.donGiaNiemYet * soLuong*giamGia)) from ChiTietHoaDon as cthd " +
-                    "join HoaDonBan as hdb on hdb.maHoaDon = cthd.maHoaDon " +
-                    "join MaSanPhamTheoSize as spts on spts.maSPTheoSize = cthd.maSanPhamTheoSize " +
-                    "join SanPham as sp on sp.maSanPham = spts.maSanPham " +
-                    "where hdb.maKhachHang = @maKhachHang";
-                var cmd = new SqlCommand(sql, conec);
-                cmd.Parameters.AddWithValue("@maKhachHang", kh.maKhachHang);
-                if (cmd.ExecuteScalar() is double)
-                {
-                    i = Convert.ToDouble(cmd.ExecuteScalar());
-                }
-            }
-            finally { Dongketnoi(); }
-            return i;
-        }
+       
         public List<ChiTietHoaDon> getCTHDList(ChiTietHoaDon cthd)
         {
             List<ChiTietHoaDon> cthdbl = new List<ChiTietHoaDon>();

@@ -112,6 +112,7 @@ namespace GUI
 
             dgCTHD.Columns["soLuong"].HeaderText = "Số lượng";
             dgCTHD.Columns["maSPTheoSizeRe"].HeaderText = "Sản Phẩm Trước Đây";
+            dgCTHD.Columns["giamGia"].HeaderText = "Giảm Giá";
 
             tongtien = 0;
             foreach (DataGridViewRow row in dgCTHD.Rows)
@@ -120,10 +121,9 @@ namespace GUI
                 String msp = mspx.Split('_')[0];
                 int soLuong = Convert.ToInt32(row.Cells["soLuong"].Value);
                 int donGia = spbll.getSanPham(msp).donGiaNiemYet;
-                tongtien += donGia * soLuong;
+                double giamgia = (double)row.Cells["giamGia"].Value;
+                tongtien += (donGia * soLuong) - (donGia * soLuong * giamgia);
             }
-
-
         }
         private Boolean HoaDonBanValid = false;
         private void dgHDNV_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -176,10 +176,11 @@ namespace GUI
                     }    
                     else
                     {
+                        lbWarningHD.Text = "";
                         dgCTHD.DataSource = null;
                         List<CTPhieuDoiTra> ctpdtl = pdtBLL.getCTPDTList(ctpdt);
                         getCTPDTList(dgCTHD, ctpdtl);
-
+                        dgCTHD.Columns["giamGia"].Visible = false;
                         txtTongTienCTHD.Text = tongtien.ToString();
                     }    
                 }    
@@ -224,6 +225,7 @@ namespace GUI
             }
             else
             {
+                lbWarningHD.Text = "";
                 xldt.maXuLyDoiTra = "1";
                 dgHDNV.DataSource = null;
                 dgCTHD.DataSource = null;
@@ -249,6 +251,7 @@ namespace GUI
             }
             else
             {
+                lbWarningHD.Text = "";
                 txtTongTienCTHD.Text = "";
                 dgHDNV.DataSource = null;
                 xldt.maXuLyDoiTra = "2";

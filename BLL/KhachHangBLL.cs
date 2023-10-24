@@ -59,9 +59,10 @@ namespace BLL
             khdal.SendPromotionSMS(promotionMessage);
         }
 
-            public List<KhachHang> TimKiemKH(string tuKhoa)
+        public List<KhachHang> TimKiemKH(string tuKhoa)
         {
             return khdal.TimKiemKH(tuKhoa);
         }
-        }
+      
+    }
 }

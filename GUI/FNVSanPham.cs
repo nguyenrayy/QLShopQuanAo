@@ -25,7 +25,7 @@ namespace GUI
         PhieuNhapBLL pnBLL = new PhieuNhapBLL();
         CuaHangBLL chBLL = new CuaHangBLL();
         NhanVienBLL nvBLL = new NhanVienBLL();
-
+        PrintBLL pBLL = new PrintBLL();
         List<SanPham> spl = null;
         List<SanPham_CuaHang> spchl = null;
         List<DTO.Size> sizel = null;
@@ -109,31 +109,37 @@ namespace GUI
                 ctpn = new ChiTietPhieuNhap();
                 if (pn == null)
                 {
-                    lbWarningPN_SP.Text = "Hãy lập phiếu nhâp trước ! ";
+                    lbWarningPN_SP.Text = "Hãy lập phiếu nhập trước ! ";
                 }
                 else
                 {
-                    bool maSanPhamValid = ctpnl.Exists(ct => ct.maSPTheoSize == txtMaSP.Text);
-
-                    if (!maSanPhamValid)
+                    if((int)dgSPNV.SelectedRows[0].Cells["soLuong"].Value > 40)
                     {
-                        ctpn.maPhieuNhap = pn.maPhieuNhap;
-                        int i = ShowInputDialog();
-                        if (i > 0)
-                        {
-                            lbWarningPN_SP.Text = " Bạn đã bấm nhập thành công !";
-                            ctpn.soLuong = i;
-                            ctpn.maSPTheoSize = txtMaSP.Text;
-                            ctpnl.Add(ctpn);
-                        }
-                        else { lbWarningPN_SP.Text = " Số lượng nhập không hợp lệ"; }
-
+                        lbWarningPN_SP.Text = "Sản phẩm đang có quá nhiều ! ";
                     }
                     else
                     {
-                        lbWarningPN_SP.Text = "Sản Phẩm đã nằm trong list ";
-                    }
+                        bool maSanPhamValid = ctpnl.Exists(ct => ct.maSPTheoSize == txtMaSP.Text);
 
+                        if (!maSanPhamValid)
+                        {
+                            ctpn.maPhieuNhap = pn.maPhieuNhap;
+                            int i = ShowInputDialog();
+                            if (i > 0)
+                            {
+                                lbWarningPN_SP.Text = " Bạn đã bấm nhập thành công !";
+                                ctpn.soLuong = i;
+                                ctpn.maSPTheoSize = txtMaSP.Text;
+                                ctpnl.Add(ctpn);
+                            }
+                            else { lbWarningPN_SP.Text = " Số lượng nhập không hợp lệ"; }
+
+                        }
+                        else
+                        {
+                            lbWarningPN_SP.Text = "Sản Phẩm đã nằm trong list ";
+                        }
+                    }    
                 }
 
             }
@@ -205,6 +211,7 @@ namespace GUI
             dgPhieuNhap.Columns["ngayNhap"].HeaderText = "Ngày Nhập";
             dgPhieuNhap.Columns["trangThai"].HeaderText = "Trạng Thái";
             dgPhieuNhap.Columns["maCuaHang"].Visible = false;
+            dgPhieuNhap.Columns["TongTien"].Visible = false;
         }
         private void loadDS_CTPN(DataGridView dgCTPN, List<ChiTietPhieuNhap> ctpnl)
         {
@@ -596,6 +603,7 @@ namespace GUI
             loadDanhSachSP(dgDSPN_SP);
 
             dgDSPN_SP.Columns["donGiaNiemYet"].Visible = false;
+            
         }
         // Thêm Sản Phẩm Vào Chi Tiết Phiếu Nhập
         private void btThemDSPN_Click(object sender, EventArgs e)
@@ -667,6 +675,30 @@ namespace GUI
            
         }
 
-        
+        private void btINDSPN_Click(object sender, EventArgs e)
+        {
+
+            if (ctpnl.Count != 0)
+            {
+                MessageBoxButtons buttons = MessageBoxButtons.YesNo;
+                DialogResult result = MessageBox.Show("Bạn muốn In Phiếu Nhập:", "Lựa chọn", buttons, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
+                if (result == DialogResult.Yes)
+                {
+                    printDialogPN.Document = printDocumentPN;
+                    DialogResult result1 = printDialogPN.ShowDialog();
+                    if (result1 == DialogResult.OK)
+                    {
+                        printDocumentPN.Print();
+                    }
+                }
+            }
+            else
+                lbWarningDSPN.Text = "Phiếu nhập rỗng";
+        }
+
+        private void printDocumentPN_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
+        {
+                pBLL.VePhieuNhap(nv, ch, ctpnl, e);
+         }
     }
 }
