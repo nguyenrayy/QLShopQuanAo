@@ -238,7 +238,6 @@
             this.txtQuenMatKhau.ReadOnly = true;
             this.txtQuenMatKhau.Size = new System.Drawing.Size(101, 13);
             this.txtQuenMatKhau.TabIndex = 2;
-            this.txtQuenMatKhau.Text = "Quên mật khẩu ?";
             this.txtQuenMatKhau.Click += new System.EventHandler(this.txtQuenMatKhau_Click);
             // 
             // pnelQMK

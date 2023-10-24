@@ -75,3 +75,14 @@ C:\Users\tring\OneDrive\Desktop\test\QLShopQuanAo\BLL\bin\Debug\Twilio.xml
 C:\Users\tring\OneDrive\Desktop\test\QLShopQuanAo\BLL\bin\Debug\Newtonsoft.Json.xml
 C:\Users\tring\OneDrive\Desktop\test\QLShopQuanAo\BLL\bin\Debug\System.IdentityModel.Tokens.Jwt.xml
 C:\Users\tring\OneDrive\Desktop\test\QLShopQuanAo\BLL\bin\Debug\Microsoft.IdentityModel.Tokens.xml
+C:\Users\iCare Center\Desktop\QLShopQuanAo\BLL\bin\Debug\BLL.dll.config
+C:\Users\iCare Center\Desktop\QLShopQuanAo\BLL\bin\Debug\Twilio.dll
+C:\Users\iCare Center\Desktop\QLShopQuanAo\BLL\bin\Debug\Newtonsoft.Json.dll
+C:\Users\iCare Center\Desktop\QLShopQuanAo\BLL\bin\Debug\System.IdentityModel.Tokens.Jwt.dll
+C:\Users\iCare Center\Desktop\QLShopQuanAo\BLL\bin\Debug\Microsoft.IdentityModel.Tokens.dll
+C:\Users\iCare Center\Desktop\QLShopQuanAo\BLL\bin\Debug\Microsoft.IdentityModel.Logging.dll
+C:\Users\iCare Center\Desktop\QLShopQuanAo\BLL\bin\Debug\DAL.dll.config
+C:\Users\iCare Center\Desktop\QLShopQuanAo\BLL\bin\Debug\Twilio.xml
+C:\Users\iCare Center\Desktop\QLShopQuanAo\BLL\bin\Debug\Newtonsoft.Json.xml
+C:\Users\iCare Center\Desktop\QLShopQuanAo\BLL\bin\Debug\System.IdentityModel.Tokens.Jwt.xml
+C:\Users\iCare Center\Desktop\QLShopQuanAo\BLL\bin\Debug\Microsoft.IdentityModel.Tokens.xml

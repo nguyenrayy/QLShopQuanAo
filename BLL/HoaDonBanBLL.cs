@@ -57,7 +57,9 @@ namespace BLL
         {
             return hdbDAL.countHoaDonBan(kh);
         }
-        public double tinhTongTien(KhachHang kh, List<HoaDonBan> hdbl, List<PhieuDoiTra> pdtl)
+
+        public double tinhTongTien(KhachHang kh , List<HoaDonBan> hdbl, List<PhieuDoiTra> pdtl)
+
         {
             double tongTien = 0;
             hdbl = hdbl.Where(hd => hd.maKhachHang == kh.maKhachHang).ToList();

@@ -23,6 +23,7 @@ namespace BLL
             {
                 sql += " where maCuaHang = @maCuaHang";
             }
+            sql += "  order by ngayNhap DESC";
             var cmd = new SqlCommand(sql, conec);
             if (nv != null)
             {

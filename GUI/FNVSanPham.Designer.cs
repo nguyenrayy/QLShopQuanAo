@@ -126,6 +126,8 @@
             this.tabConSPMenu = new System.Windows.Forms.TabControl();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.contextMenuStrip2 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.printDocumentPN = new System.Drawing.Printing.PrintDocument();
+            this.printDialogPN = new System.Windows.Forms.PrintDialog();
             this.tabCTPhieuDat.SuspendLayout();
             this.panCTPN.SuspendLayout();
             this.panPDCont.SuspendLayout();
@@ -758,6 +760,7 @@
             this.btINDSPN.Size = new System.Drawing.Size(152, 44);
             this.btINDSPN.TabIndex = 67;
             this.btINDSPN.Text = "In ";
+            this.btINDSPN.Click += new System.EventHandler(this.btINDSPN_Click);
             // 
             // btSuaDSPN
             // 
@@ -1324,6 +1327,14 @@
             this.contextMenuStrip2.Name = "contextMenuStrip2";
             this.contextMenuStrip2.Size = new System.Drawing.Size(61, 4);
             // 
+            // printDocumentPN
+            // 
+            this.printDocumentPN.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.printDocumentPN_PrintPage);
+            // 
+            // printDialogPN
+            // 
+            this.printDialogPN.UseEXDialog = true;
+            // 
             // FNVSanPham
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
@@ -1471,5 +1482,7 @@
         private System.Windows.Forms.DataGridView dgDSPN_SP;
         private System.Windows.Forms.PictureBox picSPSP;
         private System.Windows.Forms.FlowLayoutPanel fpPicSP;
+        private System.Drawing.Printing.PrintDocument printDocumentPN;
+        private System.Windows.Forms.PrintDialog printDialogPN;
     }
 }
