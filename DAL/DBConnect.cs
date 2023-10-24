@@ -14,7 +14,7 @@ namespace DAL
     public class DBConnect
     {
         public SqlConnection conec = null;
-        string strconec = @"Data Source=DELL\MSSQLSERVER02;Initial Catalog=ShopQuanAoNewVer2;Integrated Security=True";
+        string strconec = @"Data Source=DELL\MSSQLSERVER02;Initial Catalog=shopQuanAoVer3;Integrated Security=True";
        
         public void Moketnoi()
         {

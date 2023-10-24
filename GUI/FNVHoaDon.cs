@@ -176,6 +176,7 @@ namespace GUI
                     }    
                     else
                     {
+                        cthdl = hdbBLL.getCTHDList(cthd);
                         lbWarningHD.Text = "";
                         dgCTHD.DataSource = null;
                         List<CTPhieuDoiTra> ctpdtl = pdtBLL.getCTPDTList(ctpdt);

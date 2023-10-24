@@ -155,21 +155,21 @@ namespace GUI
         {
             string xepHang = "Mới";
             lx.ForeColor = Color.Purple;
-            if (Tien > 800000)
+            if (Tien > 8000000)
             {
                 xepHang = "Vàng";
                 lx.ForeColor = Color.Goldenrod;
                 XH = 3;
             }
             else
-            if (Tien > 500000)
+            if (Tien > 5000000)
             {
                 xepHang = "Bạc";
                 lx.ForeColor = Color.LightGray;
                 XH = 2;
             }
             else
-            if (Tien > 300000)
+            if (Tien > 3000000)
             {
                 xepHang = "Đồng";
                 lx.ForeColor = Color.DarkKhaki;

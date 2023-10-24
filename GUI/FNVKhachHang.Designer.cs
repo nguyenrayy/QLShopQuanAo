@@ -188,6 +188,7 @@
             this.btPhieuDoi = new Guna.UI2.WinForms.Guna2Button();
             this.btPhieuTra = new Guna.UI2.WinForms.Guna2Button();
             this.panNguonThuKH = new System.Windows.Forms.Panel();
+            this.lbXepHang = new System.Windows.Forms.Label();
             this.lbRank = new System.Windows.Forms.Label();
             this.lbNguonThuKH = new System.Windows.Forms.Label();
             this.lbTongTienKH = new System.Windows.Forms.Label();
@@ -242,7 +243,6 @@
             this.printPreviewPD = new System.Windows.Forms.PrintPreviewDialog();
             this.printDialogPD = new System.Windows.Forms.PrintDialog();
             this.printPT = new System.Drawing.Printing.PrintDocument();
-            this.lbXepHang = new System.Windows.Forms.Label();
             this.tabCTPDCont.SuspendLayout();
             this.panPDCont.SuspendLayout();
             this.panCTPDLeft.SuspendLayout();
@@ -2229,6 +2229,16 @@
             this.panNguonThuKH.Size = new System.Drawing.Size(312, 118);
             this.panNguonThuKH.TabIndex = 26;
             // 
+            // lbXepHang
+            // 
+            this.lbXepHang.AutoSize = true;
+            this.lbXepHang.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbXepHang.Location = new System.Drawing.Point(207, 98);
+            this.lbXepHang.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbXepHang.Name = "lbXepHang";
+            this.lbXepHang.Size = new System.Drawing.Size(0, 19);
+            this.lbXepHang.TabIndex = 29;
+            // 
             // lbRank
             // 
             this.lbRank.AutoSize = true;
@@ -2833,16 +2843,6 @@
             // printPT
             // 
             this.printPT.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.printPT_PrintPage);
-            // 
-            // lbXepHang
-            // 
-            this.lbXepHang.AutoSize = true;
-            this.lbXepHang.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbXepHang.Location = new System.Drawing.Point(207, 98);
-            this.lbXepHang.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lbXepHang.Name = "lbXepHang";
-            this.lbXepHang.Size = new System.Drawing.Size(0, 19);
-            this.lbXepHang.TabIndex = 29;
             // 
             // FNVKhachHang
             // 

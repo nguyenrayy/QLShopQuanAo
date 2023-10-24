@@ -68,9 +68,17 @@ namespace DAL
             DBConnect.Moketnoi();
             try
             {
-                string SQL = string.Format("INSERT INTO khachhang VALUES ('{0}', '{1}', '{2}' , '{3}', '{4}', '{5}')",
-                    kh.randomString(), kh.tenKhach, kh.gioiTinh, kh.ngaySinh, kh.diaChi, kh.soDienThoai);
+                string SQL = "INSERT INTO khachhang (maKhachHang,tenKhach, gioiTinh, ngaySinh, diaChi, soDienThoai) " +
+                             "VALUES (@maKhach,@tenKhach, @gioiTinh, @ngaySinh, @diaChi, @soDienThoai)";
                 SqlCommand cmd = new SqlCommand(SQL, DBConnect.conec);
+
+                cmd.Parameters.AddWithValue("@maKhach", kh.randomString());
+                cmd.Parameters.AddWithValue("@tenKhach", kh.tenKhach);
+                cmd.Parameters.AddWithValue("@gioiTinh", kh.gioiTinh);
+                cmd.Parameters.AddWithValue("@ngaySinh", kh.ngaySinh);
+                cmd.Parameters.AddWithValue("@diaChi", kh.diaChi);
+                cmd.Parameters.AddWithValue("@soDienThoai", kh.soDienThoai);
+
                 if (cmd.ExecuteNonQuery() > 0)
                 {
                     return true;
@@ -80,7 +88,10 @@ namespace DAL
                     return false;
                 }
             }
-            finally { DBConnect.Dongketnoi(); }
+            finally
+            {
+                DBConnect.Dongketnoi();
+            }
         }
         public bool checkKhachHangValid(KhachHang kh)
         {
